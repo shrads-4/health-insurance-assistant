@@ -1,0 +1,109 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.formSection {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 2px solid #e2e8f0;
+  margin-bottom: 2rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #1e293b;
+}
+
+.formGroup input {
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: #6366f1;
+}
+
+.button {
+  background-color: #6366f1;
+  color: white;
+  border: none;
+  padding: 0.875rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #4f46e5;
+}
+
+.resultsSection {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 2px solid #e2e8f0;
+}
+
+.resultsSection h3 {
+  margin-top: 0;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+}
+
+.resultItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.resultLabel {
+  font-weight: 600;
+  color: #475569;
+}
+
+.resultValue {
+  font-weight: 700;
+  color: #059669;
+  font-size: 1.1rem;
+}
+
+.totalCost {
+  background: #eff6ff;
+  border: 2px solid #6366f1;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.totalCost .resultLabel {
+  color: #1e293b;
+  font-size: 1.2rem;
+}
+
+.totalCost .resultValue {
+  color: #6366f1;
+  font-size: 1.5rem;
+}

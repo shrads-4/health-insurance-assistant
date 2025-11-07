@@ -1,0 +1,14 @@
+import Head from 'next/head';
+import Timeline from '../components/Timeline';
+
+export default function TimelinePage() {
+  return (
+    <div>
+      <Head>
+        <title>Fertility Journey Timeline</title>
+      </Head>
+      <h1 style={{ textAlign: 'center', marginBottom: '2rem' }}>Your Fertility Journey</h1>
+      <Timeline />
+    </div>
+  );
+}
