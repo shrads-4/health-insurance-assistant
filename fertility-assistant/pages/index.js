@@ -1,25 +1,20 @@
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useAuth } from '../context/AuthContext';
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
-import { useState } from 'react';
-import { db } from '../firebase/config';
-import { collection, addDoc } from 'firebase/firestore';
 
 export default function Home() {
-  const [status, setStatus] = useState('');
+  const { user, userProfile } = useAuth();
+  const router = useRouter();
 
-  const testFirebase = async () => {
-    try {
-      // Try to add a test document
-      const docRef = await addDoc(collection(db, 'test'), {
-        message: 'Firebase works!',
-        timestamp: new Date()
-      });
-      setStatus(`Success! Document ID: ${docRef.id}`);
-    } catch (error) {
-      setStatus(`Error: ${error.message}`);
+  useEffect(() => {
+    // Redirect to onboarding if user is logged in but hasn't completed onboarding
+    if (user && userProfile && !userProfile.onboardingCompleted) {
+      router.push('/onboarding');
     }
-  };
+  }, [user, userProfile, router]);
 
   return (
     <div className={styles.container}>
