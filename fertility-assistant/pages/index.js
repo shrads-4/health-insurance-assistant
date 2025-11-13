@@ -1,8 +1,26 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
+import { useState } from 'react';
+import { db } from '../firebase/config';
+import { collection, addDoc } from 'firebase/firestore';
 
 export default function Home() {
+  const [status, setStatus] = useState('');
+
+  const testFirebase = async () => {
+    try {
+      // Try to add a test document
+      const docRef = await addDoc(collection(db, 'test'), {
+        message: 'Firebase works!',
+        timestamp: new Date()
+      });
+      setStatus(`Success! Document ID: ${docRef.id}`);
+    } catch (error) {
+      setStatus(`Error: ${error.message}`);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <Head>
