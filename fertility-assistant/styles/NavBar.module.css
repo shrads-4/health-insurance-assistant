@@ -3,14 +3,17 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #6366f1;
+  background: linear-gradient(135deg, #ADC178 0%, #8FA05F 100%);
   color: white;
+  box-shadow: 0 2px 8px rgba(139, 195, 74, 0.3);
 }
 
 .logo h2 {
   margin: 0;
   font-size: 1.5rem;
   cursor: pointer;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .navLinks {
@@ -26,36 +29,13 @@
 .navLinks a {
   color: white;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
+  transition: all 0.2s;
 }
 
 .navLinks a:hover {
-  text-decoration: underline;
-}
-
-.userSection {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.userName {
-  font-weight: 500;
-}
-
-.logoutButton {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background 0.2s;
-}
-
-.logoutButton:hover {
-  background: rgba(255, 255, 255, 0.3);
+  color: #C8D9A8;
+  transform: translateY(-2px);
 }
 
 .authButtons {
@@ -66,7 +46,7 @@
 .loginButton,
 .signupButton {
   padding: 0.5rem 1.25rem;
-  border-radius: 6px;
+  border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
@@ -79,16 +59,18 @@
 }
 
 .loginButton:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
 }
 
 .signupButton {
   background: white;
   border: 2px solid white;
-  color: #6366f1;
+  color: #8FA05F;
+  font-weight: 700;
 }
 
 .signupButton:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(255,255,255,0.3);
 }

@@ -16,9 +16,10 @@
   top: 0;
   width: 20px;
   height: 20px;
-  background-color: #6366f1;
+  background-color: #ADC178;
   border-radius: 50%;
-  border: 4px solid #e0e7ff;
+  border: 4px solid #C8D9A8;
+  box-shadow: 0 2px 8px rgba(139, 195, 74, 0.3);
 }
 
 .timelineConnector {
@@ -27,19 +28,26 @@
   top: 20px;
   width: 2px;
   height: calc(100% + 2rem);
-  background-color: #cbd5e1;
+  background-color: #C8D9A8;
 }
 
 .timelineContent {
   background: white;
   padding: 1.5rem;
-  border-radius: 8px;
-  border: 2px solid #e2e8f0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  border-radius: 12px;
+  border: 2px solid #C8D9A8;
+  box-shadow: 0 2px 8px rgba(139, 195, 74, 0.1);
+  transition: all 0.3s;
+}
+
+.timelineContent:hover {
+  border-color: #ADC178;
+  box-shadow: 0 4px 16px rgba(139, 195, 74, 0.2);
+  transform: translateY(-2px);
 }
 
 .timelineDate {
-  color: #6366f1;
+  color: #ADC178;
   font-weight: 600;
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
@@ -47,30 +55,34 @@
 
 .timelineContent h3 {
   margin: 0 0 0.5rem 0;
-  color: #1e293b;
+  color: #4A5D2E;
 }
 
 .timelineContent p {
-  color: #64748b;
+  color: #8FA05F;
   margin-bottom: 1rem;
 }
 
 .timelineCost {
   font-weight: 600;
-  color: #059669;
+  color: #8FA05F;
   margin-bottom: 1rem;
 }
 
 .detailsButton {
-  background-color: #f1f5f9;
-  color: #475569;
-  border: none;
+  background: #E8F0D8;
+  color: #8FA05F;
+  border: 2px solid #C8D9A8;
   padding: 0.5rem 1rem;
   border-radius: 6px;
   cursor: pointer;
   font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s;
 }
 
 .detailsButton:hover {
-  background-color: #e2e8f0;
+  background: #C8D9A8;
+  border-color: #ADC178;
+  transform: translateY(-2px);
 }

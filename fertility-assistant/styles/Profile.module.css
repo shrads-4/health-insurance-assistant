@@ -1,0 +1,254 @@
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.loading {
+    text-align: center;
+    padding: 4rem;
+    color: #8FA05F;
+    font-size: 1.2rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.header h1 {
+    margin: 0;
+    color: #4A5D2E;
+    font-size: 2.5rem;
+}
+
+.editButton {
+    background: linear-gradient(135deg, #ADC178 0%, #8FA05F 100%);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.editButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(173, 193, 120, 0.4);
+}
+
+.successMessage {
+    background: #C8D9A8;
+    color: #4A5D2E;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 2px solid #ADC178;
+    font-weight: 600;
+}
+
+.errorMessage {
+    background: #FFEBEE;
+    color: #C62828;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 2px solid #FFCDD2;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.section {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid #C8D9A8;
+    box-shadow: 0 2px 8px rgba(173, 193, 120, 0.1);
+}
+
+.section h2 {
+    margin: 0 0 1.5rem 0;
+    color: #4A5D2E;
+    font-size: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #C8D9A8;
+}
+
+.infoGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.infoItem {
+    display: flex;
+    flex-direction: column;
+}
+
+.infoItem label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #4A5D2E;
+    font-size: 0.9rem;
+}
+
+.staticValue {
+    padding: 0.75rem;
+    background: #F5F9ED;
+    border-radius: 6px;
+    color: #8FA05F;
+    border: 2px solid #E8F0D8;
+}
+
+.value {
+    padding: 0.75rem 0;
+    color: #4A5D2E;
+    font-size: 1.1rem;
+    font-weight: 500;
+    min-height: 2.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    padding: 0.75rem;
+    border: 2px solid #C8D9A8;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #ADC178;
+    box-shadow: 0 0 0 3px rgba(173, 193, 120, 0.1);
+}
+
+.hint {
+    color: #8FA05F;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    font-style: italic;
+}
+
+.error {
+    color: #E57373;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.cancelButton,
+.saveButton {
+    padding: 0.875rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.cancelButton {
+    background: white;
+    color: #8FA05F;
+    border: 2px solid #C8D9A8;
+}
+
+.cancelButton:hover:not(:disabled) {
+    background: #F5F9ED;
+    border-color: #ADC178;
+}
+
+.cancelButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.saveButton {
+    background: linear-gradient(135deg, #ADC178 0%, #8FA05F 100%);
+    color: white;
+    border: none;
+}
+
+.saveButton:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(173, 193, 120, 0.4);
+}
+
+.saveButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.statCard {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid #C8D9A8;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.statCard:hover {
+    border-color: #ADC178;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(173, 193, 120, 0.15);
+}
+
+.statLabel {
+    color: #8FA05F;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.statValue {
+    color: #4A5D2E;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .infoGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .cancelButton,
+    .saveButton {
+        width: 100%;
+    }
+}

@@ -6,43 +6,27 @@
 .formSection {
   background: white;
   padding: 2rem;
-  border-radius: 8px;
-  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  border: 2px solid #C8D9A8;
   margin-bottom: 2rem;
-}
-
-.formGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.formGroup {
-  display: flex;
-  flex-direction: column;
-}
-
-.formGroup label {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #1e293b;
+  box-shadow: 0 2px 8px rgba(139, 195, 74, 0.1);
 }
 
 .formGroup input {
   padding: 0.75rem;
-  border: 2px solid #e2e8f0;
+  border: 2px solid #C8D9A8;
   border-radius: 6px;
   font-size: 1rem;
 }
 
 .formGroup input:focus {
   outline: none;
-  border-color: #6366f1;
+  border-color: #ADC178;
+  box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.1);
 }
 
 .button {
-  background-color: #6366f1;
+  background: linear-gradient(135deg, #ADC178 0%, #8FA05F 100%);
   color: white;
   border: none;
   padding: 0.875rem 2rem;
@@ -51,59 +35,56 @@
   cursor: pointer;
   font-weight: 600;
   width: 100%;
+  transition: all 0.2s;
 }
 
 .button:hover {
-  background-color: #4f46e5;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(139, 195, 74, 0.4);
 }
 
 .resultsSection {
   background: white;
   padding: 2rem;
-  border-radius: 8px;
-  border: 2px solid #e2e8f0;
-}
-
-.resultsSection h3 {
-  margin-top: 0;
-  color: #1e293b;
-  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid #C8D9A8;
+  box-shadow: 0 2px 8px rgba(139, 195, 74, 0.1);
 }
 
 .resultItem {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
-  background: #f8fafc;
+  background: #E8F0D8;
   border-radius: 6px;
   margin-bottom: 1rem;
 }
 
 .resultLabel {
   font-weight: 600;
-  color: #475569;
+  color: #4A5D2E;
 }
 
 .resultValue {
   font-weight: 700;
-  color: #059669;
+  color: #8FA05F;
   font-size: 1.1rem;
 }
 
 .totalCost {
-  background: #eff6ff;
-  border: 2px solid #6366f1;
+  background: #C8D9A8;
+  border: 2px solid #ADC178;
   padding: 1.5rem;
   border-radius: 8px;
   margin-top: 1rem;
 }
 
 .totalCost .resultLabel {
-  color: #1e293b;
+  color: #4A5D2E;
   font-size: 1.2rem;
 }
 
 .totalCost .resultValue {
-  color: #6366f1;
+  color: #8FA05F;
   font-size: 1.5rem;
 }
