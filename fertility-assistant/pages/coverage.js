@@ -7,12 +7,14 @@ export default function CoveragePage() {
     <ProtectedRoute>
       <div>
         <Head>
-          <title>Coverage Decoder</title>
+          <title>Coverage Decoder - Baby Yoda</title>
         </Head>
-        <h1 style={{ textAlign: 'center', marginBottom: '2rem' }}>Coverage Decoder</h1>
-        <p style={{ textAlign: 'center', color: '#64748b', marginBottom: '2rem' }}>
-          Paste your insurance plan details and we'll translate them into plain English
-        </p>
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <h1 style={{ color: '#4A5D2E', marginBottom: '0.5rem' }}>Coverage Decoder 🔍</h1>
+          <p style={{ color: '#8FA05F', fontSize: '1.1rem' }}>
+            Chat with Baby Yoda to understand your insurance and find savings
+          </p>
+        </div>
         <CoverageDecoder />
       </div>
     </ProtectedRoute>
