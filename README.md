@@ -18,3 +18,59 @@ We are building a health insurance assistant that focuses on fertility benefits 
 ### Git
 - Download from git-scm.com
 - Verify installation: git --version
+
+## Required API Keys and Services
+
+### Firebase Account
+- Create a Firebase project at Firebase Console
+- Enable Firebase Authentication
+- Enable Firestore Database
+- Enable Firebase Storage
+
+### Google Gemini API Key
+- Get your API key from Google AI Studio
+
+## NPM Dependencies
+The following packages will be installed automatically when you run npm install:​
+- @emotion/react (^11.14.0)
+- @emotion/styled (^11.14.1)
+- @mui/lab (^7.0.1-beta.19)
+- @mui/material (^7.3.5)
+- openai (^6.8.1)
+- react-hook-form (^7.66.0)
+
+## Environment Variables Setup
+Create a .env.local file in the fertility-assistant directory with the following variables:
+```
+# Firebase Configuration
+NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project_id.appspot.com
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+
+# Google Gemini API
+GOOGLE_GEMINI_API_KEY=your_gemini_api_key
+```
+
+## Installation Steps
+Clone the repository:
+```
+git clone https://github.com/shrads-4/health-insurance-assistant.git
+cd health-insurance-assistant/fertility-assistant
+```
+
+Install dependencies:
+```
+npm install
+```
+
+Set up your environment variables as described above
+
+Run the development server:
+```
+npm run dev
+```
+
+Open http://localhost:3000 in your browser
