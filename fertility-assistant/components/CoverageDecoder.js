@@ -227,18 +227,44 @@ export default function CoverageDecoder() {
 
       <div className={styles.quickQuestions}>
         <h3>Quick Questions:</h3>
-        <button onClick={() => setInput('What fertility treatments are covered by my plan?')}>
-          What's covered?
-        </button>
-        <button onClick={() => setInput('How can I reduce my out-of-pocket costs for IVF?')}>
-          How to save money?
-        </button>
-        <button onClick={() => setInput('Do I need pre-authorization for fertility treatments?')}>
-          Pre-authorization needed?
-        </button>
-        <button onClick={() => setInput('What is my coverage limit for fertility treatments?')}>
-          Coverage limits?
-        </button>
+        <div className={styles.questionGrid}>
+          <button onClick={() => setInput('What fertility treatments are covered by my plan?')}>
+            What's covered?
+          </button>
+          <button onClick={() => setInput('How can I reduce my out-of-pocket costs for IVF?')}>
+            How to save money?
+          </button>
+          <button onClick={() => setInput('Do I need pre-authorization for fertility treatments?')}>
+            Pre-authorization needed?
+          </button>
+          <button onClick={() => setInput('What is my coverage limit for fertility treatments?')}>
+            Coverage limits?
+          </button>
+          <button onClick={() => setInput('What is the difference between in-network and out-of-network providers?')}>
+            Network differences?
+          </button>
+          <button onClick={() => setInput('How does my deductible affect fertility treatment costs?')}>
+            Deductible impact?
+          </button>
+          <button onClick={() => setInput('What medications are covered under my pharmacy benefits?')}>
+            Medication coverage?
+          </button>
+          <button onClick={() => setInput('When should I start treatment to maximize my insurance benefits?')}>
+            Best timing?
+          </button>
+          <button onClick={() => setInput('What happens if my treatment fails? Is a second cycle covered?')}>
+            Multiple cycles?
+          </button>
+          <button onClick={() => setInput('Are genetic testing and PGT covered by my insurance?')}>
+            Genetic testing?
+          </button>
+          <button onClick={() => setInput('How do I appeal a denied fertility treatment claim?')}>
+            Appeal process?
+          </button>
+          <button onClick={() => setInput('What documentation do I need for insurance approval?')}>
+            Required documents?
+          </button>
+        </div>
       </div>
     </div>
   );
