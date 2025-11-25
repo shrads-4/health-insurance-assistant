@@ -1,25 +1,47 @@
 .container {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 1rem;
 }
 
 .formSection {
   background: white;
   padding: 2rem;
-  border-radius: 12px;
+  border-radius: 16px;
   border: 2px solid #C8D9A8;
   margin-bottom: 2rem;
-  box-shadow: 0 2px 8px rgba(139, 195, 74, 0.1);
+  box-shadow: 0 4px 12px rgba(139, 195, 74, 0.1);
 }
 
-.formGroup input {
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #4A5D2E;
+}
+
+.formGroup input,
+.formGroup select {
   padding: 0.75rem;
   border: 2px solid #C8D9A8;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 1rem;
+  transition: all 0.2s ease;
 }
 
-.formGroup input:focus {
+.formGroup input:focus,
+.formGroup select:focus {
   outline: none;
   border-color: #ADC178;
   box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.1);
@@ -29,62 +51,421 @@
   background: linear-gradient(135deg, #ADC178 0%, #8FA05F 100%);
   color: white;
   border: none;
-  padding: 0.875rem 2rem;
-  border-radius: 8px;
-  font-size: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
   cursor: pointer;
   font-weight: 600;
   width: 100%;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(139, 195, 74, 0.2);
 }
 
 .button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(139, 195, 74, 0.4);
+  box-shadow: 0 8px 24px rgba(139, 195, 74, 0.4);
 }
 
-.resultsSection {
+.resultsContainer {
   background: white;
-  padding: 2rem;
-  border-radius: 12px;
+  border-radius: 16px;
   border: 2px solid #C8D9A8;
-  box-shadow: 0 2px 8px rgba(139, 195, 74, 0.1);
+  box-shadow: 0 4px 12px rgba(139, 195, 74, 0.1);
+  overflow: hidden;
 }
 
-.resultItem {
+.tabContainer {
+  display: flex;
+  background-color: #F8FBF4;
+  border-bottom: 2px solid #C8D9A8;
+}
+
+.tab {
+  flex: 1;
+  padding: 1rem 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #8FA05F;
+  transition: all 0.2s ease;
+}
+
+.tab:hover {
+  background-color: #E8F0D8;
+}
+
+.activeTab {
+  background-color: white;
+  color: #4A5D2E;
+  border-bottom: 3px solid #ADC178;
+}
+
+.scenariosSection,
+.providersSection {
+  padding: 2rem;
+}
+
+.scenariosGrid,
+.providersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.scenarioCard,
+.providerCard {
+  background: #F8FBF4;
+  border: 2px solid #E8F0D8;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.scenarioCard:hover,
+.providerCard:hover {
+  border-color: #C8D9A8;
+  box-shadow: 0 4px 16px rgba(139, 195, 74, 0.1);
+  transform: translateY(-2px);
+}
+
+.scenarioHeader,
+.providerHeader {
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
-  background: #E8F0D8;
-  border-radius: 6px;
+  align-items: flex-start;
   margin-bottom: 1rem;
 }
 
-.resultLabel {
-  font-weight: 600;
-  color: #4A5D2E;
-}
-
-.resultValue {
-  font-weight: 700;
-  color: #8FA05F;
-  font-size: 1.1rem;
-}
-
-.totalCost {
-  background: #C8D9A8;
-  border: 2px solid #ADC178;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-top: 1rem;
-}
-
-.totalCost .resultLabel {
+.scenarioHeader h4,
+.providerHeader h4 {
+  margin: 0;
   color: #4A5D2E;
   font-size: 1.2rem;
 }
 
-.totalCost .resultValue {
+.savingsBadge {
+  background: linear-gradient(135deg, #28A745, #20C997);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.scenarioDescription {
   color: #8FA05F;
-  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+}
+
+.costBreakdown {
+  background: white;
+  border: 1px solid #E8F0D8;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.costRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  font-size: 0.9rem;
+  color: #8FA05F;
+}
+
+.costRow:not(:last-child) {
+  border-bottom: 1px solid #F8FBF4;
+}
+
+.totalRow {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #4A5D2E;
+  padding-top: 0.75rem;
+  border-top: 2px solid #C8D9A8;
+  margin-top: 0.5rem;
+}
+
+.savings {
+  color: #28A745;
+  font-weight: 600;
+}
+
+.warning {
+  color: #DC3545;
+  font-weight: 600;
+}
+
+.prosConsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.prosSection,
+.consSection {
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.prosSection {
+  background-color: #D4EDDA;
+  border-left: 4px solid #28A745;
+}
+
+.consSection {
+  background-color: #F8D7DA;
+  border-left: 4px solid #DC3545;
+}
+
+.prosSection h5,
+.consSection h5 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.prosSection h5 {
+  color: #155724;
+}
+
+.consSection h5 {
+  color: #721C24;
+}
+
+.prosSection ul,
+.consSection ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.prosSection li,
+.consSection li {
+  padding: 0.25rem 0;
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+
+.prosSection li {
+  color: #155724;
+}
+
+.consSection li {
+  color: #721C24;
+}
+
+.providerBadges {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+
+.networkBadge,
+.ratingBadge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.networkBadge.innetwork {
+  background-color: #D4EDDA;
+  color: #155724;
+}
+
+.networkBadge.outofnetwork {
+  background-color: #F8D7DA;
+  color: #721C24;
+}
+
+.ratingBadge {
+  background-color: #FFF3CD;
+  color: #856404;
+}
+
+.providerDetails {
+  margin-bottom: 1.5rem;
+}
+
+.providerDetails p {
+  margin: 0.5rem 0;
+  color: #8FA05F;
+  font-size: 0.9rem;
+}
+
+.providerCosts {
+  background: white;
+  border: 1px solid #E8F0D8;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* Page Header Styles */
+.pageHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #F8FBF4 0%, #E8F0D8 100%);
+  border-radius: 16px;
+  border: 2px solid #C8D9A8;
+}
+
+.pageHeader h1 {
+  color: #4A5D2E;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+}
+
+.pageDescription {
+  color: #8FA05F;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+}
+
+.featureHighlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.highlight {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #E8F0D8;
+  text-align: left;
+}
+
+.highlightIcon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.highlight h3 {
+  margin: 0 0 0.25rem 0;
+  color: #4A5D2E;
+  font-size: 1rem;
+}
+
+.highlight p {
+  margin: 0;
+  color: #8FA05F;
+  font-size: 0.9rem;
+}
+
+.usageGuide {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #E8F0D8;
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.usageGuide h3 {
+  color: #4A5D2E;
+  margin-bottom: 1rem;
+}
+
+.usageGuide ol {
+  color: #8FA05F;
+  line-height: 1.6;
+}
+
+.usageGuide li {
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 0.5rem;
+  }
+  
+  .pageHeader {
+    padding: 1.5rem 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .pageHeader h1 {
+    font-size: 2rem;
+  }
+  
+  .featureHighlights {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .formGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .scenariosGrid,
+  .providersGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .prosConsContainer {
+    grid-template-columns: 1fr;
+  }
+  
+  .scenarioHeader,
+  .providerHeader {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .providerBadges {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .tabContainer {
+    flex-direction: column;
+  }
+  
+  .tab {
+    padding: 0.75rem 1rem;
+  }
+  
+  .scenariosSection,
+  .providersSection {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageHeader h1 {
+    font-size: 1.75rem;
+  }
+  
+  .highlight {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  
+  .formSection {
+    padding: 1.5rem;
+  }
+  
+  .scenarioCard,
+  .providerCard {
+    padding: 1rem;
+  }
 }

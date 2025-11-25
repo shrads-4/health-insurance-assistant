@@ -31,6 +31,23 @@ export default function Onboarding() {
                     zipCode: data.zipCode
                 },
                 coverageLimit: data.coverageLimit ? parseFloat(data.coverageLimit) : null,
+                // Treatment history fields for future use
+                treatmentHistory: [],
+                documents: [],
+                preferences: {
+                    reminderSettings: {
+                        emailReminders: true,
+                        appointmentReminders: true,
+                        medicationReminders: true
+                    },
+                    preferredProviders: []
+                },
+                currentCycle: {
+                    status: 'planning', // planning, active, completed
+                    type: null,
+                    startDate: null,
+                    estimatedCost: null
+                },
                 onboardingCompleted: true,
                 onboardingDate: new Date()
             });
