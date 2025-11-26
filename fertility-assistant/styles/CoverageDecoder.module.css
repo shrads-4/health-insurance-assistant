@@ -219,7 +219,7 @@
 }
 
 .quickQuestions {
-  width: 280px;
+  width: 320px;
   background: white;
   padding: 1.5rem;
   border-radius: 16px;
@@ -232,18 +232,24 @@
   margin: 0 0 1rem 0;
   color: #4A5D2E;
   font-size: 1.1rem;
+  text-align: center;
+}
+
+.questionGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
 }
 
 .quickQuestions button {
   width: 100%;
-  text-align: left;
-  padding: 0.875rem;
-  margin-bottom: 0.75rem;
+  text-align: center;
+  padding: 0.75rem;
   background: #F5F9ED;
   border: 2px solid #C8D9A8;
   border-radius: 8px;
   color: #4A5D2E;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   cursor: pointer;
   transition: all 0.2s;
   font-weight: 500;
@@ -252,11 +258,8 @@
 .quickQuestions button:hover {
   background: #E8F0D8;
   border-color: #ADC178;
-  transform: translateX(4px);
-}
-
-.quickQuestions button:last-child {
-  margin-bottom: 0;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(139, 195, 74, 0.2);
 }
 
 /* Responsive */
@@ -267,6 +270,11 @@
 
   .quickQuestions {
     width: 100%;
+  }
+
+  .questionGrid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.5rem;
   }
 
   .messageContent {
@@ -281,6 +289,15 @@
 
   .chatHeader {
     flex-wrap: wrap;
+  }
+
+  .questionGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .quickQuestions button {
+    font-size: 0.8rem;
+    padding: 0.6rem;
   }
 
   .messageContent {
