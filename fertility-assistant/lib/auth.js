@@ -75,3 +75,28 @@ export function getCurrentUser() {
 export function onAuthChange(callback) {
   return onAuthStateChanged(auth, callback);
 }
+
+// Verify authentication for API routes
+export async function verifyAuth(req) {
+  try {
+    // Get the ID token from the Authorization header
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return null;
+    }
+
+    const token = authHeader.substring(7);
+    
+    // Verify the token
+    const decodedToken = await auth.currentUser?.getIdTokenResult();
+    
+    if (!decodedToken || decodedToken.token !== token) {
+      return null;
+    }
+
+    return auth.currentUser;
+  } catch (error) {
+    console.error('Auth verification error:', error);
+    return null;
+  }
+}

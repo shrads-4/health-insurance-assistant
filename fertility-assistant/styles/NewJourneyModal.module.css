@@ -1,0 +1,285 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1001;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1002;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modalContent {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90vw;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  border: 2px solid #C8D9A8;
+}
+
+.title {
+  color: #4A5D2E;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  color: #4A5D2E;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.required {
+  color: #E76F51;
+  margin-left: 0.25rem;
+}
+
+.optional {
+  color: #8FA05F;
+  font-weight: 600;
+  margin-left: 0.25rem;
+}
+
+.textarea {
+  padding: 0.75rem;
+  border: 2px solid #E8F0D8;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: #FAFBF9;
+}
+
+.select,
+.input {
+  padding: 0.75rem;
+  border: 2px solid #E8F0D8;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.2s;
+  background-color: #FAFBF9;
+}
+
+.select:focus,
+.input:focus {
+  outline: none;
+  border-color: #ADC178;
+  background-color: white;
+}
+
+.select.error,
+.input.error {
+  border-color: #E76F51;
+}
+
+.errorMessage {
+  color: #E76F51;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Status Radio Buttons */
+.statusGroup {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  border: 2px solid #E8F0D8;
+  border-radius: 8px;
+  background-color: #FAFBF9;
+  transition: all 0.2s;
+  font-size: 0.95rem;
+  color: #8FA05F;
+}
+
+.radio {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  accent-color: #ADC178;
+}
+
+.checkboxLabel:has(.radio:checked) {
+  border-color: #ADC178;
+  background-color: #F8FBF4;
+  color: #4A5D2E;
+  font-weight: 600;
+}
+
+/* Cost Section */
+.costSection {
+  background-color: #F8FBF4;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #E8F0D8;
+}
+
+.costSectionTitle {
+  color: #4A5D2E;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+.costRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.inputWithCurrency {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.currencySymbol {
+  position: absolute;
+  left: 12px;
+  color: #8FA05F;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.inputWithCurrency .input {
+  padding-left: 2rem;
+  width: 100%;
+}
+
+.trueCostBox {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 2px solid #C8D9A8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.trueCostLabel {
+  color: #4A5D2E;
+  font-weight: 600;
+}
+
+.trueCostValue {
+  color: #DC3545;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+/* Form Actions */
+.formActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: flex-end;
+}
+
+.cancelButton,
+.confirmButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.cancelButton:disabled,
+.confirmButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cancelButton {
+  background-color: #E8F0D8;
+  color: #8FA05F;
+}
+
+.cancelButton:hover:not(:disabled) {
+  background-color: #D8E6C6;
+  color: #4A5D2E;
+}
+
+.confirmButton {
+  background: linear-gradient(135deg, #ADC178 0%, #8FA05F 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(139, 195, 74, 0.2);
+}
+
+.confirmButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(139, 195, 74, 0.3);
+}
+
+.confirmButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .modalContent {
+    width: 95vw;
+    padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .costRow {
+    grid-template-columns: 1fr;
+  }
+
+  .statusGroup {
+    flex-direction: column;
+  }
+
+  .checkboxLabel {
+    width: 100%;
+  }
+
+  .formActions {
+    flex-direction: column;
+  }
+
+  .cancelButton,
+  .confirmButton {
+    width: 100%;
+  }
+}

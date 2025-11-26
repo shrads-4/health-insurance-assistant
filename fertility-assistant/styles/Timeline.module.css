@@ -27,6 +27,11 @@
   transition: all 0.3s ease;
 }
 
+.timelineDot.current {
+  box-shadow: 0 6px 30px rgba(139,195,74,0.45), 0 0 24px rgba(173,193,120,0.35);
+  transform: scale(1.05);
+}
+
 .timelineDot:hover {
   transform: scale(1.1);
   box-shadow: 0 4px 12px rgba(139, 195, 74, 0.4);
@@ -126,6 +131,16 @@
   color: #4A5D2E;
 }
 
+.coverageBadge {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 .networkStatus {
   font-size: 0.9rem;
   color: #8FA05F;
@@ -209,6 +224,64 @@
   max-height: 90vh;
   overflow-y: auto;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.viewHistoryContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.viewHistoryButton {
+  background: none;
+  border: none;
+  color: #4A5D2E;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+}
+
+.addButton {
+  background: linear-gradient(135deg, #ADC178 0%, #8FA05F 100%);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(139,195,74,0.2);
+}
+
+.addButton:hover {
+  transform: translateY(-3px);
+}
+
+.predictedContainer {
+  margin-top: 1rem;
+}
+
+.predictedItem .timelineDot {
+  opacity: 0.85;
+  box-shadow: 0 2px 8px rgba(139,195,74,0.15);
+}
+
+.predictedDot {
+  width: 34px;
+  height: 34px;
+}
+
+.predictedContent {
+  background: linear-gradient(135deg, #FBFDF6 0%, #F2F6EA 100%);
+  border: 1px dashed #DDEAD0;
+  color: #6B7A41;
+}
+
+.predictedItem .timelineConnector {
+  background: linear-gradient(to bottom, #E8F0D8, #F4F8E8);
 }
 
 .modalHeader {
