@@ -3,6 +3,7 @@ import styles from '../styles/Timeline.module.css';
 import NewJourneyModal from './NewJourneyModal';
 import { useNewJourneyModalSession } from '../lib/useNewJourneyModalSession';
 import { useAuth } from '../context/AuthContext';
+import { TREATMENT_STAGE_DATA, getTimelineBarWidth } from '../lib/treatmentStageData';
 
 export default function Timeline({ events, onEventsUpdate }) {
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -12,6 +13,9 @@ export default function Timeline({ events, onEventsUpdate }) {
   const { user, userProfile } = useAuth();
   const [timelineEvents, setTimelineEvents] = useState([]);
   const [showHistory, setShowHistory] = useState(false);
+  const [expandedPredictedStep, setExpandedPredictedStep] = useState(null);
+  const [predictedStepShowMedical, setPredictedStepShowMedical] = useState({});
+  const [predictedStepShowPlainTooltip, setPredictedStepShowPlainTooltip] = useState({});
 
   // Show modal on first visit
   useEffect(() => {
@@ -19,6 +23,13 @@ export default function Timeline({ events, onEventsUpdate }) {
       setIsNewJourneyModalOpen(true);
     }
   }, [shouldShowModal, isLoading]);
+
+  // Cleanup: close modal when component unmounts
+  useEffect(() => {
+    return () => {
+      setIsNewJourneyModalOpen(false);
+    };
+  }, []);
 
   // Load saved events from localStorage (persisted entries)
   useEffect(() => {
@@ -256,16 +267,6 @@ export default function Timeline({ events, onEventsUpdate }) {
 
   // Determine the canonical type for the most recent event (used for predicted suggestions)
   const currentType = timelineEvents[0] ? getEventType(timelineEvents[0]) : null;
-  
-  // Debug logging
-  if (timelineEvents[0]) {
-    console.log('Timeline Debug:', {
-      firstEvent: timelineEvents[0],
-      resolvedType: currentType,
-      nextSteps: getNextSteps(currentType),
-      showHistory
-    });
-  }
 
   return (
     <>
@@ -360,22 +361,92 @@ export default function Timeline({ events, onEventsUpdate }) {
       {/* Predicted next steps (displayed after the most recent saved step, only when viewing current step) */}
       {currentType && !showHistory && (
         <div className={styles.predictedContainer}>
-          {getNextSteps(currentType).slice(0,4).map((step, idx) => (
-            <div key={step.key} className={`${styles.timelineItem} ${styles.predictedItem}`}>
-              <div className={`${styles.timelineDot} ${styles.predictedDot}`} style={{ backgroundColor: '#E8F0D8' }}>
-                <span className={styles.typeIcon}>{getTypeIcon(step.key)}</span>
-              </div>
-              <div className={styles.timelineConnector}></div>
-              <div className={`${styles.timelineContent} ${styles.predictedContent}`}>
-                <div className={styles.timelineHeader}>
-                  <div className={styles.timelineDate}>—</div>
-                  <div className={`${styles.statusBadge} ${styles.planned}`}>Suggested</div>
+          {getNextSteps(currentType).slice(0,4).map((step, idx) => {
+            const stageData = TREATMENT_STAGE_DATA[step.key];
+            const timelineWidth = stageData ? getTimelineBarWidth(stageData.timeRangeMin, stageData.timeRangeMax) : 80;
+            const isShowingMedical = predictedStepShowMedical[step.key] || false;
+            const isShowingPlainTooltip = predictedStepShowPlainTooltip[step.key] || false;
+            
+            return (
+              <div key={step.key} className={`${styles.timelineItem} ${styles.predictedItem}`}>
+                <div className={`${styles.timelineDot} ${styles.predictedDot}`} style={{ backgroundColor: '#E8F0D8' }}>
+                  <span className={styles.typeIcon}>{getTypeIcon(step.key)}</span>
                 </div>
-                <h3>{step.title}</h3>
-                <p>{step.description}</p>
+                <div className={styles.timelineConnector}></div>
+                <div className={`${styles.timelineContent} ${styles.predictedContent}`}>
+                  <div className={styles.timelineHeader}>
+                    <div className={styles.timelineDate}>—</div>
+                    <div className={`${styles.statusBadge} ${styles.planned}`}>Suggested</div>
+                  </div>
+                  <h3>{stageData?.title || step.title}</h3>
+                  
+                  {/* Short form description - always shown */}
+                  <div className={styles.predictedDescription}>
+                    <div className={styles.descriptionText}>
+                      {stageData?.plainEnglish || step.description}
+                    </div>
+                  </div>
+
+                  {/* Medical description - shown when toggled */}
+                  {isShowingMedical && stageData && (
+                    <div className={styles.predictedDescription}>
+                      <div className={styles.descriptionText}>
+                        <strong>Medical Details:</strong> {stageData.medical}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Controls and Timeline */}
+                  <div className={styles.predictedControlsSection}>
+                    <div className={styles.predictedControls}>
+                      <button 
+                        className={styles.toggleButton}
+                        onClick={() => setPredictedStepShowMedical(prev => ({
+                          ...prev,
+                          [step.key]: !prev[step.key]
+                        }))}
+                      >
+                        {isShowingMedical ? '✓ Medical Details' : 'See More'}
+                      </button>
+                      
+                      <div className={styles.confusedButtonContainer}>
+                        <button 
+                          className={styles.confusedButton}
+                          onMouseEnter={() => setPredictedStepShowPlainTooltip(prev => ({
+                            ...prev,
+                            [step.key]: true
+                          }))}
+                          onMouseLeave={() => setPredictedStepShowPlainTooltip(prev => ({
+                            ...prev,
+                            [step.key]: false
+                          }))}
+                        >
+                          ❓ I'm Confused
+                        </button>
+                        {isShowingPlainTooltip && stageData && (
+                          <div className={styles.tooltipHorizontal}>
+                            {stageData.simpleAnalogy || stageData.plainEnglish}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {stageData && (
+                      <div className={styles.timelineInfo}>
+                        <div className={styles.timelineLabel}>
+                          Expected Timeline: <strong>{stageData.timeDescription}</strong>
+                        </div>
+                        <div 
+                          className={styles.timelineBar}
+                          style={{ width: `${timelineWidth}px` }}
+                        />
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
 
