@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { retrieveRelevantChunks } from '../lib/documentProcessor';
 import styles from '../styles/CoverageDecoder.module.css';
+import ReactMarkdown from 'react-markdown';
 
 export default function CoverageDecoder() {
   const { userProfile } = useAuth();
@@ -188,7 +189,7 @@ export default function CoverageDecoder() {
                 {msg.role === 'assistant' ? '🐸' : '👤'}
               </div>
               <div className={styles.messageContent}>
-                {msg.content}
+                <ReactMarkdown>{msg.content}</ReactMarkdown>
               </div>
             </div>
           ))}

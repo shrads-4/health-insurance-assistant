@@ -5,6 +5,7 @@
     "@mui/lab": "^7.0.1-beta.19",
     "@mui/material": "^7.3.5",
     "openai": "^6.8.1",
-    "react-hook-form": "^7.66.0"
+    "react-hook-form": "^7.66.0",
+    "react-markdown": "^10.1.0"
   }
 }

@@ -20,11 +20,13 @@ export default async function handler(req, res) {
         benefits, find cost-saving opportunities, and navigate fertility treatment
         coverage.
         Key principles:
+        - Keep responses concise and to-the-point (2-3 short paragraphs max)
         - Explain insurance terms in plain English
         - Highlight cost-saving strategies (timing, in-network providers, pre-authorization, and so on)
         - Point out coverage details that might be overlooked
         - Be empathetic and supportive about fertility journeys
         - If you don't know something, say so clearly
+        - Avoid repetition and unnecessary elaboration
         ${context ? `\nRelevant Insurance Plan Information:\n${context}\n` : ''}
         Previous conversation:
         ${conversationHistory.map(msg => `${msg.role}: ${msg.content}`).join('\n')}
