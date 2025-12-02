@@ -35,31 +35,33 @@ export default function Profile() {
 
   const onSubmit = async (data) => {
     if (!user) return; // Safety check
-    
+
     setLoading(true);
     setMessage('');
 
     try {
-      await updateDoc(doc(db, 'users', user.uid), {
+      const updateData = {
         firstName: data.firstName,
         lastName: data.lastName,
-        insuranceCarrier: data.insuranceCarrier,
-        planName: data.planName,
-        deductible: parseFloat(data.deductible),
-        deductibleMet: parseFloat(data.deductibleMet),
-        outOfPocketMax: parseFloat(data.outOfPocketMax),
-        coinsurance: parseFloat(data.coinsurance),
-        coverageLimit: data.coverageLimit ? parseFloat(data.coverageLimit) : null,
-        location: {
-          state: data.state,
-          zipCode: data.zipCode
-        },
+        dateOfBirth: data.dateOfBirth,
+        fertilityJourneyStage: data.fertilityJourneyStage,
         updatedAt: new Date()
-      });
+      };
+
+      // Only include insurance fields if they have values
+      if (data.insuranceCarrier) updateData.insuranceCarrier = data.insuranceCarrier;
+      if (data.planName) updateData.planName = data.planName;
+      if (data.deductible) updateData.deductible = parseFloat(data.deductible);
+      if (data.deductibleMet !== undefined) updateData.deductibleMet = parseFloat(data.deductibleMet);
+      if (data.outOfPocketMax) updateData.outOfPocketMax = parseFloat(data.outOfPocketMax);
+      if (data.coinsurance) updateData.coinsurance = parseFloat(data.coinsurance);
+      if (data.coverageLimit) updateData.coverageLimit = parseFloat(data.coverageLimit);
+
+      await updateDoc(doc(db, 'users', user.uid), updateData);
 
       setMessage('Profile updated successfully! ✓');
       setEditMode(false);
-      
+
       // Refresh profile data
       const docRef = doc(db, 'users', user.uid);
       const docSnap = await getDoc(docRef);
@@ -117,7 +119,7 @@ export default function Profile() {
           {/* Personal Information Section */}
           <div className={styles.section}>
             <h2>Personal Information</h2>
-            
+
             <div className={styles.infoGrid}>
               <div className={styles.infoItem}>
                 <label>Email</label>
@@ -156,13 +158,56 @@ export default function Profile() {
                   <div className={styles.value}>{profileData?.lastName || 'Not set'}</div>
                 )}
               </div>
+
+              <div className={styles.infoItem}>
+                <label>Date of Birth</label>
+                {editMode ? (
+                  <>
+                    <input
+                      type="date"
+                      {...register('dateOfBirth')}
+                      className={styles.input}
+                    />
+                  </>
+                ) : (
+                  <div className={styles.value}>{profileData?.dateOfBirth || 'Not set'}</div>
+                )}
+              </div>
+
+              <div className={styles.infoItem}>
+                <label>Fertility Journey Stage</label>
+                {editMode ? (
+                  <select {...register('fertilityJourneyStage')} className={styles.input}>
+                    <option value="">Select stage...</option>
+                    <option value="just-thinking">Just started thinking about it</option>
+                    <option value="researching">Researching options and planning</option>
+                    <option value="just-started-treatment">Just started treatment</option>
+                    <option value="in-middle-of-treatment">In the middle of treatment</option>
+                    <option value="between-cycles">Between treatment cycles</option>
+                    <option value="exploring-alternatives">Exploring alternative options</option>
+                  </select>
+                ) : (
+                  <div className={styles.value}>
+                    {profileData?.fertilityJourneyStage ?
+                      profileData.fertilityJourneyStage.split('-').map(word =>
+                        word.charAt(0).toUpperCase() + word.slice(1)
+                      ).join(' ')
+                      : 'Not set'}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
           {/* Insurance Information Section */}
           <div className={styles.section}>
             <h2>Insurance Information</h2>
-            
+            {!profileData?.insuranceCarrier && (
+              <div className={styles.infoNote}>
+                Insurance details will be extracted from your uploaded document. You can manually edit them below if needed.
+              </div>
+            )}
+
             <div className={styles.infoGrid}>
               <div className={styles.infoItem}>
                 <label>Insurance Carrier</label>
@@ -170,13 +215,14 @@ export default function Profile() {
                   <>
                     <input
                       type="text"
-                      {...register('insuranceCarrier', { required: 'Required' })}
+                      {...register('insuranceCarrier')}
                       className={styles.input}
+                      placeholder="Will be extracted from document"
                     />
                     {errors.insuranceCarrier && <span className={styles.error}>{errors.insuranceCarrier.message}</span>}
                   </>
                 ) : (
-                  <div className={styles.value}>{profileData?.insuranceCarrier || 'Not set'}</div>
+                  <div className={styles.value}>{profileData?.insuranceCarrier || 'Pending extraction'}</div>
                 )}
               </div>
 
@@ -186,13 +232,14 @@ export default function Profile() {
                   <>
                     <input
                       type="text"
-                      {...register('planName', { required: 'Required' })}
+                      {...register('planName')}
                       className={styles.input}
+                      placeholder="Will be extracted from document"
                     />
                     {errors.planName && <span className={styles.error}>{errors.planName.message}</span>}
                   </>
                 ) : (
-                  <div className={styles.value}>{profileData?.planName || 'Not set'}</div>
+                  <div className={styles.value}>{profileData?.planName || 'Pending extraction'}</div>
                 )}
               </div>
 
@@ -202,13 +249,16 @@ export default function Profile() {
                   <>
                     <input
                       type="number"
-                      {...register('deductible', { required: 'Required', min: 0 })}
+                      {...register('deductible', { min: 0 })}
                       className={styles.input}
+                      placeholder="Will be extracted from document"
                     />
                     {errors.deductible && <span className={styles.error}>{errors.deductible.message}</span>}
                   </>
                 ) : (
-                  <div className={styles.value}>${profileData?.deductible?.toLocaleString() || 'Not set'}</div>
+                  <div className={styles.value}>
+                    {profileData?.deductible ? `$${profileData.deductible.toLocaleString()}` : 'Pending extraction'}
+                  </div>
                 )}
               </div>
 
@@ -234,13 +284,16 @@ export default function Profile() {
                   <>
                     <input
                       type="number"
-                      {...register('outOfPocketMax', { required: 'Required', min: 0 })}
+                      {...register('outOfPocketMax', { min: 0 })}
                       className={styles.input}
+                      placeholder="Will be extracted from document"
                     />
                     {errors.outOfPocketMax && <span className={styles.error}>{errors.outOfPocketMax.message}</span>}
                   </>
                 ) : (
-                  <div className={styles.value}>${profileData?.outOfPocketMax?.toLocaleString() || 'Not set'}</div>
+                  <div className={styles.value}>
+                    {profileData?.outOfPocketMax ? `$${profileData.outOfPocketMax.toLocaleString()}` : 'Pending extraction'}
+                  </div>
                 )}
               </div>
 
@@ -250,13 +303,16 @@ export default function Profile() {
                   <>
                     <input
                       type="number"
-                      {...register('coinsurance', { required: 'Required', min: 0, max: 100 })}
+                      {...register('coinsurance', { min: 0, max: 100 })}
                       className={styles.input}
+                      placeholder="Will be extracted from document"
                     />
                     {errors.coinsurance && <span className={styles.error}>{errors.coinsurance.message}</span>}
                   </>
                 ) : (
-                  <div className={styles.value}>{profileData?.coinsurance}%</div>
+                  <div className={styles.value}>
+                    {profileData?.coinsurance ? `${profileData.coinsurance}%` : 'Pending extraction'}
+                  </div>
                 )}
               </div>
 
@@ -271,70 +327,9 @@ export default function Profile() {
                   />
                 ) : (
                   <div className={styles.value}>
-                    {profileData?.coverageLimit ? `$${profileData.coverageLimit.toLocaleString()}` : 'No limit'}
+                    {profileData?.coverageLimit ? `$${profileData.coverageLimit.toLocaleString()}` :
+                      profileData?.insuranceCarrier ? 'No limit' : 'Pending extraction'}
                   </div>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Location Section */}
-          <div className={styles.section}>
-            <h2>Location</h2>
-            
-            <div className={styles.infoGrid}>
-              <div className={styles.infoItem}>
-                <label>State</label>
-                {editMode ? (
-                  <>
-                    <select {...register('state', { required: 'Required' })} className={styles.input}>
-                      <option value="">Select state...</option>
-                      <option value="AL">Alabama</option>
-                      <option value="AK">Alaska</option>
-                      <option value="AZ">Arizona</option>
-                      <option value="AR">Arkansas</option>
-                      <option value="CA">California</option>
-                      <option value="CO">Colorado</option>
-                      <option value="CT">Connecticut</option>
-                      <option value="DE">Delaware</option>
-                      <option value="FL">Florida</option>
-                      <option value="GA">Georgia</option>
-                      <option value="IL">Illinois</option>
-                      <option value="IN">Indiana</option>
-                      <option value="MA">Massachusetts</option>
-                      <option value="MD">Maryland</option>
-                      <option value="NJ">New Jersey</option>
-                      <option value="NY">New York</option>
-                      <option value="TX">Texas</option>
-                      <option value="VA">Virginia</option>
-                      <option value="WA">Washington</option>
-                    </select>
-                    {errors.state && <span className={styles.error}>{errors.state.message}</span>}
-                  </>
-                ) : (
-                  <div className={styles.value}>{profileData?.location?.state || 'Not set'}</div>
-                )}
-              </div>
-
-              <div className={styles.infoItem}>
-                <label>Zip Code</label>
-                {editMode ? (
-                  <>
-                    <input
-                      type="text"
-                      {...register('zipCode', { 
-                        required: 'Required',
-                        pattern: {
-                          value: /^\d{5}$/,
-                          message: 'Invalid zip code'
-                        }
-                      })}
-                      className={styles.input}
-                    />
-                    {errors.zipCode && <span className={styles.error}>{errors.zipCode.message}</span>}
-                  </>
-                ) : (
-                  <div className={styles.value}>{profileData?.location?.zipCode || 'Not set'}</div>
                 )}
               </div>
             </div>
