@@ -44,18 +44,22 @@ export default function Home() {
                 <div className={styles.summaryGrid}>
                   <div className={styles.summaryItem}>
                     <span className={styles.summaryLabel}>Insurance:</span>
-                    <span className={styles.summaryValue}>{userProfile.insuranceCarrier}</span>
-                  </div>
-                  <div className={styles.summaryItem}>
-                    <span className={styles.summaryLabel}>Deductible Progress:</span>
                     <span className={styles.summaryValue}>
-                      ${userProfile.deductibleMet?.toLocaleString() || 0} / ${userProfile.deductible?.toLocaleString()}
+                      {userProfile.insuranceCarrier || 'Processing document...'}
                     </span>
                   </div>
+                  {userProfile.deductible && (
+                    <div className={styles.summaryItem}>
+                      <span className={styles.summaryLabel}>Deductible Progress:</span>
+                      <span className={styles.summaryValue}>
+                        ${userProfile.deductibleMet?.toLocaleString() || 0} / ${userProfile.deductible?.toLocaleString()}
+                      </span>
+                    </div>
+                  )}
                   <div className={styles.summaryItem}>
                     <span className={styles.summaryLabel}>Coverage Limit:</span>
                     <span className={styles.summaryValue}>
-                      {userProfile.coverageLimit ? `$${userProfile.coverageLimit.toLocaleString()}` : 'No limit'}
+                      {userProfile.coverageLimit ? `$${userProfile.coverageLimit.toLocaleString()}` : userProfile.insuranceCarrier ? 'No limit' : 'Processing...'}
                     </span>
                   </div>
                 </div>

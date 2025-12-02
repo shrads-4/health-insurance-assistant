@@ -82,6 +82,17 @@
     border-bottom: 2px solid #C8D9A8;
 }
 
+.infoNote {
+    background: #F5F9ED;
+    color: #4A5D2E;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 2px solid #C8D9A8;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
 .infoGrid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
