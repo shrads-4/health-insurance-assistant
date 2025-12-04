@@ -117,8 +117,6 @@ export default function Timeline({ events, onEventsUpdate }) {
   const { user, userProfile } = useAuth();
   const [timelineEvents, setTimelineEvents] = useState([]);
   const [showHistory, setShowHistory] = useState(false);
-<<<<<<< Updated upstream
-=======
   const [expandedPredictedStep, setExpandedPredictedStep] = useState(null);
   const [predictedStepShowMedical, setPredictedStepShowMedical] = useState({});
   // Helpers used by the horizontal layout
@@ -201,7 +199,6 @@ export default function Timeline({ events, onEventsUpdate }) {
     return null;
   };
   const timelineScrollRef = useRef(null);
->>>>>>> Stashed changes
 
   const scrollByAmount = (amount) => {
     const el = timelineScrollRef.current;
@@ -216,11 +213,7 @@ export default function Timeline({ events, onEventsUpdate }) {
     }
   }, [shouldShowModal, isLoading]);
 
-<<<<<<< Updated upstream
-  // Load saved events from localStorage (persisted entries)
-=======
   // Load saved events and merge with optional props
->>>>>>> Stashed changes
   useEffect(() => {
     try {
       const saved = JSON.parse(localStorage.getItem('newJourneyEntries') || '[]');
@@ -415,15 +408,6 @@ export default function Timeline({ events, onEventsUpdate }) {
     return timelineEvents.length > 0 ? timelineEvents : [];
   };
 
-<<<<<<< Updated upstream
-  // When showing history, render oldest-first (reversed); otherwise show only current step
-  const listToRender = showHistory ? [...timelineEvents].reverse() : (timelineEvents[0] ? [timelineEvents[0]] : []);
-
-  // Determine the canonical type for the most recent event (used for predicted suggestions)
-  const currentType = timelineEvents[0] ? getEventType(timelineEvents[0]) : null;
-
-=======
->>>>>>> Stashed changes
   return (
     <>
       <NewJourneyModal
@@ -468,127 +452,6 @@ export default function Timeline({ events, onEventsUpdate }) {
                   onMouseLeave={() => setExpandedPredictedStep(null)}
                   onClick={() => setSelectedEvent(isSelected ? null : event)}
                 >
-<<<<<<< Updated upstream
-                  {getCoverageStatus(event.treatmentState).label}
-                </span>
-              )}
-            </div>
-
-            <div className={styles.costBreakdown}>
-              <div className={styles.costRow}>
-                <span>Total Cost:</span>
-                <span>{formatCurrency(event.totalCost || event.costs?.totalCost || 0)}</span>
-              </div>
-              <div className={styles.costRow}>
-                <span>Insurance Paid:</span>
-                <span className={styles.insurancePaid}>{formatCurrency(event.insurancePaid || event.costs?.insurancePaid || 0)}</span>
-              </div>
-              <div className={styles.costRow}>
-                <span>Your Cost:</span>
-                <span className={styles.patientPaid}>{formatCurrency(event.trueCost || event.costs?.patientPaid || ( (event.totalCost || 0) - (event.insurancePaid || 0) ))}</span>
-              </div>
-            </div>
-
-            <button 
-              className={styles.detailsButton}
-              onClick={() => setSelectedEvent(event)}
-            >
-              View Details
-            </button>
-          </div>
-        </div>
-      ))}
-
-      {/* Predicted next steps (displayed after the most recent saved step, only when viewing current step) */}
-      {currentType && !showHistory && (
-        <div className={styles.predictedContainer}>
-          {getNextSteps(currentType).slice(0,4).map((step, idx) => {
-            const stageData = TREATMENT_STAGE_DATA[step.key];
-            const timelineWidth = stageData ? getTimelineBarWidth(stageData.timeRangeMin, stageData.timeRangeMax) : 80;
-            const isShowingMedical = predictedStepShowMedical[step.key] || false;
-            const isShowingPlainTooltip = predictedStepShowPlainTooltip[step.key] || false;
-            
-            return (
-              <div key={step.key} className={`${styles.timelineItem} ${styles.predictedItem}`}>
-                <div className={`${styles.timelineDot} ${styles.predictedDot}`} style={{ backgroundColor: '#E8F0D8' }}>
-                  <span className={styles.typeIcon}>{getTypeIcon(step.key)}</span>
-                </div>
-                <div className={styles.timelineConnector}></div>
-                <div className={`${styles.timelineContent} ${styles.predictedContent}`}>
-                  <div className={styles.timelineHeader}>
-                    <div className={styles.timelineDate}>—</div>
-                    <div className={`${styles.statusBadge} ${styles.planned}`}>Suggested</div>
-                  </div>
-                  <h3>{stageData?.title || step.title}</h3>
-                  
-                  {/* Short form description - always shown */}
-                  <div className={styles.predictedDescription}>
-                    <div className={styles.descriptionText}>
-                      {stageData?.plainEnglish || step.description}
-                    </div>
-                  </div>
-
-                  {/* Medical description - shown when toggled */}
-                  {isShowingMedical && stageData && (
-                    <div className={styles.predictedDescription}>
-                      <div className={styles.descriptionText}>
-                        <strong>Medical Details:</strong> {stageData.medical}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Controls and Timeline */}
-                  <div className={styles.predictedControlsSection}>
-                    <div className={styles.predictedControls}>
-                      <button 
-                        className={styles.toggleButton}
-                        onClick={() => setPredictedStepShowMedical(prev => ({
-                          ...prev,
-                          [step.key]: !prev[step.key]
-                        }))}
-                      >
-                        {isShowingMedical ? '✓ Medical Details' : 'See More'}
-                      </button>
-                      
-                      <div className={styles.confusedButtonContainer}>
-                        <button 
-                          className={styles.confusedButton}
-                          onMouseEnter={() => setPredictedStepShowPlainTooltip(prev => ({
-                            ...prev,
-                            [step.key]: true
-                          }))}
-                          onMouseLeave={() => setPredictedStepShowPlainTooltip(prev => ({
-                            ...prev,
-                            [step.key]: false
-                          }))}
-                        >
-                          ❓ I'm Confused
-                        </button>
-                        {isShowingPlainTooltip && stageData && (
-                          <div className={styles.tooltipHorizontal}>
-                            {stageData.simpleAnalogy || stageData.plainEnglish}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    {stageData && (
-                      <div className={styles.timelineInfo}>
-                        <div className={styles.timelineLabel}>
-                          Expected Timeline: <strong>{stageData.timeDescription}</strong>
-                        </div>
-                        <div 
-                          className={styles.timelineBar}
-                          style={{ width: `${timelineWidth}px` }}
-                        />
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-=======
                   {/* Content stack: label, circle, icon - positioned above or below */}
                   <div className={styles.nodeContent}>
                     <div className={styles.nodeLabel}>{event.title || event.type}</div>
@@ -697,7 +560,6 @@ export default function Timeline({ events, onEventsUpdate }) {
           >
             +
           </button>
->>>>>>> Stashed changes
         </div>
       )}
 
