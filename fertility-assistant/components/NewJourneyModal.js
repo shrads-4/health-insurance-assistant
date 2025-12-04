@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from '../styles/NewJourneyModal.module.css';
 
-export default function NewJourneyModal({ isOpen, onClose, onSubmit, isSaving = false }) {
+export default function NewJourneyModal({ isOpen, onClose, onSubmit, isSaving = false, initialData = null }) {
   const [formData, setFormData] = useState({
     treatmentType: '',
     status: '',
@@ -14,6 +14,50 @@ export default function NewJourneyModal({ isOpen, onClose, onSubmit, isSaving = 
   });
 
   const [errors, setErrors] = useState({});
+
+  // Populate form when editing existing event
+  useEffect(() => {
+    if (initialData) {
+      // Convert date to YYYY-MM-DD format for input field
+      let dateValue = '';
+      if (initialData.date) {
+        // Check if already in YYYY-MM-DD format
+        if (/^\d{4}-\d{2}-\d{2}$/.test(initialData.date)) {
+          dateValue = initialData.date;
+        } else {
+          // Parse ISO string or timestamp
+          const dateObj = new Date(initialData.date);
+          const year = dateObj.getFullYear();
+          const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+          const day = String(dateObj.getDate()).padStart(2, '0');
+          dateValue = `${year}-${month}-${day}`;
+        }
+      }
+      
+      setFormData({
+        treatmentType: initialData.type || initialData.treatmentType || '',
+        status: initialData.status || '',
+        date: dateValue,
+        totalCost: initialData.totalCost || '',
+        insurancePaid: initialData.insurancePaid || '',
+        location: initialData.location || '',
+        notes: initialData.notes || '',
+        treatmentState: initialData.treatmentState || '',
+      });
+    } else {
+      // Reset form for new entry
+      setFormData({
+        treatmentType: '',
+        status: '',
+        date: '',
+        totalCost: '',
+        insurancePaid: '',
+        location: '',
+        notes: '',
+        treatmentState: '',
+      });
+    }
+  }, [initialData, isOpen]);
 
   const treatmentOptions = [
     { value: 'consultation', label: 'Consultation' },
@@ -56,14 +100,6 @@ export default function NewJourneyModal({ isOpen, onClose, onSubmit, isSaving = 
     if (!formData.treatmentType) newErrors.treatmentType = 'Treatment type is required';
     if (!formData.status) newErrors.status = 'Status is required';
     if (!formData.date) newErrors.date = 'Date is required';
-    if (!formData.location) newErrors.location = 'Location is required';
-    if (!formData.treatmentState) newErrors.treatmentState = 'State is required';
-    if (!formData.totalCost || isNaN(formData.totalCost) || parseFloat(formData.totalCost) < 0) {
-      newErrors.totalCost = 'Valid total cost is required';
-    }
-    if (formData.insurancePaid === '' || isNaN(formData.insurancePaid) || parseFloat(formData.insurancePaid) < 0) {
-      newErrors.insurancePaid = 'Valid insurance paid amount is required';
-    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -85,6 +121,8 @@ export default function NewJourneyModal({ isOpen, onClose, onSubmit, isSaving = 
         insurancePaid: parseFloat(formData.insurancePaid),
         trueCost: calculateTrueCost(),
         timestamp: new Date().toISOString(),
+        // Keep date as YYYY-MM-DD string to avoid timezone issues
+        date: formData.date,
       };
       
       onSubmit(submissionData);
@@ -192,7 +230,7 @@ export default function NewJourneyModal({ isOpen, onClose, onSubmit, isSaving = 
             {/* Location Field */}
             <div className={styles.formGroup}>
               <label htmlFor="location" className={styles.label}>
-                Location <span className={styles.required}>*</span>
+                Location
               </label>
               <input
                 type="text"
@@ -201,24 +239,21 @@ export default function NewJourneyModal({ isOpen, onClose, onSubmit, isSaving = 
                 placeholder="e.g., Fertility Center of Excellence, San Francisco, CA"
                 value={formData.location}
                 onChange={handleInputChange}
-                className={`${styles.input} ${errors.location ? styles.error : ''}`}
+                className={styles.input}
               />
-              {errors.location && (
-                <span className={styles.errorMessage}>{errors.location}</span>
-              )}
             </div>
 
             {/* Treatment State Dropdown */}
             <div className={styles.formGroup}>
               <label htmlFor="treatmentState" className={styles.label}>
-                State <span className={styles.required}>*</span>
+                State
               </label>
               <select
                 id="treatmentState"
                 name="treatmentState"
                 value={formData.treatmentState}
                 onChange={handleInputChange}
-                className={`${styles.select} ${errors.treatmentState ? styles.error : ''}`}
+                className={styles.select}
               >
                 <option value="">Select a state...</option>
                 <option value="AL">Alabama</option>
@@ -272,9 +307,6 @@ export default function NewJourneyModal({ isOpen, onClose, onSubmit, isSaving = 
                 <option value="WI">Wisconsin</option>
                 <option value="WY">Wyoming</option>
               </select>
-              {errors.treatmentState && (
-                <span className={styles.errorMessage}>{errors.treatmentState}</span>
-              )}
             </div>
 
             {/* Cost Section */}
@@ -284,7 +316,7 @@ export default function NewJourneyModal({ isOpen, onClose, onSubmit, isSaving = 
               <div className={styles.costRow}>
                 <div className={styles.formGroup}>
                   <label htmlFor="totalCost" className={styles.label}>
-                    Total Cost <span className={styles.required}>*</span>
+                    Total Cost
                   </label>
                   <div className={styles.inputWithCurrency}>
                     <span className={styles.currencySymbol}>$</span>
@@ -297,17 +329,14 @@ export default function NewJourneyModal({ isOpen, onClose, onSubmit, isSaving = 
                       min="0"
                       value={formData.totalCost}
                       onChange={handleInputChange}
-                      className={`${styles.input} ${errors.totalCost ? styles.error : ''}`}
+                      className={styles.input}
                     />
                   </div>
-                  {errors.totalCost && (
-                    <span className={styles.errorMessage}>{errors.totalCost}</span>
-                  )}
                 </div>
 
                 <div className={styles.formGroup}>
                   <label htmlFor="insurancePaid" className={styles.label}>
-                    Insurance Paid <span className={styles.required}>*</span>
+                    Insurance Paid
                   </label>
                   <div className={styles.inputWithCurrency}>
                     <span className={styles.currencySymbol}>$</span>
@@ -320,12 +349,9 @@ export default function NewJourneyModal({ isOpen, onClose, onSubmit, isSaving = 
                       min="0"
                       value={formData.insurancePaid}
                       onChange={handleInputChange}
-                      className={`${styles.input} ${errors.insurancePaid ? styles.error : ''}`}
+                      className={styles.input}
                     />
                   </div>
-                  {errors.insurancePaid && (
-                    <span className={styles.errorMessage}>{errors.insurancePaid}</span>
-                  )}
                 </div>
               </div>
 

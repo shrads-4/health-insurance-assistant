@@ -1,33 +1,231 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from '../styles/Timeline.module.css';
 import NewJourneyModal from './NewJourneyModal';
 import { useNewJourneyModalSession } from '../lib/useNewJourneyModalSession';
 import { useAuth } from '../context/AuthContext';
 
 export default function Timeline({ events, onEventsUpdate }) {
+    const STAGE_COLORS = {
+      consultation: '#F4D35E',
+      'diagnostic-testing': '#A5C9CA',
+      'schedule-treatment': '#F6A87A',
+      'insurance-review': '#6E7F80',
+      'financial-counseling': '#F08C54',
+      'cycle-monitoring': '#7BAFD4',
+      medication: '#8FA05F',
+      procedure: '#ADC178',
+      'embryo-transfer': '#5B8FAE',
+      'early-pregnancy-testing': '#4A5D2E',
+      'unsuccessful-new-cycle': '#3C3C3C',
+      'genetic-screening': '#A5C9CA',
+      'insurance-authorization': '#6E7F80',
+      'treatment-planning-meeting': '#F6A87A',
+      'prepare-for-treatment': '#ADC178',
+      'adjust-medication': '#8FA05F',
+      'reassess-treatment-protocol': '#F6A87A',
+      'insurance-checkpoint': '#6E7F80',
+      'begin-medication': '#8FA05F',
+      'pre-treatment-consultation': '#F4D35E',
+      'complete-consent-forms': '#F6A87A',
+      'insurance-pre-authorization': '#6E7F80',
+      'dose-adjustment': '#8FA05F',
+      'side-effects-management': '#8FA05F',
+      'track-medication-adherence': '#8FA05F',
+      'insurance-coverage-review': '#6E7F80',
+      'recovery-protocol': '#ADC178',
+      'fertilization-embryology': '#5B8FAE',
+      'schedule-transfer-implantation': '#5B8FAE',
+      'insurance-claims-submission': '#6E7F80',
+      'post-transfer-monitoring': '#5B8FAE',
+      'medication-adjustment': '#8FA05F',
+      'insurance-follow-up': '#6E7F80',
+      'emotional-support-engagement': '#F08C54',
+      'confirm-pregnancy': '#4A5D2E',
+      'repeat-bloodwork': '#4A5D2E',
+      'review-coverage-for-pregnancy': '#6E7F80',
+      'provide-continuing-support': '#F08C54',
+      'reassess-protocol-with-physician': '#F4D35E',
+      'insurance-review-for-new-cycle': '#6E7F80',
+      'emotional-support-counseling': '#F08C54',
+      'explore-alternative-treatments': '#F6A87A'
+    };
+
+  // Define predicted next steps for each stage
+  const PREDICTED_NEXT_STEPS = {
+    consultation: [
+      { type: 'diagnostic-testing', title: 'Diagnostic Testing' },
+      { type: 'schedule-treatment', title: 'Schedule 1st Treatment' },
+      { type: 'insurance-review', title: 'Insurance Review' },
+      { type: 'financial-counseling', title: 'Financial Counseling' }
+    ],
+    'diagnostic-testing': [
+      { type: 'cycle-monitoring', title: 'Cycle Monitoring' },
+      { type: 'genetic-screening', title: 'Genetic Screening' },
+      { type: 'insurance-authorization', title: 'Insurance Authorization' },
+      { type: 'treatment-planning-meeting', title: 'Treatment Planning Meeting' }
+    ],
+    'cycle-monitoring': [
+      { type: 'prepare-for-treatment', title: 'Prepare for Treatment' },
+      { type: 'adjust-medication', title: 'Adjust Medication' },
+      { type: 'reassess-treatment-protocol', title: 'Reassess Treatment Protocol' },
+      { type: 'insurance-checkpoint', title: 'Insurance Checkpoint' }
+    ],
+    'schedule-treatment': [
+      { type: 'begin-medication', title: 'Begin Medication' },
+      { type: 'pre-treatment-consultation', title: 'Pre-treatment Consultation' },
+      { type: 'complete-consent-forms', title: 'Complete Consent Forms' },
+      { type: 'insurance-pre-authorization', title: 'Insurance Pre-authorization' }
+    ],
+    medication: [
+      { type: 'cycle-monitoring', title: 'Cycle Monitoring' },
+      { type: 'side-effects-management', title: 'Side Effects Management' },
+      { type: 'track-medication-adherence', title: 'Track Medication Adherence' },
+      { type: 'insurance-coverage-review', title: 'Insurance Coverage Review' }
+    ],
+    procedure: [
+      { type: 'recovery-protocol', title: 'Recovery Protocol' },
+      { type: 'fertilization-embryology', title: 'Fertilization/Embryology (IVF)' },
+      { type: 'schedule-transfer-implantation', title: 'Schedule Transfer/Implantation' },
+      { type: 'insurance-claims-submission', title: 'Insurance Claims Submission' }
+    ],
+    'embryo-transfer': [
+      { type: 'post-transfer-monitoring', title: 'Post-Transfer Monitoring' },
+      { type: 'medication-adjustment', title: 'Medication Adjustment' },
+      { type: 'insurance-follow-up', title: 'Insurance Follow-up' },
+      { type: 'emotional-support-engagement', title: 'Emotional Support Engagement' }
+    ],
+    'early-pregnancy-testing': [
+      { type: 'confirm-pregnancy', title: 'Confirm Pregnancy (hCG test)' },
+      { type: 'repeat-bloodwork', title: 'Repeat Bloodwork' },
+      { type: 'review-coverage-for-pregnancy', title: 'Review Coverage for Pregnancy' },
+      { type: 'provide-continuing-support', title: 'Provide Continuing Support' }
+    ],
+    'unsuccessful-new-cycle': [
+      { type: 'reassess-protocol-with-physician', title: 'Reassess Protocol with Physician' },
+      { type: 'insurance-review-for-new-cycle', title: 'Insurance Review for New Cycle' },
+      { type: 'emotional-support-counseling', title: 'Emotional Support & Counseling' },
+      { type: 'explore-alternative-treatments', title: 'Explore Alternative Treatments' }
+    ]
+  };
+
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [isNewJourneyModalOpen, setIsNewJourneyModalOpen] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const { shouldShowModal, markModalAsShown, isLoading } = useNewJourneyModalSession();
   const { user, userProfile } = useAuth();
   const [timelineEvents, setTimelineEvents] = useState([]);
   const [showHistory, setShowHistory] = useState(false);
+<<<<<<< Updated upstream
+=======
+  const [expandedPredictedStep, setExpandedPredictedStep] = useState(null);
+  const [predictedStepShowMedical, setPredictedStepShowMedical] = useState({});
+  // Helpers used by the horizontal layout
+  const formatCurrency = (amount) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount || 0);
+  const formatDate = (dateString) => {
+    if (!dateString) return '—';
+    // Parse date as local time to avoid timezone offset issues
+    const [year, month, day] = dateString.split('-');
+    const date = new Date(year, month - 1, day);
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  };
+  const getStatusColor = (status) => {
+    const statusColors = {
+      planned: '#F4D35E',
+      scheduled: '#7BAFD4',
+      completed: '#ADC178',
+      'in-progress': '#F6A87A',
+      cancelled: '#C4C4C4',
+      pending: '#F08C54'
+    };
+    const normalizedStatus = status?.toLowerCase().replace(/\s+/g, '-');
+    return statusColors[normalizedStatus] || '#E8F0D8';
+  };
+  const getTypeIcon = (type) => {
+    const icons = {
+      consultation: '👩‍⚕️',
+      'diagnostic-testing': '🔬',
+      'schedule-treatment': '🗓️',
+      'insurance-review': '🧾',
+      'financial-counseling': '💰',
+      'cycle-monitoring': '📈',
+      medication: '💊',
+      procedure: '🏥',
+      'embryo-transfer': '🧬',
+      'early-pregnancy-testing': '🧪',
+      'unsuccessful-new-cycle': '🔄',
+      'genetic-screening': '🧬',
+      'insurance-authorization': '✅',
+      'treatment-planning-meeting': '📋',
+      'prepare-for-treatment': '🏥',
+      'adjust-medication': '⚖️',
+      'reassess-treatment-protocol': '🔍',
+      'insurance-checkpoint': '🛡️',
+      'begin-medication': '💊',
+      'pre-treatment-consultation': '👨‍⚕️',
+      'complete-consent-forms': '📝',
+      'insurance-pre-authorization': '🧾',
+      'dose-adjustment': '📊',
+      'side-effects-management': '🩺',
+      'track-medication-adherence': '✔️',
+      'insurance-coverage-review': '📋',
+      'recovery-protocol': '🛌',
+      'fertilization-embryology': '🔬',
+      'schedule-transfer-implantation': '📅',
+      'insurance-claims-submission': '📤',
+      'post-transfer-monitoring': '📊',
+      'medication-adjustment': '⚖️',
+      'insurance-follow-up': '📞',
+      'emotional-support-engagement': '💚',
+      'confirm-pregnancy': '🎉',
+      'repeat-bloodwork': '💉',
+      'review-coverage-for-pregnancy': '🤰',
+      'provide-continuing-support': '🤝',
+      'reassess-protocol-with-physician': '👨‍⚕️',
+      'insurance-review-for-new-cycle': '🔄',
+      'emotional-support-counseling': '💬',
+      'explore-alternative-treatments': '🔎'
+    };
+    return icons[type] || '📋';
+  };
+  const getEventType = (evt) => {
+    if (!evt) return null;
+    const candidates = [evt.type, evt.treatmentType, evt.key, evt.title];
+    for (const c of candidates) {
+      if (!c) continue;
+      const val = String(c).trim();
+      if (!val) continue;
+      return val.toLowerCase().replace(/\s+/g, '-');
+    }
+    return null;
+  };
+  const timelineScrollRef = useRef(null);
+>>>>>>> Stashed changes
 
-  // Show modal on first visit
+  const scrollByAmount = (amount) => {
+    const el = timelineScrollRef.current;
+    if (!el) return;
+    el.scrollTo({ left: el.scrollLeft + amount, behavior: 'smooth' });
+  };
+
+  // Show modal on first visit in session
   useEffect(() => {
     if (shouldShowModal && !isLoading) {
       setIsNewJourneyModalOpen(true);
     }
   }, [shouldShowModal, isLoading]);
 
+<<<<<<< Updated upstream
   // Load saved events from localStorage (persisted entries)
+=======
+  // Load saved events and merge with optional props
+>>>>>>> Stashed changes
   useEffect(() => {
     try {
       const saved = JSON.parse(localStorage.getItem('newJourneyEntries') || '[]');
-      // Merge with optional `events` prop if provided, preferring saved client entries first
       const initial = (saved || []).concat(events || []);
-      // Ensure newest-first ordering (most recent first)
-      initial.sort((a, b) => new Date(b.timestamp || b.date) - new Date(a.timestamp || a.date));
+      // Sort by date (earliest first) instead of timestamp
+      initial.sort((a, b) => new Date(a.date || a.timestamp) - new Date(b.date || b.timestamp));
       setTimelineEvents(initial);
     } catch (err) {
       console.error('Error loading timeline events:', err);
@@ -37,15 +235,19 @@ export default function Timeline({ events, onEventsUpdate }) {
 
   // Notify parent of updates
   useEffect(() => {
-    if (onEventsUpdate) {
-      onEventsUpdate(timelineEvents);
-    }
+    if (onEventsUpdate) onEventsUpdate(timelineEvents);
   }, [timelineEvents, onEventsUpdate]);
+
+  const handleCloseNewJourneyModal = () => {
+    if (!isSaving) {
+      setIsNewJourneyModalOpen(false);
+      markModalAsShown();
+    }
+  };
 
   const handleNewJourneySubmit = async (formData) => {
     setIsSaving(true);
     try {
-      // Create the entry object
       const newJourneyEntry = {
         id: Date.now(),
         ...formData,
@@ -53,18 +255,23 @@ export default function Timeline({ events, onEventsUpdate }) {
         uid: user?.uid,
         timestamp: new Date().toISOString(),
       };
-
-      console.log('New Journey Entry:', newJourneyEntry);
-
-      // Prepend to timeline events so it becomes the first/current step
-      setTimelineEvents(prev => [newJourneyEntry, ...prev]);
-
-      // Save to localStorage (client-side backup)
+      
+      // Update state immediately for live visual update
       const existingEntries = JSON.parse(localStorage.getItem('newJourneyEntries') || '[]');
-      existingEntries.unshift(newJourneyEntry);
+      existingEntries.push(newJourneyEntry);
       localStorage.setItem('newJourneyEntries', JSON.stringify(existingEntries));
-
-      // Try to save to database via API (best-effort)
+      
+      // Sort by date and update state immediately
+      const updatedEvents = [...existingEntries, ...(events || [])];
+      updatedEvents.sort((a, b) => new Date(a.date || a.timestamp) - new Date(b.date || b.timestamp));
+      setTimelineEvents(updatedEvents);
+      
+      // Close modal and show history immediately
+      markModalAsShown();
+      setIsNewJourneyModalOpen(false);
+      setShowHistory(false);
+      
+      // Save to database in background
       if (user?.uid) {
         try {
           await fetch('/api/journey-entry', {
@@ -73,21 +280,12 @@ export default function Timeline({ events, onEventsUpdate }) {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${await user.getIdToken()}`,
             },
-            body: JSON.stringify({
-              ...newJourneyEntry,
-            }),
+            body: JSON.stringify(newJourneyEntry),
           });
-        } catch (error) {
-          console.error('Error saving to database:', error);
+        } catch (e) {
+          console.error('Error saving to database:', e);
         }
       }
-
-      // Mark modal as shown and close
-      markModalAsShown();
-      setIsNewJourneyModalOpen(false);
-      // By default show only current step after adding
-      setShowHistory(false);
-      console.log('New journey entry saved successfully');
     } catch (error) {
       console.error('Error in handleNewJourneySubmit:', error);
       alert('Error saving journey entry. Please try again.');
@@ -96,161 +294,127 @@ export default function Timeline({ events, onEventsUpdate }) {
     }
   };
 
-  const handleCloseNewJourneyModal = () => {
-    if (!isSaving) {
-      setIsNewJourneyModalOpen(false);
-      markModalAsShown(); // Mark as shown even if user closes without submitting
+  const handleEditSubmit = async (formData) => {
+    setIsSaving(true);
+    try {
+      const updatedEntry = {
+        ...selectedEvent,
+        ...formData,
+        type: formData.treatmentType,
+      };
+      
+      // Update localStorage
+      const existingEntries = JSON.parse(localStorage.getItem('newJourneyEntries') || '[]');
+      const updatedEntries = existingEntries.map(entry => 
+        entry.id === selectedEvent.id ? updatedEntry : entry
+      );
+      localStorage.setItem('newJourneyEntries', JSON.stringify(updatedEntries));
+      
+      // Update state immediately
+      const updatedEvents = [...updatedEntries, ...(events || [])];
+      updatedEvents.sort((a, b) => new Date(a.date || a.timestamp) - new Date(b.date || b.timestamp));
+      setTimelineEvents(updatedEvents);
+      setSelectedEvent(updatedEntry);
+      
+      // Close edit modal
+      setIsEditing(false);
+      
+      // Update database in background
+      if (user?.uid) {
+        try {
+          await fetch('/api/journey-entry', {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${await user.getIdToken()}`,
+            },
+            body: JSON.stringify(updatedEntry),
+          });
+        } catch (e) {
+          console.error('Error updating database:', e);
+        }
+      }
+    } catch (error) {
+      console.error('Error in handleEditSubmit:', error);
+      alert('Error updating journey entry. Please try again.');
+    } finally {
+      setIsSaving(false);
     }
   };
-  
 
-  const getTypeIcon = (type) => {
-    const icons = {
-        consultation: '👩‍⚕️',
-        'diagnostic-testing': '🔬',
-        'schedule-treatment': '🗓️',
-        'insurance-review': '🧾',
-        'financial-counseling': '�',
-        'cycle-monitoring': '📈',
-        medication: '💊',
-        procedure: '🏥',
-        'embryo-transfer': '🧬',
-        'early-pregnancy-testing': '🧪',
-        'unsuccessful-new-cycle': '�'
-    };
-    return icons[type] || '📋';
+  const handleDelete = async () => {
+    if (!selectedEvent) return;
+    
+    const confirmDelete = window.confirm(
+      `Are you sure you want to delete this step: "${selectedEvent.type || selectedEvent.title}"?\n\nThis action cannot be undone.`
+    );
+    
+    if (!confirmDelete) return;
+    
+    try {
+      // Remove from localStorage
+      const existingEntries = JSON.parse(localStorage.getItem('newJourneyEntries') || '[]');
+      const updatedEntries = existingEntries.filter(entry => entry.id !== selectedEvent.id);
+      localStorage.setItem('newJourneyEntries', JSON.stringify(updatedEntries));
+      
+      // Update state immediately
+      const updatedEvents = [...updatedEntries, ...(events || [])];
+      updatedEvents.sort((a, b) => new Date(a.date || a.timestamp) - new Date(b.date || b.timestamp));
+      setTimelineEvents(updatedEvents);
+      
+      // Close details card
+      setSelectedEvent(null);
+      
+      // Delete from database in background
+      if (user?.uid) {
+        try {
+          await fetch('/api/journey-entry', {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${await user.getIdToken()}`,
+            },
+            body: JSON.stringify({ id: selectedEvent.id }),
+          });
+        } catch (e) {
+          console.error('Error deleting from database:', e);
+        }
+      }
+    } catch (error) {
+      console.error('Error in handleDelete:', error);
+      alert('Error deleting journey entry. Please try again.');
+    }
   };
 
-    // Map of possible next steps for each stage. Each entry is an array of
-    // suggested next-step objects: { key, title, description }
-    const NEXT_STEP_MAP = {
-      consultation: [
-        { key: 'diagnostic-testing', title: 'Diagnostic Testing', description: 'Hormone panels, AMH, ultrasound and genetic screening to assess readiness.' },
-        { key: 'schedule-treatment', title: 'Schedule 1st Treatment', description: 'Book initial treatment appointments and medication preparation.' },
-        { key: 'insurance-review', title: 'Insurance Review', description: 'Check plan details and initiate coverage authorization if needed.' },
-        { key: 'financial-counseling', title: 'Financial Counseling', description: 'Discuss payment plans and estimate out-of-pocket costs.' }
-      ],
-      'diagnostic-testing': [
-        { key: 'cycle-monitoring', title: 'Cycle Monitoring', description: 'Monitor response to prepare for treatment (repeats possible).' },
-        { key: 'embryo-transfer', title: 'Prepare for Treatment', description: 'Prepare protocols for treatment or IVF cycle.' },
-        { key: 'insurance-review', title: 'Insurance Authorization', description: 'Request authorizations needed for procedures or testing.' },
-        { key: 'schedule-treatment', title: 'Treatment Planning Meeting', description: 'Meet the team and finalize the medication and procedure plan.' }
-      ],
-      'cycle-monitoring': [
-        { key: 'schedule-treatment', title: 'Prepare for Treatment', description: 'Finalize timing and schedule egg retrieval or insemination.' },
-        { key: 'medication', title: 'Adjust Medication', description: 'Titrate medications based on response and monitoring.' },
-        { key: 'diagnostic-testing', title: 'Reassess Protocol', description: 'Re-evaluate with additional tests or team consult.' },
-        { key: 'insurance-review', title: 'Insurance Checkpoint', description: 'Re-check coverage and update authorization as needed.' }
-      ],
-      'schedule-treatment': [
-        { key: 'medication', title: 'Begin Medication', description: 'Start stimulation or preparatory medications and monitoring.' },
-        { key: 'consultation', title: 'Pre-treatment Consultation', description: 'Confirm protocol, consent, and logistics.' },
-        { key: 'financial-counseling', title: 'Complete Consent & Payment', description: 'Finalize consent forms and payment arrangements.' },
-        { key: 'insurance-review', title: 'Insurance Pre-authorization', description: 'Verify coverage for scheduled procedures.' }
-      ],
-      medication: [
-        { key: 'cycle-monitoring', title: 'Cycle Monitoring', description: 'Track response and adjust dosing as needed.' },
-        { key: 'procedure', title: 'Side Effects Management', description: 'Manage reactions and consult pharmacy or clinic.' },
-        { key: 'medication', title: 'Track Adherence', description: 'Set reminders and logs for medication adherence.' },
-        { key: 'insurance-review', title: 'Insurance Coverage Review', description: 'Request refill authorization or coverage review.' }
-      ],
-      procedure: [
-        { key: 'embryo-transfer', title: 'Fertilization/Embryology', description: 'Embryo monitoring and lab follow-up after retrieval.' },
-        { key: 'early-pregnancy-testing', title: 'Recovery Protocol', description: 'Follow-up and recovery planning with post-procedure care.' },
-        { key: 'schedule-treatment', title: 'Schedule Transfer/Implantation', description: 'Plan embryo transfer and uterine preparation.' },
-        { key: 'insurance-review', title: 'Claims Submission', description: 'Submit claims and review coverage for the phase.' }
-      ],
-      'embryo-transfer': [
-        { key: 'early-pregnancy-testing', title: 'Post-Transfer Monitoring', description: 'Bloodwork and ultrasounds to confirm pregnancy.' },
-        { key: 'medication', title: 'Medication Adjustment', description: 'Adjust support medications and monitor hormones.' },
-        { key: 'insurance-review', title: 'Insurance Follow-up', description: 'Track out-of-pocket costs and claims.' },
-        { key: 'financial-counseling', title: 'Emotional Support', description: 'Connect to counseling and support resources.' }
-      ],
-      'early-pregnancy-testing': [
-        { key: 'consultation', title: 'Confirm Pregnancy', description: 'If positive, schedule first prenatal appointment.' },
-        { key: 'early-pregnancy-testing', title: 'Repeat Bloodwork', description: 'Monitor hCG and progress over time.' },
-        { key: 'insurance-review', title: 'Review Coverage', description: 'Transition to prenatal benefits and coverage review.' },
-        { key: 'financial-counseling', title: 'Continuing Support', description: 'Provide resources and next steps depending on result.' }
-      ],
-      'unsuccessful-new-cycle': [
-        { key: 'consultation', title: 'Reassess Protocol', description: 'Discuss next cycle or protocol adjustments with physician.' },
-        { key: 'insurance-review', title: 'Insurance Review for New Cycle', description: 'Confirm benefits remaining and reauthorize as needed.' },
-        { key: 'financial-counseling', title: 'Emotional Support & Counseling', description: 'Set up sessions for coping and planning.' },
-        { key: 'schedule-treatment', title: 'Explore Alternatives', description: 'Discuss donor options, adoption, or other options.' }
-      ],
-      'financial-counseling': [
-        { key: 'schedule-treatment', title: 'Schedule Treatment', description: 'Book your first treatment appointment.' },
-        { key: 'insurance-review', title: 'Insurance Review', description: 'Confirm coverage and authorization status.' },
-        { key: 'consultation', title: 'Medical Consultation', description: 'Discuss treatment plan with specialist.' },
-        { key: 'diagnostic-testing', title: 'Schedule Testing', description: 'Arrange baseline diagnostic testing.' }
-      ],
-      'insurance-review': [
-        { key: 'financial-counseling', title: 'Financial Planning', description: 'Review costs and discuss payment options.' },
-        { key: 'consultation', title: 'Coverage Consultation', description: 'Clarify what is and is not covered.' },
-        { key: 'schedule-treatment', title: 'Schedule Treatment', description: 'Once authorized, schedule your appointment.' },
-        { key: 'diagnostic-testing', title: 'Proceed to Testing', description: 'Move forward with recommended testing.' }
-      ]
-    };
+  const totalCost = timelineEvents.reduce((sum, e) => sum + (e.totalCost || 0), 0);
+  const insurancePaid = timelineEvents.reduce((sum, e) => sum + (e.insurancePaid || 0), 0);
+  const outOfPocket = totalCost - insurancePaid;
+  const coveragePercent = totalCost > 0 ? Math.round((insurancePaid / totalCost) * 100) : 0;
 
-    const getNextSteps = (currentType) => {
-      return NEXT_STEP_MAP[currentType] || [];
-    };
-
-  const getStatusColor = (status) => {
-    const colors = {
-      completed: '#ADC178',
-      'in-progress': '#F4A261',
-      planned: '#E9C46A',
-      cancelled: '#E76F51'
-    };
-    return colors[status] || '#ADC178';
-  };
-
-  const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD'
-    }).format(amount);
-  };
-
-  const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
-
-  const getCoverageStatus = (eventState) => {
-    // If user profile doesn't have a state yet, or event doesn't have treatmentState, no coverage info
-    const userState = userProfile?.location?.state;
-    if (!userState || !eventState) {
-      return null;
+  // Get events to display based on showHistory
+  const getDisplayEvents = () => {
+    if (showHistory) {
+      return timelineEvents;
     }
     
-    const isCovered = eventState === userState;
-    return {
-      isCovered,
-      label: isCovered ? 'Treatment covered' : 'Not covered',
-      color: isCovered ? '#ADC178' : '#E76F51'
-    };
-  };
-
-  // Resolve an event's canonical type key. Some events may use `type`, `treatmentType`,
-  // or only have a `title`. Normalize to a lowercase key that matches NEXT_STEP_MAP keys.
-  const getEventType = (evt) => {
-    if (!evt) return null;
-    const candidates = [evt.type, evt.treatmentType, evt.key, evt.title];
-    for (const c of candidates) {
-      if (!c) continue;
-      const val = String(c).trim();
-      if (!val) continue;
-      // normalize: lowercase and replace spaces with hyphens
-      return val.toLowerCase().replace(/\s+/g, '-');
+    // Find the last completed step
+    let lastCompletedIndex = -1;
+    for (let i = timelineEvents.length - 1; i >= 0; i--) {
+      if ((timelineEvents[i].status || '').toLowerCase() === 'completed') {
+        lastCompletedIndex = i;
+        break;
+      }
     }
-    return null;
+    
+    // If found, return from that point onwards; otherwise return all events
+    if (lastCompletedIndex >= 0) {
+      return timelineEvents.slice(lastCompletedIndex);
+    }
+    
+    return timelineEvents.length > 0 ? timelineEvents : [];
   };
 
+<<<<<<< Updated upstream
   // When showing history, render oldest-first (reversed); otherwise show only current step
   const listToRender = showHistory ? [...timelineEvents].reverse() : (timelineEvents[0] ? [timelineEvents[0]] : []);
 
@@ -267,6 +431,8 @@ export default function Timeline({ events, onEventsUpdate }) {
     });
   }
 
+=======
+>>>>>>> Stashed changes
   return (
     <>
       <NewJourneyModal
@@ -275,58 +441,43 @@ export default function Timeline({ events, onEventsUpdate }) {
         onSubmit={handleNewJourneySubmit}
         isSaving={isSaving}
       />
-      
-      <div className={styles.timeline}>
-        {/* View journey history control (only shown if there is at least one saved event) */}
-        {timelineEvents.length > 0 && (
-          <div className={styles.viewHistoryContainer}>
-                <div style={{display: 'flex', gap: '0.75rem', alignItems: 'center'}}>
-                  <button
-                    className={styles.viewHistoryButton}
-                    onClick={() => setShowHistory(prev => !prev)}
-                  >
-                    {showHistory ? 'Show current step' : '← View journey history'}
-                  </button>
-                  <button
-                    className={styles.addButton}
-                    onClick={() => setIsNewJourneyModalOpen(true)}
-                    aria-label="Add timeline step"
-                  >
-                    +
-                  </button>
-                </div>
-          </div>
-        )}
 
-        {listToRender.map((event, index) => (
-        <div key={event.id || `${event.timestamp}-${index}`} className={styles.timelineItem}>
-          <div 
-            className={`${styles.timelineDot} ${index === 0 && !showHistory ? styles.current : ''}`}
-            style={{ backgroundColor: getStatusColor(event.status) }}
-          >
-            <span className={styles.typeIcon}>{getTypeIcon(event.type)}</span>
-          </div>
-          {index !== (listToRender.length - 1) && <div className={styles.timelineConnector}></div>}
-          <div className={styles.timelineContent}>
-            <div className={styles.timelineHeader}>
-              <div className={styles.timelineDate}>{formatDate(event.date)}</div>
-              <div className={`${styles.statusBadge} ${styles[event.status]}`}>
-                {String(event.status).charAt(0).toUpperCase() + String(event.status).slice(1)}
-              </div>
-            </div>
-            <h3>{event.title || (event.type ? (event.type.charAt(0).toUpperCase() + event.type.slice(1)) : 'New Step')}</h3>
-            <p>{event.description || event.notes || ''}</p>
-            
-            <div className={styles.providerInfo}>
-              <span className={styles.providerName}>{event.location || ''}</span>
-              {getCoverageStatus(event.treatmentState) && (
-                <span 
-                  className={styles.coverageBadge}
-                  style={{ 
-                    backgroundColor: getCoverageStatus(event.treatmentState).color,
-                    color: '#fff'
-                  }}
+      <NewJourneyModal
+        isOpen={isEditing}
+        onClose={() => setIsEditing(false)}
+        onSubmit={handleEditSubmit}
+        isSaving={isSaving}
+        initialData={selectedEvent}
+      />
+
+      {/* Horizontal Timeline Map */}
+      <div className={styles.horizontalTimelineWrapper}>
+          {/* Scroll controls */}
+          <button className={styles.scrollLeft} aria-label="Scroll left" onClick={() => scrollByAmount(-300)}>◀</button>
+          <button className={styles.scrollRight} aria-label="Scroll right" onClick={() => scrollByAmount(300)}>▶</button>
+          
+          <div className={styles.horizontalTimeline} ref={timelineScrollRef}>
+            {getDisplayEvents().map((event, index, arr) => {
+              const isCurrent = !showHistory && index === 0; // First node in current view is the current step
+              const isLastBeforePredicted = !showHistory && index === arr.length - 1; // Last node before predicted steps
+              const isLastInHistory = showHistory && index === arr.length - 1; // Last node in history view
+              const isSelected = selectedEvent && selectedEvent.id === event.id;
+              const typeKey = getEventType(event);
+              const connectorColor = STAGE_COLORS[typeKey] || getStatusColor(event.status);
+              const hasNext = index < arr.length - 1;
+              const hasPrev = index > 0;
+              const isAbove = index % 2 === 0;
+              return (
+                <div
+                  key={event.id || `${event.timestamp}-${index}`}
+                  className={
+                    `${styles.timelineNode} ${isAbove ? styles.nodeAbove : styles.nodeBelow} ${isCurrent ? styles.currentNode : ''} ${isSelected ? styles.selectedNode : ''}`
+                  }
+                  onMouseEnter={() => setExpandedPredictedStep(event.id)}
+                  onMouseLeave={() => setExpandedPredictedStep(null)}
+                  onClick={() => setSelectedEvent(isSelected ? null : event)}
                 >
+<<<<<<< Updated upstream
                   {getCoverageStatus(event.treatmentState).label}
                 </span>
               )}
@@ -376,65 +527,182 @@ export default function Timeline({ events, onEventsUpdate }) {
               </div>
             </div>
           ))}
+=======
+                  {/* Content stack: label, circle, icon - positioned above or below */}
+                  <div className={styles.nodeContent}>
+                    <div className={styles.nodeLabel}>{event.title || event.type}</div>
+                    <div className={styles.nodeCircle} style={{ backgroundColor: connectorColor }} />
+                    <span className={styles.typeIcon}>{getTypeIcon(event.type)}</span>
+                    
+                    {/* Tooltip for simple explanation - attached to nodeContent */}
+                    {expandedPredictedStep === event.id && (
+                      <div className={styles.nodeTooltip}>
+                        {TREATMENT_STAGE_DATA[getEventType(event)]?.simpleAnalogy || event.description}
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Vertical connector from main line to content */}
+                  <div 
+                    className={`${styles.verticalConnector} ${isCurrent ? styles.currentVerticalConnector : ''}`}
+                    style={{ background: connectorColor }} 
+                  />
+                  
+                  {/* Small circle on main horizontal line */}
+                  <div className={styles.mainLineNode} style={{ backgroundColor: connectorColor }} />
+                  
+                  {/* Horizontal connector - always render for last nodes and current node */}
+                  {(hasNext || isCurrent || isLastBeforePredicted || isLastInHistory) && (
+                    <div 
+                      className={`${styles.nodeConnector} ${isCurrent ? styles.currentConnector : ''} ${isLastBeforePredicted ? styles.lastBeforePredictedConnector : ''}`}
+                      style={{ background: connectorColor }} 
+                    />
+                  )}
+                </div>
+              );
+            })}
+            
+            {/* Predicted Next Steps - only show when current step is displayed (not history view) */}
+            {!showHistory && getDisplayEvents().length > 0 && (() => {
+              const displayedEvents = getDisplayEvents();
+              const lastDisplayedEvent = displayedEvents[displayedEvents.length - 1];
+              const lastEventType = getEventType(lastDisplayedEvent);
+              const predictedSteps = PREDICTED_NEXT_STEPS[lastEventType];
+              
+              if (!predictedSteps) return null;
+              
+              return predictedSteps.map((predictedStep, pIndex) => {
+                const predictedColor = STAGE_COLORS[predictedStep.type] || '#E8F0D8';
+                const lighterColor = predictedColor + '40'; // Add transparency for subtle effect
+                const isPredictedAbove = (displayedEvents.length + pIndex) % 2 === 0; // Continue alternating pattern
+                
+                return (
+                  <div
+                    key={`predicted-${pIndex}`}
+                    className={`${styles.timelineNode} ${isPredictedAbove ? styles.nodeAbove : styles.nodeBelow} ${styles.predictedNode}`}
+                    onMouseEnter={() => setExpandedPredictedStep(`predicted-${pIndex}`)}
+                    onMouseLeave={() => setExpandedPredictedStep(null)}
+                  >
+                    {/* Content stack for predicted step */}
+                    <div className={styles.nodeContent}>
+                      <div className={styles.nodeLabel}>{predictedStep.title}</div>
+                      <div className={styles.nodeCircle} style={{ backgroundColor: predictedColor, opacity: 0.5 }} />
+                      <span className={styles.typeIcon}>{getTypeIcon(predictedStep.type)}</span>
+                      
+                      {/* Tooltip for predicted step */}
+                      {expandedPredictedStep === `predicted-${pIndex}` && (
+                        <div className={styles.nodeTooltip}>
+                          {TREATMENT_STAGE_DATA[predictedStep.type]?.simpleAnalogy || 'Potential next step in your journey'}
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Vertical connector - lighter */}
+                    <div 
+                      className={styles.verticalConnector}
+                      style={{ background: lighterColor }} 
+                    />
+                    
+                    {/* Small circle on main line - lighter */}
+                    <div className={styles.mainLineNode} style={{ backgroundColor: predictedColor, opacity: 0.5 }} />
+                    
+                    {/* Horizontal connector - lighter, only if not last predicted step */}
+                    {pIndex < predictedSteps.length - 1 && (
+                      <div 
+                        className={styles.nodeConnector}
+                        style={{ background: lighterColor }} 
+                      />
+                    )}
+                  </div>
+                );
+              });
+            })()}
+          </div>
+        </div>
+
+      {/* Toggle history button */}
+      {timelineEvents.length > 1 && (
+        <div className={styles.viewHistoryContainer}>
+          <button
+            className={styles.viewHistoryButton}
+            onClick={() => setShowHistory(prev => !prev)}
+          >
+            {showHistory ? 'Show current step' : '← View journey history'}
+          </button>
+          <button
+            className={styles.addButton}
+            onClick={() => setIsNewJourneyModalOpen(true)}
+            aria-label="Add timeline step"
+          >
+            +
+          </button>
+>>>>>>> Stashed changes
         </div>
       )}
 
-      {/* Detail Modal */}
+      {/* Details below timeline map, collapsible */}
       {selectedEvent && (
-        <div className={styles.modalOverlay} onClick={() => setSelectedEvent(null)}>
-          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <div className={styles.modalHeader}>
-              <h2>{selectedEvent.title || 'Journey Step'}</h2>
-              <button 
+        <div className={styles.detailsSection}>
+          <div className={styles.detailsHeader}>
+            <h3>{selectedEvent.type || selectedEvent.title || 'Journey Step'}</h3>
+            <div className={styles.headerButtons}>
+              <button
+                className={styles.deleteButton}
+                onClick={handleDelete}
+                aria-label="Delete step"
+              >
+                🗑️
+              </button>
+              <button
+                className={styles.editButton}
+                onClick={() => setIsEditing(true)}
+                aria-label="Edit step"
+              >
+                ✏️
+              </button>
+              <button
                 className={styles.closeButton}
                 onClick={() => setSelectedEvent(null)}
               >
                 ×
               </button>
             </div>
-            
-            <div className={styles.modalBody}>
-              <div className={styles.modalSection}>
-                <h3>Treatment Details</h3>
-                <p><strong>Date:</strong> {formatDate(selectedEvent.date)}</p>
-                <p><strong>Type:</strong> {selectedEvent.type}</p>
-                <p><strong>Status:</strong> {selectedEvent.status}</p>
-                {selectedEvent.notes && (
-                  <p><strong>Notes:</strong> {selectedEvent.notes}</p>
-                )}
-              </div>
-
-              <div className={styles.modalSection}>
-                <h3>Location</h3>
-                <p>{selectedEvent.location || '—'}</p>
-              </div>
-
-              <div className={styles.modalSection}>
-                <h3>Cost Breakdown</h3>
-                <div className={styles.detailedCosts}>
-                  <div className={styles.costItem}>
-                    <span>Total Treatment Cost:</span>
-                    <span>{formatCurrency(selectedEvent.totalCost || selectedEvent.costs?.totalCost || 0)}</span>
-                  </div>
-                  <div className={styles.costItem}>
-                    <span>Insurance Coverage:</span>
-                    <span className={styles.insurancePaid}>
-                      {formatCurrency(selectedEvent.insurancePaid || selectedEvent.costs?.insurancePaid || 0)}
-                    </span>
-                  </div>
-                  <div className={styles.costItem}>
-                    <span>Your Out-of-Pocket:</span>
-                    <span className={styles.patientPaid}>
-                      {formatCurrency(selectedEvent.trueCost || selectedEvent.costs?.patientPaid || ((selectedEvent.totalCost || 0) - (selectedEvent.insurancePaid || 0)))}
-                    </span>
-                  </div>
-                </div>
+          </div>
+          <div className={styles.detailsBody}>
+            <div>
+              <strong>Status:</strong>{' '}
+              <span 
+                className={styles.statusBadge}
+                style={{ backgroundColor: getStatusColor(selectedEvent.status) }}
+              >
+                {selectedEvent.status}
+              </span>
+            </div>
+            <div><strong>Date:</strong> {formatDate(selectedEvent.date)}</div>
+            <div><strong>Location:</strong> {selectedEvent.location || '—'}</div>
+            <div><strong>Total Cost:</strong> {formatCurrency(selectedEvent.totalCost || selectedEvent.costs?.totalCost || 0)}</div>
+            <div><strong>Insurance Coverage:</strong> {formatCurrency(selectedEvent.insurancePaid || selectedEvent.costs?.insurancePaid || 0)}</div>
+            <div><strong>Your Out-of-Pocket:</strong> {formatCurrency(selectedEvent.trueCost || selectedEvent.costs?.patientPaid || ((selectedEvent.totalCost || 0) - (selectedEvent.insurancePaid || 0)))}</div>
+          </div>
+          
+          {/* Medical Description Section */}
+          {TREATMENT_STAGE_DATA[getEventType(selectedEvent)]?.medical && (
+            <div className={styles.medicalDescriptionSection}>
+              <div className={styles.medicalDescriptionHeader}>Medical Overview</div>
+              <div className={styles.medicalDescriptionContent}>
+                {TREATMENT_STAGE_DATA[getEventType(selectedEvent)].medical}
               </div>
             </div>
-          </div>
+          )}
+          
+          {selectedEvent.notes && (
+            <div className={styles.notesSection}>
+              <div className={styles.notesHeader}>Notes</div>
+              <div className={styles.notesContent}>{selectedEvent.notes}</div>
+            </div>
+          )}
         </div>
       )}
-    </div>
     </>
   );
 }

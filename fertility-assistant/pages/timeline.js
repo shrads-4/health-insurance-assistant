@@ -65,6 +65,8 @@ export default function TimelinePage() {
           <meta name="description" content="Track your fertility treatment journey with detailed cost breakdowns and provider information" />
         </Head>
         
+        <Timeline onEventsUpdate={handleTimelineEventsUpdate} />
+
         <div className={styles.pageHeader}>
           <h1>📅 Your Fertility Journey Timeline</h1>
           <p className={styles.pageDescription}>
@@ -117,8 +119,6 @@ export default function TimelinePage() {
             </div>
           </div>
         </div>
-        
-        <Timeline onEventsUpdate={handleTimelineEventsUpdate} />
       </div>
     </ProtectedRoute>
   );
