@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
 
 /**
@@ -11,25 +11,45 @@ export function useNewJourneyModalSession() {
   const [isLoading, setIsLoading] = useState(true);
   const [loginId, setLoginId] = useState(null);
 
+  const prevUserRef = useRef(null);
+
   useEffect(() => {
+    // When user logs out (user exists but was previously set), clear the old keys
+    if (!user && prevUserRef.current) {
+      const oldUid = prevUserRef.current.uid;
+      const storedLoginId = sessionStorage.getItem(`newJourneyModal_${oldUid}_loginId`);
+      if (storedLoginId) {
+        sessionStorage.removeItem(`newJourneyModal_${oldUid}_loginId`);
+        sessionStorage.removeItem(`newJourneyModal_${oldUid}_shown_${storedLoginId}`);
+      }
+    }
+    prevUserRef.current = user;
+
     if (!user) {
       // Reset when user logs out
       setHasShownModal(false);
+      setLoginId(null);
       setIsLoading(false);
       return;
     }
 
-    // Create a login-specific id for this sign-in instance. This ensures
-    // the modal shows once per login (even if the same user signs out and signs
-    // back in during the same tab session).
-    const newLoginId = String(Date.now());
-    setLoginId(newLoginId);
+    // Check if we already have a loginId stored for this user in THIS session
+    const storedLoginId = sessionStorage.getItem(`newJourneyModal_${user.uid}_loginId`);
+    
+    let currentLoginId;
+    if (storedLoginId) {
+      // Reuse the existing login id from this session
+      currentLoginId = storedLoginId;
+    } else {
+      // Create a NEW login id only if one doesn't exist
+      currentLoginId = String(Date.now());
+      sessionStorage.setItem(`newJourneyModal_${user.uid}_loginId`, currentLoginId);
+    }
 
-    // Save the current login id for inspection/debug (optional)
-    sessionStorage.setItem(`newJourneyModal_${user.uid}_loginId`, newLoginId);
+    setLoginId(currentLoginId);
 
     // Check if modal has been shown for this user for THIS login id
-    const sessionKey = `newJourneyModal_${user.uid}_shown_${newLoginId}`;
+    const sessionKey = `newJourneyModal_${user.uid}_shown_${currentLoginId}`;
     const modalShown = sessionStorage.getItem(sessionKey);
 
     setHasShownModal(!!modalShown);

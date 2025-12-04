@@ -756,6 +756,147 @@
   color: #6B7A41;
 }
 
+.predictedDescription {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 6px;
+  border-left: 3px solid #8FA05F;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #4A5D2E;
+}
+
+.descriptionText {
+  margin: 0;
+}
+
+.predictedControls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.toggleButton {
+  background-color: #ADC178;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggleButton:hover {
+  background-color: #8FA05F;
+  transform: translateY(-2px);
+}
+
+.confusedButtonContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.confusedButton {
+  background-color: #E9C46A;
+  color: #333;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.confusedButton:hover {
+  background-color: #F4A261;
+  transform: translateY(-2px);
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 0.5rem;
+  background-color: #4A5D2E;
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  max-width: 300px;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 1rem;
+  border: 6px solid transparent;
+  border-top-color: #4A5D2E;
+}
+
+.tooltipHorizontal {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 1rem;
+  background-color: #4A5D2E;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  min-width: 400px;
+  max-width: 500px;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  white-space: normal;
+}
+
+.tooltipHorizontal::before {
+  content: '';
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-right-color: #4A5D2E;
+}
+
+.predictedControlsSection {
+  margin-top: 1rem;
+}
+
+.timelineInfo {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #E8F0D8;
+}
+
+.timelineLabel {
+  font-size: 0.85rem;
+  color: #8FA05F;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.timelineBar {
+  height: 8px;
+  background: linear-gradient(90deg, #ADC178 0%, #8FA05F 100%);
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(139, 195, 74, 0.2);
+  transition: width 0.3s ease;
+}
+
 .predictedItem .timelineConnector {
   background: linear-gradient(to bottom, #E8F0D8, #F4F8E8);
 }

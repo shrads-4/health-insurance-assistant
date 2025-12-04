@@ -13,8 +13,12 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
+    // Only initialize once per app load
+    if (initialized) return;
+
     const unsubscribe = onAuthChange(async (firebaseUser) => {
       if (firebaseUser) {
         setUser(firebaseUser);
@@ -29,10 +33,11 @@ export function AuthProvider({ children }) {
         setUserProfile(null);
       }
       setLoading(false);
+      setInitialized(true);
     });
 
     return unsubscribe;
-  }, []);
+  }, [initialized]);
 
   const value = {
     user,
@@ -42,7 +47,7 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider value={value}>
-      {!loading && children}
+      {children}
     </AuthContext.Provider>
   );
 }

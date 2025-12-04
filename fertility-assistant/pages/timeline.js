@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Head from 'next/head';
 import Timeline from '../components/Timeline';
 import ProtectedRoute from '../components/ProtectedRoute';
@@ -23,7 +23,7 @@ export default function TimelinePage() {
     'early-pregnancy-testing'
   ];
 
-  const handleTimelineEventsUpdate = (events) => {
+  const handleTimelineEventsUpdate = useCallback((events) => {
     if (!events || events.length === 0) {
       setTimelineStats({
         appointmentCount: 0,
@@ -55,7 +55,7 @@ export default function TimelinePage() {
       outOfPocket,
       insurageCoverage,
     });
-  };
+  }, []);
 
   return (
     <ProtectedRoute>

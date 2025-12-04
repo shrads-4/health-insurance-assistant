@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { retrieveRelevantChunks } from '../lib/documentProcessor';
 import styles from '../styles/CoverageDecoder.module.css';
+import ReactMarkdown from 'react-markdown';
 
 export default function CoverageDecoder() {
   const { userProfile } = useAuth();
@@ -103,13 +104,28 @@ export default function CoverageDecoder() {
 
       // Add user's insurance profile as context
       if (userProfile) {
-        context += `\n\nUser's Insurance Profile:
-        - Carrier: ${userProfile.insuranceCarrier}
-        - Plan: ${userProfile.planName}
-        - Deductible: $${userProfile.deductible} (Met: $${userProfile.deductibleMet || 0})
-        - Out-of-Pocket Max: $${userProfile.outOfPocketMax}
-        - Coinsurance: ${userProfile.coinsurance}%
-        ${userProfile.coverageLimit ? `- Fertility Coverage Limit: $${userProfile.coverageLimit}` : ''}`;
+        context += `\n\nUser's Insurance Profile:`;
+        if (userProfile.insuranceCarrier) {
+          context += `\n- Carrier: ${userProfile.insuranceCarrier}`;
+        }
+        if (userProfile.planName) {
+          context += `\n- Plan: ${userProfile.planName}`;
+        }
+        if (userProfile.deductible) {
+          context += `\n- Deductible: $${userProfile.deductible} (Met: $${userProfile.deductibleMet || 0})`;
+        }
+        if (userProfile.outOfPocketMax) {
+          context += `\n- Out-of-Pocket Max: $${userProfile.outOfPocketMax}`;
+        }
+        if (userProfile.coinsurance) {
+          context += `\n- Coinsurance: ${userProfile.coinsurance}%`;
+        }
+        if (userProfile.coverageLimit) {
+          context += `\n- Fertility Coverage Limit: $${userProfile.coverageLimit}`;
+        }
+        if (userProfile.fertilityJourneyStage) {
+          context += `\n- Journey Stage: ${userProfile.fertilityJourneyStage}`;
+        }
       }
 
       const response = await fetch('/api/chat-rag', {
@@ -188,7 +204,7 @@ export default function CoverageDecoder() {
                 {msg.role === 'assistant' ? '🐸' : '👤'}
               </div>
               <div className={styles.messageContent}>
-                {msg.content}
+                <ReactMarkdown>{msg.content}</ReactMarkdown>
               </div>
             </div>
           ))}
