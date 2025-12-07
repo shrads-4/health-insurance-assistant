@@ -1,16 +1,60 @@
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 2rem;
+  background: #F5F9ED;
+  min-height: 100vh;
 }
 
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: #4A5D2E;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #6B7F3E;
+}
+
+/* Error Card */
+.errorCard {
+  background: white;
+  border: 2px solid #FDD835;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.errorCard h2 {
+  color: #4A5D2E;
+  margin-bottom: 1rem;
+}
+
+.errorCard p {
+  color: #6B7F3E;
+}
+
+/* Form Section - Card Style */
 .formSection {
   background: white;
-  padding: 2rem;
   border-radius: 16px;
-  border: 2px solid #C8D9A8;
+  padding: 2.5rem;
+  box-shadow: 0 4px 16px rgba(173, 193, 120, 0.15);
   margin-bottom: 2rem;
-  box-shadow: 0 4px 12px rgba(139, 195, 74, 0.1);
+  border: 1px solid #E0E0E0;
+}
+
+.formSection h2 {
+  margin-bottom: 1.5rem;
+  color: #4A5D2E;
+  font-size: 1.75rem;
 }
 
 .formGrid {
@@ -26,184 +70,407 @@
 }
 
 .formGroup label {
-  margin-bottom: 0.5rem;
   font-weight: 600;
+  margin-bottom: 0.5rem;
   color: #4A5D2E;
 }
 
-.formGroup input,
-.formGroup select {
-  padding: 0.75rem;
-  border: 2px solid #C8D9A8;
+.formGroup select,
+.formGroup input {
+  padding: 0.875rem;
+  border: 2px solid #E0E0E0;
   border-radius: 8px;
   font-size: 1rem;
-  transition: all 0.2s ease;
+  transition: all 0.2s;
+  background: white;
+  color: #4A5D2E;
 }
 
-.formGroup input:focus,
-.formGroup select:focus {
+.formGroup select:focus,
+.formGroup input:focus {
   outline: none;
   border-color: #ADC178;
-  box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.1);
+  box-shadow: 0 0 0 3px rgba(173, 193, 120, 0.1);
 }
 
-.button {
+.formGroup select:hover,
+.formGroup input:hover {
+  border-color: #8FA05F;
+}
+
+/* Insurance Info Display - Card Style */
+.insuranceInfo {
+  background: #F5F9ED;
+  border: 2px solid #C8D9A8;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.insuranceInfo h3 {
+  margin-bottom: 1rem;
+  color: #4A5D2E;
+  font-size: 1.25rem;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.infoLabel {
+  font-size: 0.875rem;
+  color: #6B7F3E;
+  font-weight: 500;
+}
+
+.infoValue {
+  font-size: 1rem;
+  color: #4A5D2E;
+  font-weight: 600;
+}
+
+/* Error Message */
+.errorMessage {
+  background: #FEE;
+  border: 2px solid #E57373;
+  border-radius: 8px;
+  padding: 1rem;
+  color: #C33;
+  margin: 1rem 0;
+}
+
+/* Predict Button - Baby Yoda Green Theme */
+.predictButton {
+  width: 100%;
+  padding: 1.25rem 2rem;
   background: linear-gradient(135deg, #ADC178 0%, #8FA05F 100%);
   color: white;
   border: none;
-  padding: 1rem 2rem;
   border-radius: 12px;
-  font-size: 1.1rem;
+  font-size: 1.125rem;
+  font-weight: 700;
   cursor: pointer;
-  font-weight: 600;
-  width: 100%;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(139, 195, 74, 0.2);
+  box-shadow: 0 4px 12px rgba(173, 193, 120, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.button:hover {
+.predictButton:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(139, 195, 74, 0.4);
+  box-shadow: 0 6px 20px rgba(173, 193, 120, 0.4);
+  background: linear-gradient(135deg, #8FA05F 0%, #7A8B51 100%);
 }
 
+.predictButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.predictButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Results Container - Card Style */
 .resultsContainer {
   background: white;
   border-radius: 16px;
-  border: 2px solid #C8D9A8;
-  box-shadow: 0 4px 12px rgba(139, 195, 74, 0.1);
-  overflow: hidden;
+  padding: 2.5rem;
+  box-shadow: 0 4px 16px rgba(173, 193, 120, 0.15);
+  border: 1px solid #E0E0E0;
 }
 
+/* Tabs */
 .tabContainer {
   display: flex;
-  background-color: #F8FBF4;
-  border-bottom: 2px solid #C8D9A8;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #E0E0E0;
 }
 
 .tab {
-  flex: 1;
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem;
   background: none;
   border: none;
-  cursor: pointer;
+  border-bottom: 3px solid transparent;
   font-size: 1rem;
   font-weight: 600;
-  color: #8FA05F;
-  transition: all 0.2s ease;
+  color: #6B7F3E;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
 .tab:hover {
-  background-color: #E8F0D8;
+  color: #4A5D2E;
+  background: #F5F9ED;
+  border-radius: 8px 8px 0 0;
 }
 
 .activeTab {
-  background-color: white;
   color: #4A5D2E;
-  border-bottom: 3px solid #ADC178;
+  border-bottom-color: #ADC178;
+  background: #F5F9ED;
+  border-radius: 8px 8px 0 0;
 }
 
-.scenariosSection,
-.providersSection {
+/* Cost Summary */
+.costSummary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.mainCost,
+.yourCost {
+  background: linear-gradient(135deg, #ADC178 0%, #8FA05F 100%);
+  color: white;
   padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(173, 193, 120, 0.3);
 }
 
-.scenariosGrid,
-.providersGrid {
+.yourCost {
+  background: linear-gradient(135deg, #8FA05F 0%, #7A8B51 100%);
+}
+
+.mainCost h2,
+.yourCost h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  opacity: 0.95;
+  font-weight: 600;
+}
+
+.costRange,
+.avgCost,
+.confidence {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.rangeValue,
+.avgValue {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.finalCost {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 1rem 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.warning {
+  background: rgba(253, 216, 53, 0.2);
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 1rem;
+  color: white;
+  font-weight: 600;
+}
+
+/* Breakdown Details */
+.breakdownDetails {
+  margin-top: 2rem;
+}
+
+.breakdownDetails h3 {
+  margin-bottom: 1rem;
+  color: #4A5D2E;
+  font-size: 1.5rem;
+}
+
+.breakdownTable {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.breakdownTable tr {
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.breakdownTable tr:last-child {
+  border-bottom: none;
+}
+
+.breakdownTable td {
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.breakdownTable td:first-child {
+  color: #6B7F3E;
+}
+
+.breakdownTable td:last-child {
+  text-align: right;
+  font-weight: 600;
+  color: #4A5D2E;
+}
+
+.deductible,
+.coinsurance,
+.uncovered {
+  color: #E57373 !important;
+}
+
+.insurancePays {
+  color: #ADC178 !important;
+}
+
+.insuranceRow {
+  background: #F5F9ED;
+}
+
+.totalRow {
+  background: #F5F9ED;
+  border-top: 2px solid #ADC178 !important;
+  font-size: 1.1rem;
+}
+
+.totalRow td {
+  padding: 1.25rem 1rem;
+  font-weight: 700;
+  color: #4A5D2E;
+}
+
+.remainingInfo {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #F5F9ED;
+  border-left: 4px solid #ADC178;
+  border-radius: 4px;
+}
+
+.remainingInfo p {
+  margin: 0;
+  color: #4A5D2E;
+  font-weight: 600;
+}
+
+/* Scenarios Section */
+.scenariosSection {
+  padding: 1rem 0;
+}
+
+.scenariosSection h2 {
+  margin-bottom: 0.5rem;
+  color: #4A5D2E;
+  font-size: 1.75rem;
+}
+
+.scenarioIntro {
+  color: #6B7F3E;
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+}
+
+.scenariosGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-  margin-top: 1.5rem;
+  gap: 1.5rem;
 }
 
-.scenarioCard,
-.providerCard {
-  background: #F8FBF4;
-  border: 2px solid #E8F0D8;
+.scenarioCard {
+  border: 2px solid #E0E0E0;
   border-radius: 12px;
   padding: 1.5rem;
-  transition: all 0.3s ease;
+  transition: all 0.3s;
+  background: white;
 }
 
-.scenarioCard:hover,
-.providerCard:hover {
-  border-color: #C8D9A8;
-  box-shadow: 0 4px 16px rgba(139, 195, 74, 0.1);
+.scenarioCard:hover {
+  border-color: #ADC178;
+  box-shadow: 0 4px 16px rgba(173, 193, 120, 0.2);
   transform: translateY(-2px);
 }
 
-.scenarioHeader,
-.providerHeader {
+.scenarioHeader {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 1rem;
 }
 
-.scenarioHeader h4,
-.providerHeader h4 {
-  margin: 0;
+.scenarioHeader h3 {
   color: #4A5D2E;
-  font-size: 1.2rem;
+  margin: 0;
+  font-size: 1.25rem;
 }
 
 .savingsBadge {
-  background: linear-gradient(135deg, #28A745, #20C997);
+  background: #ADC178;
   color: white;
-  padding: 0.25rem 0.75rem;
+  padding: 0.375rem 0.75rem;
   border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.875rem;
+  font-weight: 700;
 }
 
 .scenarioDescription {
-  color: #8FA05F;
+  color: #6B7F3E;
   margin-bottom: 1.5rem;
-  line-height: 1.4;
+  line-height: 1.6;
 }
 
-.costBreakdown {
-  background: white;
-  border: 1px solid #E8F0D8;
+.scenarioCosts {
+  background: #F5F9ED;
   border-radius: 8px;
   padding: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-.costRow {
+.costItem {
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 0;
-  font-size: 0.9rem;
-  color: #8FA05F;
-}
-
-.costRow:not(:last-child) {
-  border-bottom: 1px solid #F8FBF4;
-}
-
-.totalRow {
-  font-weight: 700;
-  font-size: 1.1rem;
+  border-bottom: 1px solid #E0E0E0;
   color: #4A5D2E;
-  padding-top: 0.75rem;
-  border-top: 2px solid #C8D9A8;
-  margin-top: 0.5rem;
 }
 
-.savings {
-  color: #28A745;
-  font-weight: 600;
+.costItem:last-child {
+  border-bottom: none;
 }
 
-.warning {
-  color: #DC3545;
-  font-weight: 600;
+.costItem.highlight {
+  background: white;
+  margin: 0.5rem -1rem 0;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border: 2px solid #ADC178;
+  font-weight: 700;
+}
+
+.positive {
+  color: #ADC178;
+  font-weight: 700;
 }
 
 .prosConsContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  margin-top: 1rem;
 }
 
 .prosSection,
@@ -213,28 +480,23 @@
 }
 
 .prosSection {
-  background-color: #D4EDDA;
-  border-left: 4px solid #28A745;
+  background: #F5F9ED;
+  border-left: 4px solid #ADC178;
 }
 
 .consSection {
-  background-color: #F8D7DA;
-  border-left: 4px solid #DC3545;
+  background: #FEF2F2;
+  border-left: 4px solid #E57373;
 }
 
-.prosSection h5,
-.consSection h5 {
-  margin: 0 0 0.5rem 0;
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.prosSection h5 {
-  color: #155724;
-}
-
-.consSection h5 {
-  color: #721C24;
+.prosSection h4,
+.consSection h4 {
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+  color: #4A5D2E;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .prosSection ul,
@@ -246,157 +508,287 @@
 
 .prosSection li,
 .consSection li {
-  padding: 0.25rem 0;
-  font-size: 0.85rem;
-  line-height: 1.3;
+  padding: 0.375rem 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
 
 .prosSection li {
-  color: #155724;
+  color: #4A5D2E;
 }
 
 .consSection li {
-  color: #721C24;
+  color: #991B1B;
 }
 
-.providerBadges {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  align-items: flex-end;
+/* Recommendations Section */
+.recommendationsSection {
+  padding: 1rem 0;
 }
 
-.networkBadge,
-.ratingBadge {
-  padding: 0.25rem 0.5rem;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-.networkBadge.innetwork {
-  background-color: #D4EDDA;
-  color: #155724;
-}
-
-.networkBadge.outofnetwork {
-  background-color: #F8D7DA;
-  color: #721C24;
-}
-
-.ratingBadge {
-  background-color: #FFF3CD;
-  color: #856404;
-}
-
-.providerDetails {
-  margin-bottom: 1.5rem;
-}
-
-.providerDetails p {
-  margin: 0.5rem 0;
-  color: #8FA05F;
-  font-size: 0.9rem;
-}
-
-.providerCosts {
-  background: white;
-  border: 1px solid #E8F0D8;
-  border-radius: 8px;
-  padding: 1rem;
-}
-
-/* Page Header Styles */
-.pageHeader {
-  text-align: center;
-  margin-bottom: 3rem;
-  padding: 2rem 1rem;
-  background: linear-gradient(135deg, #F8FBF4 0%, #E8F0D8 100%);
-  border-radius: 16px;
-  border: 2px solid #C8D9A8;
-}
-
-.pageHeader h1 {
+.recommendationsSection h2 {
+  margin-bottom: 2rem;
   color: #4A5D2E;
-  margin-bottom: 1rem;
-  font-size: 2.5rem;
+  font-size: 1.75rem;
 }
 
-.pageDescription {
-  color: #8FA05F;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  max-width: 800px;
-  margin: 0 auto 2rem auto;
-}
-
-.featureHighlights {
+.recommendationsList {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
   margin-bottom: 2rem;
 }
 
-.highlight {
+.recommendationCard {
+  background: linear-gradient(135deg, #FFF9E6 0%, #FFF3CD 100%);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border-left: 4px solid #A0826D;
+  box-shadow: 0 2px 8px rgba(160, 130, 109, 0.15);
+}
+
+.recHeader {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem;
-  background: white;
-  border-radius: 12px;
-  border: 1px solid #E8F0D8;
-  text-align: left;
-}
-
-.highlightIcon {
-  font-size: 2rem;
-  flex-shrink: 0;
-}
-
-.highlight h3 {
-  margin: 0 0 0.25rem 0;
-  color: #4A5D2E;
-  font-size: 1rem;
-}
-
-.highlight p {
-  margin: 0;
-  color: #8FA05F;
-  font-size: 0.9rem;
-}
-
-.usageGuide {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  border: 1px solid #E8F0D8;
-  text-align: left;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.usageGuide h3 {
-  color: #4A5D2E;
+  gap: 0.75rem;
   margin-bottom: 1rem;
 }
 
-.usageGuide ol {
-  color: #8FA05F;
+.recIcon {
+  font-size: 1.5rem;
+}
+
+.recHeader h3 {
+  margin: 0;
+  color: #4A5D2E;
+  font-size: 1.125rem;
+}
+
+.recMessage {
+  color: #6B7F3E;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.potentialSavings {
+  background: #ADC178;
+  color: white;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.noRecommendations {
+  background: #F5F9ED;
+  border: 2px dashed #ADC178;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  color: #4A5D2E;
+  font-size: 1.1rem;
+}
+
+.additionalTips {
+  background: #F5F9ED;
+  border: 2px solid #C8D9A8;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.additionalTips h3 {
+  color: #4A5D2E;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.additionalTips ul {
+  list-style: none;
+  padding: 0;
+}
+
+.additionalTips li {
+  padding: 0.75rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  color: #4A5D2E;
   line-height: 1.6;
 }
 
-.usageGuide li {
-  margin-bottom: 0.5rem;
+.additionalTips li:before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #ADC178;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .container {
-    padding: 0.5rem;
+  .costSummary {
+    grid-template-columns: 1fr;
   }
   
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .scenariosGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .prosConsContainer {
+    grid-template-columns: 1fr;
+  }
+  
+  .tabContainer {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  
+  .tab {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .container {
+    padding: 1rem;
+  }
+  
+  .formSection,
+  .resultsContainer {
+    padding: 1.5rem;
+  }
+  
+  .header h1 {
+    font-size: 2rem;
+  }
+  
+  .finalCost {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .scenarioHeader {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+  
+  .finalCost {
+    font-size: 2rem;
+  }
+}
+
+/* Page Header Styles */
+.pageHeader {
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  padding: 2rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(173, 193, 120, 0.15);
+  border: 1px solid #E0E0E0;
+}
+
+.pageHeader h1 {
+  color: #4A5D2E;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.pageDescription {
+  color: #6B7F3E;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.featureHighlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.highlight {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #F5F9ED;
+  border-radius: 12px;
+  border-left: 4px solid #ADC178;
+  transition: all 0.3s;
+}
+
+.highlight:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(173, 193, 120, 0.2);
+}
+
+.highlightIcon {
+  font-size: 2rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.highlight h3 {
+  color: #4A5D2E;
+  font-size: 1.125rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 700;
+}
+
+.highlight p {
+  color: #6B7F3E;
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.usageGuide {
+  background: #F5F9ED;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-top: 2rem;
+  border: 2px solid #C8D9A8;
+}
+
+.usageGuide h3 {
+  color: #4A5D2E;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.usageGuide ol {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: #4A5D2E;
+}
+
+.usageGuide li {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.usageGuide strong {
+  color: #4A5D2E;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
   .pageHeader {
-    padding: 1.5rem 1rem;
+    padding: 1.5rem;
     margin-bottom: 2rem;
   }
   
@@ -404,68 +796,24 @@
     font-size: 2rem;
   }
   
+  .pageDescription {
+    font-size: 1rem;
+  }
+  
   .featureHighlights {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
   
-  .formGrid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
-  .scenariosGrid,
-  .providersGrid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
-  .prosConsContainer {
-    grid-template-columns: 1fr;
-  }
-  
-  .scenarioHeader,
-  .providerHeader {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  .providerBadges {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-  
-  .tabContainer {
-    flex-direction: column;
-  }
-  
-  .tab {
-    padding: 0.75rem 1rem;
-  }
-  
-  .scenariosSection,
-  .providersSection {
-    padding: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .pageHeader h1 {
-    font-size: 1.75rem;
-  }
-  
   .highlight {
-    flex-direction: column;
-    text-align: center;
-    gap: 0.5rem;
-  }
-  
-  .formSection {
-    padding: 1.5rem;
-  }
-  
-  .scenarioCard,
-  .providerCard {
     padding: 1rem;
+  }
+  
+  .usageGuide {
+    padding: 1rem;
+  }
+  
+  .usageGuide ol {
+    padding-left: 1.25rem;
   }
 }

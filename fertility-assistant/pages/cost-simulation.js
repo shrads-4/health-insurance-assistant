@@ -8,49 +8,50 @@ export default function CostSimulationPage() {
     <ProtectedRoute>
       <div>
         <Head>
-          <title>Cost Simulator & Timing Optimizer - Baby Yoda</title>
-          <meta name="description" content="Compare fertility treatment costs, optimize timing, and find the best providers for your insurance plan" />
+          <title>AI-Powered Cost Simulator - Baby Yoda</title>
+          <meta name="description" content="Get accurate fertility treatment cost predictions powered by AI, personalized to your insurance and location" />
         </Head>
         
         <div className={styles.pageHeader}>
-          <h1>💰 Cost Simulator & Timing Optimizer</h1>
+          <h1>🤖 AI-Powered Cost Simulation Tool</h1>
           <p className={styles.pageDescription}>
-            Make informed decisions about your fertility treatment costs. Compare scenarios, 
-            optimize timing for maximum insurance benefits, and find the best providers in your network.
+            Get personalized treatment cost estimates using real-world data and machine learning. 
+            Our AI model analyzes your insurance coverage, location, and provider choices to give 
+            you accurate predictions with money-saving recommendations.
           </p>
           
           <div className={styles.featureHighlights}>
             <div className={styles.highlight}>
-              <span className={styles.highlightIcon}>📊</span>
+              <span className={styles.highlightIcon}>🧠</span>
               <div>
-                <h3>Multi-Scenario Analysis</h3>
-                <p>Compare costs for different timing and treatment approaches</p>
+                <h3>AI Cost Predictions</h3>
+                <p>Machine learning model trained on real fertility pricing data</p>
               </div>
             </div>
             <div className={styles.highlight}>
-              <span className={styles.highlightIcon}>⏰</span>
+              <span className={styles.highlightIcon}>📍</span>
               <div>
-                <h3>Timing Optimization</h3>
-                <p>Maximize your insurance benefits with strategic timing</p>
+                <h3>Location-Based Pricing</h3>
+                <p>Accurate costs for your state and provider type</p>
               </div>
             </div>
             <div className={styles.highlight}>
-              <span className={styles.highlightIcon}>🏥</span>
+              <span className={styles.highlightIcon}>💡</span>
               <div>
-                <h3>Provider Comparison</h3>
-                <p>Find the best value providers in your insurance network</p>
+                <h3>Smart Recommendations</h3>
+                <p>Personalized tips to reduce your out-of-pocket costs</p>
               </div>
             </div>
           </div>
 
           <div className={styles.usageGuide}>
-            <h3>How to Use This Tool:</h3>
+            <h3>How It Works:</h3>
             <ol>
-              <li><strong>Enter your insurance details</strong> - Include your deductible, coinsurance, and out-of-pocket maximum</li>
-              <li><strong>Select your treatment type</strong> - Choose from IVF, IUI, consultations, or testing</li>
-              <li><strong>Review scenarios</strong> - Compare different timing options and their cost implications</li>
-              <li><strong>Compare providers</strong> - See how different clinics affect your out-of-pocket costs</li>
-              <li><strong>Make informed decisions</strong> - Use the insights to plan your fertility journey strategically</li>
+              <li><strong>Your profile is pre-loaded</strong> - We automatically use your insurance details from onboarding</li>
+              <li><strong>Select your treatment</strong> - Choose the procedure you're planning (IVF, IUI, egg freezing, etc.)</li>
+              <li><strong>Pick your preferences</strong> - Select provider type, location, and insurance plan</li>
+              <li><strong>Get AI predictions</strong> - Our model calculates personalized cost estimates with insurance breakdown</li>
+              <li><strong>Review scenarios</strong> - Compare timing options and alternative providers to maximize savings</li>
             </ol>
           </div>
         </div>

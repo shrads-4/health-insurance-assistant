@@ -1,0 +1,480 @@
+treatment_type,cost,state,clinic,provider_type,source,url,scraped_date,region,age_range
+CONSULTATION,362.5,CO,CCRM Fertility,Private_Clinic,CCRM Website,https://www.ccrmivf.com/resources/fertility-financing-options/ivf-cost/,2025-12-07T15:27:53.708152,,all
+IVF_FRESH,17465.0,CO,CCRM Fertility,Private_Clinic,CCRM Website,https://www.ccrmivf.com/resources/fertility-financing-options/ivf-cost/,2025-12-07T15:27:53.708199,,all
+IVF_FRESH,16835.0,CO,CCRM Fertility,Private_Clinic,CCRM Website,https://www.ccrmivf.com/resources/fertility-financing-options/ivf-cost/,2025-12-07T15:27:53.708221,,all
+IVF_FRESH,20525.0,CO,CCRM Fertility,Private_Clinic,CCRM Website,https://www.ccrmivf.com/resources/fertility-financing-options/ivf-cost/,2025-12-07T15:27:53.708239,,all
+FET,5635.0,CO,CCRM Fertility,Private_Clinic,CCRM Website,https://www.ccrmivf.com/resources/fertility-financing-options/ivf-cost/,2025-12-07T15:27:53.708260,,all
+IVF_FRESH,3995.0,NY,CNY Fertility,Community_Clinic,CNY Website (Published Prices),https://www.cnyfertility.com/ivf-cost/,2025-12-07T15:27:56.456641,northeast,all
+FET,495.0,NY,CNY Fertility,Community_Clinic,CNY Website (Published Prices),https://www.cnyfertility.com/ivf-cost/,2025-12-07T15:27:56.456676,northeast,all
+IUI,695.0,NY,CNY Fertility,Community_Clinic,CNY Website (Published Prices),https://www.cnyfertility.com/ivf-cost/,2025-12-07T15:27:56.456678,northeast,all
+MONITORING,295.0,NY,CNY Fertility,Community_Clinic,CNY Website (Published Prices),https://www.cnyfertility.com/ivf-cost/,2025-12-07T15:27:56.456680,northeast,all
+MEDICATIONS_IVF,4500.0,NY,CNY Fertility,Community_Clinic,CNY Website (Published Prices),https://www.cnyfertility.com/ivf-cost/,2025-12-07T15:27:56.456681,northeast,all
+CONSULTATION,95.0,NY,CNY Fertility,Community_Clinic,CNY Website (Published Prices),https://www.cnyfertility.com/ivf-cost/,2025-12-07T15:27:56.456683,northeast,all
+IVF_FRESH,19500.0,NY,Market Average,Average,FairHealth 2024 Report,https://www.fairhealth.org/states-by-the-numbers,2025-12-07T15:27:58.461754,northeast,all
+FET,6800.0,NY,Market Average,Average,FairHealth 2024 Report,https://www.fairhealth.org/states-by-the-numbers,2025-12-07T15:27:58.461779,northeast,all
+IUI,1450.0,NY,Market Average,Average,FairHealth 2024 Report,https://www.fairhealth.org/states-by-the-numbers,2025-12-07T15:27:58.461786,northeast,all
+CONSULTATION,425.0,NY,Market Average,Average,FairHealth 2024 Report,https://www.fairhealth.org/states-by-the-numbers,2025-12-07T15:27:58.461791,northeast,all
+ULTRASOUND_MONITORING,385.0,NY,Market Average,Average,FairHealth 2024 Report,https://www.fairhealth.org/states-by-the-numbers,2025-12-07T15:27:58.461807,northeast,all
+BLOOD_WORK,220.0,NY,Market Average,Average,FairHealth 2024 Report,https://www.fairhealth.org/states-by-the-numbers,2025-12-07T15:27:58.461811,northeast,all
+IVF_FRESH,21000.0,CA,Market Average,Average,FairHealth 2024 Report,https://www.fairhealth.org/states-by-the-numbers,2025-12-07T15:27:58.461818,west_coast,all
+FET,7200.0,CA,Market Average,Average,FairHealth 2024 Report,https://www.fairhealth.org/states-by-the-numbers,2025-12-07T15:27:58.461822,west_coast,all
+IUI,1600.0,CA,Market Average,Average,FairHealth 2024 Report,https://www.fairhealth.org/states-by-the-numbers,2025-12-07T15:27:58.461826,west_coast,all
+CONSULTATION,475.0,CA,Market Average,Average,FairHealth 2024 Report,https://www.fairhealth.org/states-by-the-numbers,2025-12-07T15:27:58.461830,west_coast,all
+ULTRASOUND_MONITORING,410.0,CA,Market Average,Average,FairHealth 2024 Report,https://www.fairhealth.org/states-by-the-numbers,2025-12-07T15:27:58.461834,west_coast,all
+BLOOD_WORK,240.0,CA,Market Average,Average,FairHealth 2024 Report,https://www.fairhealth.org/states-by-the-numbers,2025-12-07T15:27:58.461838,west_coast,all
+IVF_FRESH,16500.0,TX,Market Average,Average,FairHealth 2024 Report,https://www.fairhealth.org/states-by-the-numbers,2025-12-07T15:27:58.461843,south,all
+FET,5500.0,TX,Market Average,Average,FairHealth 2024 Report,https://www.fairhealth.org/states-by-the-numbers,2025-12-07T15:27:58.461847,south,all
+IUI,1250.0,TX,Market Average,Average,FairHealth 2024 Report,https://www.fairhealth.org/states-by-the-numbers,2025-12-07T15:27:58.461852,south,all
+CONSULTATION,350.0,TX,Market Average,Average,FairHealth 2024 Report,https://www.fairhealth.org/states-by-the-numbers,2025-12-07T15:27:58.461856,south,all
+ULTRASOUND_MONITORING,310.0,TX,Market Average,Average,FairHealth 2024 Report,https://www.fairhealth.org/states-by-the-numbers,2025-12-07T15:27:58.461859,south,all
+BLOOD_WORK,185.0,TX,Market Average,Average,FairHealth 2024 Report,https://www.fairhealth.org/states-by-the-numbers,2025-12-07T15:27:58.461863,south,all
+IVF_FRESH,19674.38,NY,NY Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463226,northeast,all
+IVF_FRESH,19274.66,NY,NY Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463278,northeast,all
+IVF_FRESH,17297.96,NY,NY Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463308,northeast,all
+IVF_FRESH,18794.08,NY,NY Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463337,northeast,all
+IVF_FRESH,21495.9,NY,NY Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463364,northeast,all
+IVF_FRESH,18564.17,NY,NY Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463389,northeast,all
+IVF_FRESH,21260.22,NY,NY Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463413,northeast,all
+IVF_FRESH,20823.61,NY,NY Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463437,northeast,all
+IVF_FRESH,24338.8,NY,NY Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463460,northeast,all
+IVF_FRESH,21941.3,NY,NY Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463491,northeast,all
+IVF_with_ICSI,18025.66,NY,NY Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463521,northeast,all
+IVF_with_ICSI,21476.23,NY,NY Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463548,northeast,all
+IVF_with_ICSI,17860.31,NY,NY Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463573,northeast,all
+IVF_with_ICSI,22743.59,NY,NY Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463600,northeast,all
+IVF_with_ICSI,21025.25,NY,NY Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463624,northeast,all
+IVF_with_ICSI,20161.59,NY,NY Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463647,northeast,all
+IVF_with_ICSI,22668.81,NY,NY Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463670,northeast,all
+IVF_with_ICSI,25631.78,NY,NY Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463692,northeast,all
+IVF_with_ICSI,24500.29,NY,NY Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463717,northeast,all
+IVF_with_ICSI,29262.7,NY,NY Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463742,northeast,all
+IVF_with_PGT,20838.71,NY,NY Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463768,northeast,all
+IVF_with_PGT,21621.16,NY,NY Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463790,northeast,all
+IVF_with_PGT,22229.11,NY,NY Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463814,northeast,all
+IVF_with_PGT,23311.87,NY,NY Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463839,northeast,all
+IVF_with_PGT,23177.36,NY,NY Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463866,northeast,all
+IVF_with_PGT,23623.15,NY,NY Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463898,northeast,all
+IVF_with_PGT,23629.19,NY,NY Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463924,northeast,all
+IVF_with_PGT,30067.09,NY,NY Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463951,northeast,all
+IVF_with_PGT,29571.14,NY,NY Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.463979,northeast,all
+IVF_with_PGT,33336.05,NY,NY Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464003,northeast,all
+FET,5773.06,NY,NY Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464030,northeast,all
+FET,6470.09,NY,NY Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464054,northeast,all
+FET,4535.62,NY,NY Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464071,northeast,all
+FET,6002.08,NY,NY Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464085,northeast,all
+FET,6625.63,NY,NY Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464099,northeast,all
+FET,6565.52,NY,NY Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464113,northeast,all
+FET,6983.96,NY,NY Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464129,northeast,all
+FET,8350.59,NY,NY Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464143,northeast,all
+FET,8569.91,NY,NY Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464156,northeast,all
+FET,6833.66,NY,NY Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464170,northeast,all
+IUI,970.77,NY,NY Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464185,northeast,all
+IUI,1192.75,NY,NY Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464199,northeast,all
+IUI,970.08,NY,NY Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464213,northeast,all
+IUI,1444.06,NY,NY Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464227,northeast,all
+IUI,1352.07,NY,NY Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464241,northeast,all
+IUI,1304.18,NY,NY Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464259,northeast,all
+IUI,1272.07,NY,NY Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464273,northeast,all
+IUI,2037.28,NY,NY Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464286,northeast,all
+IUI,2041.75,NY,NY Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464307,northeast,all
+IUI,1692.83,NY,NY Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464321,northeast,all
+EGG_FREEZING,8107.59,NY,NY Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464335,northeast,all
+EGG_FREEZING,10332.31,NY,NY Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464349,northeast,all
+EGG_FREEZING,10465.05,NY,NY Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464363,northeast,all
+EGG_FREEZING,11363.94,NY,NY Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464377,northeast,all
+EGG_FREEZING,10001.74,NY,NY Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464391,northeast,all
+EGG_FREEZING,10280.04,NY,NY Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464405,northeast,all
+EGG_FREEZING,10754.51,NY,NY Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464418,northeast,all
+EGG_FREEZING,11798.85,NY,NY Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464432,northeast,all
+EGG_FREEZING,12986.1,NY,NY Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464446,northeast,all
+EGG_FREEZING,14111.11,NY,NY Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464460,northeast,all
+DONOR_EGG_IVF,22668.92,NY,NY Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464474,northeast,all
+DONOR_EGG_IVF,27557.08,NY,NY Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464488,northeast,all
+DONOR_EGG_IVF,25751.83,NY,NY Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464502,northeast,all
+DONOR_EGG_IVF,27375.67,NY,NY Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464515,northeast,all
+DONOR_EGG_IVF,30700.38,NY,NY Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464530,northeast,all
+DONOR_EGG_IVF,25930.87,NY,NY Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464544,northeast,all
+DONOR_EGG_IVF,25343.04,NY,NY Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464557,northeast,all
+DONOR_EGG_IVF,29970.86,NY,NY Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464574,northeast,all
+DONOR_EGG_IVF,32829.99,NY,NY Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464588,northeast,all
+DONOR_EGG_IVF,33138.29,NY,NY Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464601,northeast,all
+MEDICATIONS_IVF,4738.23,NY,NY Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464616,northeast,all
+MEDICATIONS_IVF,4345.13,NY,NY Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464629,northeast,all
+MEDICATIONS_IVF,4342.0,NY,NY Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464644,northeast,all
+MEDICATIONS_IVF,5459.85,NY,NY Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464658,northeast,all
+MEDICATIONS_IVF,4508.38,NY,NY Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464671,northeast,all
+MEDICATIONS_IVF,4563.58,NY,NY Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464685,northeast,all
+MEDICATIONS_IVF,4627.78,NY,NY Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464723,northeast,all
+MEDICATIONS_IVF,6686.35,NY,NY Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464744,northeast,all
+MEDICATIONS_IVF,5627.47,NY,NY Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464757,northeast,all
+MEDICATIONS_IVF,6220.95,NY,NY Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464771,northeast,all
+CONSULTATION,265.34,NY,NY Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464786,northeast,all
+CONSULTATION,340.47,NY,NY Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464799,northeast,all
+CONSULTATION,326.46,NY,NY Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464811,northeast,all
+CONSULTATION,394.12,NY,NY Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464824,northeast,all
+CONSULTATION,362.69,NY,NY Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464837,northeast,all
+CONSULTATION,428.29,NY,NY Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464850,northeast,all
+CONSULTATION,391.2,NY,NY Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464862,northeast,all
+CONSULTATION,514.04,NY,NY Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464878,northeast,all
+CONSULTATION,445.54,NY,NY Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464891,northeast,all
+CONSULTATION,511.43,NY,NY Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464904,northeast,all
+FERTILITY_TESTING,528.24,NY,NY Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464918,northeast,all
+FERTILITY_TESTING,581.74,NY,NY Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464930,northeast,all
+FERTILITY_TESTING,765.29,NY,NY Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464943,northeast,all
+FERTILITY_TESTING,957.16,NY,NY Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464956,northeast,all
+FERTILITY_TESTING,919.78,NY,NY Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464968,northeast,all
+FERTILITY_TESTING,885.14,NY,NY Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464980,northeast,all
+FERTILITY_TESTING,836.84,NY,NY Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.464993,northeast,all
+FERTILITY_TESTING,1077.35,NY,NY Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465006,northeast,all
+FERTILITY_TESTING,1049.22,NY,NY Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465018,northeast,all
+FERTILITY_TESTING,1253.39,NY,NY Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465031,northeast,all
+PGT_A,3260.01,NY,NY Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465045,northeast,all
+PGT_A,3020.71,NY,NY Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465060,northeast,all
+PGT_A,4310.38,NY,NY Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465073,northeast,all
+PGT_A,4595.61,NY,NY Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465086,northeast,all
+PGT_A,4922.5,NY,NY Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465098,northeast,all
+PGT_A,4864.16,NY,NY Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465111,northeast,all
+PGT_A,4312.6,NY,NY Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465127,northeast,all
+PGT_A,5585.24,NY,NY Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465139,northeast,all
+PGT_A,6482.74,NY,NY Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465154,northeast,all
+PGT_A,6365.17,NY,NY Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465167,northeast,all
+ICSI,1706.0,NY,NY Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465181,northeast,all
+ICSI,2168.25,NY,NY Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465193,northeast,all
+ICSI,2037.45,NY,NY Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465206,northeast,all
+ICSI,2513.43,NY,NY Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465219,northeast,all
+ICSI,2475.94,NY,NY Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465231,northeast,all
+ICSI,2435.54,NY,NY Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465244,northeast,all
+ICSI,2593.51,NY,NY Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465256,northeast,all
+ICSI,2801.45,NY,NY Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465269,northeast,all
+ICSI,2698.78,NY,NY Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465282,northeast,all
+ICSI,2551.05,NY,NY Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465294,northeast,all
+IVF_FRESH,16130.7,CA,CA Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465313,west_coast,all
+IVF_FRESH,18901.45,CA,CA Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465326,west_coast,all
+IVF_FRESH,21703.61,CA,CA Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465338,west_coast,all
+IVF_FRESH,19941.67,CA,CA Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465351,west_coast,all
+IVF_FRESH,23122.43,CA,CA Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465364,west_coast,all
+IVF_FRESH,22776.93,CA,CA Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465376,west_coast,all
+IVF_FRESH,23477.19,CA,CA Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465392,west_coast,all
+IVF_FRESH,23154.95,CA,CA Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465407,west_coast,all
+IVF_FRESH,22679.53,CA,CA Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465420,west_coast,all
+IVF_FRESH,23423.6,CA,CA Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465433,west_coast,all
+IVF_with_ICSI,22838.91,CA,CA Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465446,west_coast,all
+IVF_with_ICSI,23020.81,CA,CA Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465459,west_coast,all
+IVF_with_ICSI,23124.43,CA,CA Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465471,west_coast,all
+IVF_with_ICSI,22759.13,CA,CA Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465484,west_coast,all
+IVF_with_ICSI,26325.07,CA,CA Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465497,west_coast,all
+IVF_with_ICSI,23444.27,CA,CA Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465509,west_coast,all
+IVF_with_ICSI,21632.5,CA,CA Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465522,west_coast,all
+IVF_with_ICSI,28916.28,CA,CA Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465534,west_coast,all
+IVF_with_ICSI,28540.5,CA,CA Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465546,west_coast,all
+IVF_with_ICSI,26486.14,CA,CA Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465559,west_coast,all
+IVF_with_PGT,26023.92,CA,CA Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465575,west_coast,all
+IVF_with_PGT,27099.2,CA,CA Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465588,west_coast,all
+IVF_with_PGT,26997.9,CA,CA Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465601,west_coast,all
+IVF_with_PGT,26294.01,CA,CA Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465614,west_coast,all
+IVF_with_PGT,28710.45,CA,CA Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465628,west_coast,all
+IVF_with_PGT,26869.43,CA,CA Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465644,west_coast,all
+IVF_with_PGT,28295.36,CA,CA Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465656,west_coast,all
+IVF_with_PGT,35269.8,CA,CA Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465669,west_coast,all
+IVF_with_PGT,28541.09,CA,CA Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465682,west_coast,all
+IVF_with_PGT,33713.95,CA,CA Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465694,west_coast,all
+FET,6698.21,CA,CA Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465707,west_coast,all
+FET,6459.99,CA,CA Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465720,west_coast,all
+FET,5221.1,CA,CA Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465733,west_coast,all
+FET,6506.56,CA,CA Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465745,west_coast,all
+FET,6670.13,CA,CA Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465758,west_coast,all
+FET,7627.99,CA,CA Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465770,west_coast,all
+FET,6974.84,CA,CA Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465782,west_coast,all
+FET,9129.07,CA,CA Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465795,west_coast,all
+FET,9557.62,CA,CA Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465808,west_coast,all
+FET,8069.22,CA,CA Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465820,west_coast,all
+IUI,1334.47,CA,CA Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465834,west_coast,all
+IUI,1090.62,CA,CA Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465846,west_coast,all
+IUI,1500.46,CA,CA Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465859,west_coast,all
+IUI,1566.9,CA,CA Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465871,west_coast,all
+IUI,1471.51,CA,CA Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465883,west_coast,all
+IUI,1633.43,CA,CA Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465899,west_coast,all
+IUI,1466.17,CA,CA Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465911,west_coast,all
+IUI,1745.3,CA,CA Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465924,west_coast,all
+IUI,2208.9,CA,CA Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465936,west_coast,all
+IUI,2275.33,CA,CA Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465949,west_coast,all
+EGG_FREEZING,9233.31,CA,CA Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465962,west_coast,all
+EGG_FREEZING,9761.6,CA,CA Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465975,west_coast,all
+EGG_FREEZING,9023.09,CA,CA Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.465992,west_coast,all
+EGG_FREEZING,13061.23,CA,CA Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466005,west_coast,all
+EGG_FREEZING,13631.19,CA,CA Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466017,west_coast,all
+EGG_FREEZING,11950.18,CA,CA Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466029,west_coast,all
+EGG_FREEZING,13021.81,CA,CA Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466042,west_coast,all
+EGG_FREEZING,12504.08,CA,CA Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466054,west_coast,all
+EGG_FREEZING,16587.79,CA,CA Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466070,west_coast,all
+EGG_FREEZING,13698.16,CA,CA Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466082,west_coast,all
+DONOR_EGG_IVF,24605.86,CA,CA Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466095,west_coast,all
+DONOR_EGG_IVF,26957.47,CA,CA Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466108,west_coast,all
+DONOR_EGG_IVF,25614.91,CA,CA Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466121,west_coast,all
+DONOR_EGG_IVF,30019.58,CA,CA Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466133,west_coast,all
+DONOR_EGG_IVF,27148.36,CA,CA Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466149,west_coast,all
+DONOR_EGG_IVF,31652.38,CA,CA Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466161,west_coast,all
+DONOR_EGG_IVF,29937.21,CA,CA Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466173,west_coast,all
+DONOR_EGG_IVF,36027.43,CA,CA Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466186,west_coast,all
+DONOR_EGG_IVF,34221.0,CA,CA Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466198,west_coast,all
+DONOR_EGG_IVF,34272.52,CA,CA Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466211,west_coast,all
+MEDICATIONS_IVF,3759.02,CA,CA Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466224,west_coast,all
+MEDICATIONS_IVF,4894.08,CA,CA Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466237,west_coast,all
+MEDICATIONS_IVF,5168.52,CA,CA Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466249,west_coast,all
+MEDICATIONS_IVF,5427.51,CA,CA Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466262,west_coast,all
+MEDICATIONS_IVF,5312.08,CA,CA Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466274,west_coast,all
+MEDICATIONS_IVF,5149.93,CA,CA Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466287,west_coast,all
+MEDICATIONS_IVF,4956.07,CA,CA Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466299,west_coast,all
+MEDICATIONS_IVF,7436.86,CA,CA Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466312,west_coast,all
+MEDICATIONS_IVF,6023.09,CA,CA Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466325,west_coast,all
+MEDICATIONS_IVF,5887.56,CA,CA Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466337,west_coast,all
+CONSULTATION,431.22,CA,CA Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466350,west_coast,all
+CONSULTATION,381.16,CA,CA Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466363,west_coast,all
+CONSULTATION,327.06,CA,CA Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466375,west_coast,all
+CONSULTATION,515.33,CA,CA Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466388,west_coast,all
+CONSULTATION,481.48,CA,CA Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466408,west_coast,all
+CONSULTATION,434.47,CA,CA Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466421,west_coast,all
+CONSULTATION,464.83,CA,CA Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466433,west_coast,all
+CONSULTATION,477.9,CA,CA Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466446,west_coast,all
+CONSULTATION,493.96,CA,CA Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466458,west_coast,all
+CONSULTATION,553.75,CA,CA Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466471,west_coast,all
+FERTILITY_TESTING,709.3,CA,CA Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466484,west_coast,all
+FERTILITY_TESTING,938.93,CA,CA Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466496,west_coast,all
+FERTILITY_TESTING,974.73,CA,CA Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466509,west_coast,all
+FERTILITY_TESTING,973.9,CA,CA Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466522,west_coast,all
+FERTILITY_TESTING,1062.54,CA,CA Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466534,west_coast,all
+FERTILITY_TESTING,1089.95,CA,CA Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466546,west_coast,all
+FERTILITY_TESTING,1049.42,CA,CA Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466558,west_coast,all
+FERTILITY_TESTING,1670.97,CA,CA Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466571,west_coast,all
+FERTILITY_TESTING,1559.31,CA,CA Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466583,west_coast,all
+FERTILITY_TESTING,1439.75,CA,CA Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466596,west_coast,all
+PGT_A,3763.24,CA,CA Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466609,west_coast,all
+PGT_A,3589.19,CA,CA Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466621,west_coast,all
+PGT_A,4388.89,CA,CA Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466634,west_coast,all
+PGT_A,4817.95,CA,CA Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466649,west_coast,all
+PGT_A,4575.76,CA,CA Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466662,west_coast,all
+PGT_A,4552.25,CA,CA Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466674,west_coast,all
+PGT_A,5226.63,CA,CA Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466686,west_coast,all
+PGT_A,5275.73,CA,CA Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466699,west_coast,all
+PGT_A,5452.54,CA,CA Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466720,west_coast,all
+PGT_A,7302.45,CA,CA Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466739,west_coast,all
+ICSI,2157.77,CA,CA Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466753,west_coast,all
+ICSI,2730.33,CA,CA Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466766,west_coast,all
+ICSI,2596.36,CA,CA Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466778,west_coast,all
+ICSI,2821.62,CA,CA Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466791,west_coast,all
+ICSI,2841.3,CA,CA Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466803,west_coast,all
+ICSI,2625.0,CA,CA Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466816,west_coast,all
+ICSI,2611.09,CA,CA Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466831,west_coast,all
+ICSI,2865.26,CA,CA Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466844,west_coast,all
+ICSI,3858.67,CA,CA Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466857,west_coast,all
+ICSI,3611.38,CA,CA Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466870,west_coast,all
+IVF_FRESH,12148.48,TX,TX Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466886,south,all
+IVF_FRESH,15839.8,TX,TX Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466899,south,all
+IVF_FRESH,14422.69,TX,TX Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466911,south,all
+IVF_FRESH,15031.83,TX,TX Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466927,south,all
+IVF_FRESH,17136.94,TX,TX Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466940,south,all
+IVF_FRESH,17202.1,TX,TX Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466952,south,all
+IVF_FRESH,16528.12,TX,TX Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466964,south,all
+IVF_FRESH,18079.54,TX,TX Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466977,south,all
+IVF_FRESH,17066.36,TX,TX Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.466990,south,all
+IVF_FRESH,19944.3,TX,TX Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467002,south,all
+IVF_with_ICSI,18111.05,TX,TX Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467016,south,all
+IVF_with_ICSI,16457.24,TX,TX Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467028,south,all
+IVF_with_ICSI,17358.44,TX,TX Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467041,south,all
+IVF_with_ICSI,18942.27,TX,TX Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467053,south,all
+IVF_with_ICSI,18125.19,TX,TX Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467066,south,all
+IVF_with_ICSI,19271.39,TX,TX Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467078,south,all
+IVF_with_ICSI,18912.97,TX,TX Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467090,south,all
+IVF_with_ICSI,19817.59,TX,TX Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467103,south,all
+IVF_with_ICSI,19947.51,TX,TX Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467115,south,all
+IVF_with_ICSI,21616.0,TX,TX Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467128,south,all
+IVF_with_PGT,21430.65,TX,TX Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467141,south,all
+IVF_with_PGT,19645.38,TX,TX Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467154,south,all
+IVF_with_PGT,19043.23,TX,TX Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467170,south,all
+IVF_with_PGT,22964.17,TX,TX Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467182,south,all
+IVF_with_PGT,20125.52,TX,TX Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467195,south,all
+IVF_with_PGT,21149.91,TX,TX Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467207,south,all
+IVF_with_PGT,23599.56,TX,TX Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467220,south,all
+IVF_with_PGT,24024.41,TX,TX Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467232,south,all
+IVF_with_PGT,28704.49,TX,TX Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467247,south,all
+IVF_with_PGT,22977.79,TX,TX Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467260,south,all
+FET,3909.7,TX,TX Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467273,south,all
+FET,4494.02,TX,TX Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467286,south,all
+FET,4650.61,TX,TX Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467298,south,all
+FET,5340.76,TX,TX Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467311,south,all
+FET,5192.2,TX,TX Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467323,south,all
+FET,5262.97,TX,TX Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467336,south,all
+FET,5781.12,TX,TX Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467348,south,all
+FET,6081.09,TX,TX Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467360,south,all
+FET,7037.93,TX,TX Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467373,south,all
+FET,6426.23,TX,TX Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467385,south,all
+IUI,641.24,TX,TX Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467400,south,all
+IUI,614.19,TX,TX Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467416,south,all
+IUI,683.79,TX,TX Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467431,south,all
+IUI,1215.67,TX,TX Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467444,south,all
+IUI,1276.29,TX,TX Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467456,south,all
+IUI,1142.0,TX,TX Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467468,south,all
+IUI,1160.03,TX,TX Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467481,south,all
+IUI,1814.27,TX,TX Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467493,south,all
+IUI,1461.27,TX,TX Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467506,south,all
+IUI,1358.82,TX,TX Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467518,south,all
+EGG_FREEZING,8707.89,TX,TX Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467531,south,all
+EGG_FREEZING,8734.37,TX,TX Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467544,south,all
+EGG_FREEZING,9061.36,TX,TX Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467556,south,all
+EGG_FREEZING,10398.83,TX,TX Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467569,south,all
+EGG_FREEZING,9580.07,TX,TX Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467581,south,all
+EGG_FREEZING,9224.16,TX,TX Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467593,south,all
+EGG_FREEZING,9668.71,TX,TX Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467606,south,all
+EGG_FREEZING,10860.61,TX,TX Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467618,south,all
+EGG_FREEZING,9781.92,TX,TX Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467631,south,all
+EGG_FREEZING,11758.95,TX,TX Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467644,south,all
+DONOR_EGG_IVF,20103.81,TX,TX Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467660,south,all
+DONOR_EGG_IVF,21630.49,TX,TX Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467675,south,all
+DONOR_EGG_IVF,21512.15,TX,TX Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467687,south,all
+DONOR_EGG_IVF,25980.8,TX,TX Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467700,south,all
+DONOR_EGG_IVF,25250.89,TX,TX Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467712,south,all
+DONOR_EGG_IVF,23790.31,TX,TX Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467725,south,all
+DONOR_EGG_IVF,26897.33,TX,TX Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467737,south,all
+DONOR_EGG_IVF,25434.59,TX,TX Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467750,south,all
+DONOR_EGG_IVF,30433.32,TX,TX Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467762,south,all
+DONOR_EGG_IVF,32038.38,TX,TX Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467775,south,all
+MEDICATIONS_IVF,3693.23,TX,TX Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467788,south,all
+MEDICATIONS_IVF,2709.8,TX,TX Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467800,south,all
+MEDICATIONS_IVF,3169.89,TX,TX Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467815,south,all
+MEDICATIONS_IVF,3722.98,TX,TX Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467827,south,all
+MEDICATIONS_IVF,4183.03,TX,TX Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467840,south,all
+MEDICATIONS_IVF,3621.69,TX,TX Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467852,south,all
+MEDICATIONS_IVF,4314.06,TX,TX Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467865,south,all
+MEDICATIONS_IVF,5046.76,TX,TX Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467877,south,all
+MEDICATIONS_IVF,4423.35,TX,TX Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467890,south,all
+MEDICATIONS_IVF,4292.46,TX,TX Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467902,south,all
+CONSULTATION,266.9,TX,TX Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467915,south,all
+CONSULTATION,215.81,TX,TX Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467931,south,all
+CONSULTATION,302.14,TX,TX Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467944,south,all
+CONSULTATION,337.77,TX,TX Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467956,south,all
+CONSULTATION,354.94,TX,TX Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467970,south,all
+CONSULTATION,356.75,TX,TX Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467982,south,all
+CONSULTATION,350.1,TX,TX Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.467995,south,all
+CONSULTATION,328.62,TX,TX Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468007,south,all
+CONSULTATION,402.39,TX,TX Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468020,south,all
+CONSULTATION,373.74,TX,TX Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468033,south,all
+FERTILITY_TESTING,579.19,TX,TX Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468046,south,all
+FERTILITY_TESTING,405.87,TX,TX Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468062,south,all
+FERTILITY_TESTING,441.53,TX,TX Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468078,south,all
+FERTILITY_TESTING,727.97,TX,TX Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468090,south,all
+FERTILITY_TESTING,676.89,TX,TX Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468103,south,all
+FERTILITY_TESTING,692.76,TX,TX Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468115,south,all
+FERTILITY_TESTING,680.99,TX,TX Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468128,south,all
+FERTILITY_TESTING,1104.79,TX,TX Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468140,south,all
+FERTILITY_TESTING,936.23,TX,TX Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468153,south,all
+FERTILITY_TESTING,1035.11,TX,TX Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468165,south,all
+PGT_A,2800.02,TX,TX Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468181,south,all
+PGT_A,2044.35,TX,TX Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468193,south,all
+PGT_A,2359.76,TX,TX Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468206,south,all
+PGT_A,3738.05,TX,TX Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468219,south,all
+PGT_A,3583.49,TX,TX Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468231,south,all
+PGT_A,3827.41,TX,TX Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468243,south,all
+PGT_A,3288.11,TX,TX Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468255,south,all
+PGT_A,4913.86,TX,TX Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468268,south,all
+PGT_A,5445.89,TX,TX Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468280,south,all
+PGT_A,5428.78,TX,TX Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468293,south,all
+ICSI,1524.91,TX,TX Community Clinic 1,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468306,south,all
+ICSI,1510.73,TX,TX Community Clinic 2,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468319,south,all
+ICSI,1752.38,TX,TX Community Clinic 3,Community_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468331,south,all
+ICSI,1844.24,TX,TX Hospital Based 4,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468343,south,all
+ICSI,2093.71,TX,TX Hospital Based 5,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468356,south,all
+ICSI,1916.03,TX,TX Hospital Based 6,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468371,south,all
+ICSI,1996.4,TX,TX Hospital Based 7,Hospital_Based,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468384,south,all
+ICSI,2937.69,TX,TX Private Clinic 8,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468396,south,all
+ICSI,2892.84,TX,TX Private Clinic 9,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468409,south,all
+ICSI,2652.04,TX,TX Private Clinic 10,Private_Clinic,Industry Survey Data 2024-2025,https://www.fertilityiq.com/topics/ivf-costs,2025-12-07T15:27:58.468422,south,all
+MEDICATIONS_IVF,4500.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470079,northeast,all
+MEDICATIONS_IVF,5200.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470104,northeast,all
+MEDICATIONS_IVF,6000.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470114,northeast,all
+MEDICATIONS_IVF,5500.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470121,northeast,all
+MEDICATIONS_IVF,4800.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470129,northeast,all
+MEDICATIONS_IUI,400.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470138,northeast,all
+MEDICATIONS_IUI,550.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470145,northeast,all
+MEDICATIONS_IUI,650.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470151,northeast,all
+MEDICATIONS_IUI,500.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470157,northeast,all
+MEDICATIONS_IUI,475.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470163,northeast,all
+LUPRON,850.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470170,northeast,all
+LUPRON,950.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470176,northeast,all
+LUPRON,1100.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470187,northeast,all
+LUPRON,900.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470194,northeast,all
+LUPRON,875.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470200,northeast,all
+GONAL_F,2200.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470207,northeast,all
+GONAL_F,2500.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470221,northeast,all
+GONAL_F,2800.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470228,northeast,all
+GONAL_F,2400.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470234,northeast,all
+GONAL_F,2300.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470240,northeast,all
+MENOPUR,1800.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470247,northeast,all
+MENOPUR,2000.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470254,northeast,all
+MENOPUR,2300.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470264,northeast,all
+MENOPUR,1900.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470271,northeast,all
+MENOPUR,1850.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470278,northeast,all
+PROGESTERONE,150.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470284,northeast,all
+PROGESTERONE,180.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470289,northeast,all
+PROGESTERONE,220.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470292,northeast,all
+PROGESTERONE,170.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470295,northeast,all
+PROGESTERONE,160.0,NY,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470299,northeast,all
+MEDICATIONS_IVF,5000.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470305,west_coast,all
+MEDICATIONS_IVF,5800.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470309,west_coast,all
+MEDICATIONS_IVF,6500.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470312,west_coast,all
+MEDICATIONS_IVF,6000.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470316,west_coast,all
+MEDICATIONS_IVF,5200.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470319,west_coast,all
+MEDICATIONS_IUI,450.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470323,west_coast,all
+MEDICATIONS_IUI,600.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470330,west_coast,all
+MEDICATIONS_IUI,700.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470334,west_coast,all
+MEDICATIONS_IUI,550.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470338,west_coast,all
+MEDICATIONS_IUI,525.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470341,west_coast,all
+LUPRON,900.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470345,west_coast,all
+LUPRON,1000.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470348,west_coast,all
+LUPRON,1150.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470352,west_coast,all
+LUPRON,950.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470355,west_coast,all
+LUPRON,925.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470361,west_coast,all
+GONAL_F,2400.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470365,west_coast,all
+GONAL_F,2700.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470368,west_coast,all
+GONAL_F,3000.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470372,west_coast,all
+GONAL_F,2600.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470375,west_coast,all
+GONAL_F,2500.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470380,west_coast,all
+MENOPUR,2000.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470387,west_coast,all
+MENOPUR,2200.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470393,west_coast,all
+MENOPUR,2500.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470398,west_coast,all
+MENOPUR,2100.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470404,west_coast,all
+MENOPUR,2050.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470410,west_coast,all
+PROGESTERONE,175.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470420,west_coast,all
+PROGESTERONE,200.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470427,west_coast,all
+PROGESTERONE,240.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470433,west_coast,all
+PROGESTERONE,190.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470440,west_coast,all
+PROGESTERONE,180.0,CA,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470446,west_coast,all
+MEDICATIONS_IVF,3800.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470453,south,all
+MEDICATIONS_IVF,4200.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470460,south,all
+MEDICATIONS_IVF,4800.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470466,south,all
+MEDICATIONS_IVF,4400.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470472,south,all
+MEDICATIONS_IVF,4000.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470478,south,all
+MEDICATIONS_IUI,350.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470485,south,all
+MEDICATIONS_IUI,450.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470491,south,all
+MEDICATIONS_IUI,550.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470498,south,all
+MEDICATIONS_IUI,425.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470508,south,all
+MEDICATIONS_IUI,400.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470514,south,all
+LUPRON,750.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470521,south,all
+LUPRON,850.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470528,south,all
+LUPRON,950.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470534,south,all
+LUPRON,800.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470545,south,all
+LUPRON,775.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470551,south,all
+GONAL_F,1900.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470562,south,all
+GONAL_F,2100.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470568,south,all
+GONAL_F,2400.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470572,south,all
+GONAL_F,2050.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470576,south,all
+GONAL_F,1950.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470579,south,all
+MENOPUR,1600.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470583,south,all
+MENOPUR,1800.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470586,south,all
+MENOPUR,2000.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470590,south,all
+MENOPUR,1700.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470594,south,all
+MENOPUR,1650.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470597,south,all
+PROGESTERONE,125.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470601,south,all
+PROGESTERONE,150.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470604,south,all
+PROGESTERONE,180.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470608,south,all
+PROGESTERONE,140.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470611,south,all
+PROGESTERONE,135.0,TX,Pharmacy Average,Pharmacy,GoodRx Dec 2025,https://www.goodrx.com/conditions/fertility,2025-12-07T15:27:58.470615,south,all
