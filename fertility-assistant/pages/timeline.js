@@ -58,7 +58,7 @@ export default function TimelinePage() {
   }, []);
 
   return (
-    <ProtectedRoute>
+    <ProtectedRoute requireOnboarding={true}>
       <div>
         <Head>
           <title>Fertility Journey Timeline - Baby Yoda</title>

@@ -84,14 +84,14 @@ export default function Profile() {
   // Show loading while checking auth or fetching profile
   if (!user || !profileData) {
     return (
-      <ProtectedRoute>
+      <ProtectedRoute requireOnboarding={true}>
         <div className={styles.loading}>Loading profile...</div>
       </ProtectedRoute>
     );
   }
 
   return (
-    <ProtectedRoute>
+    <ProtectedRoute requireOnboarding={true}>
       <div className={styles.container}>
         <Head>
           <title>My Profile - Baby Yoda</title>

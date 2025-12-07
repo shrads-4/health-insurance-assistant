@@ -13,31 +13,33 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
-    // Only initialize once per app load
-    if (initialized) return;
-
     const unsubscribe = onAuthChange(async (firebaseUser) => {
       if (firebaseUser) {
         setUser(firebaseUser);
         
         // Fetch user profile from Firestore
-        const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
-        if (userDoc.exists()) {
-          setUserProfile(userDoc.data());
+        try {
+          const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
+          if (userDoc.exists()) {
+            setUserProfile(userDoc.data());
+          } else {
+            setUserProfile(null);
+          }
+        } catch (error) {
+          console.error('Error fetching user profile:', error);
+          setUserProfile(null);
         }
       } else {
         setUser(null);
         setUserProfile(null);
       }
       setLoading(false);
-      setInitialized(true);
     });
 
-    return unsubscribe;
-  }, [initialized]);
+    return () => unsubscribe();
+  }, []);
 
   const value = {
     user,

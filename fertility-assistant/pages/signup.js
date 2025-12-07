@@ -20,16 +20,20 @@ export default function SignUp() {
       data.password,
       {
         firstName: data.firstName,
-        lastName: data.lastName
+        lastName: data.lastName,
+        onboardingCompleted: false
       }
     );
 
     if (authError) {
       setError(authError);
       setLoading(false);
-    } else {
-      // Redirect to onboarding
-      router.push('/onboarding');
+    } else if (user) {
+      // Wait a bit for auth state to propagate
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Force reload auth context
+      window.location.href = '/onboarding';  // Use window.location instead of router.push
     }
   };
 

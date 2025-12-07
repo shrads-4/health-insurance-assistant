@@ -4,7 +4,7 @@ import ProtectedRoute from '../components/ProtectedRoute';
 
 export default function CoveragePage() {
   return (
-    <ProtectedRoute>
+    <ProtectedRoute requireOnboarding={true}>
       <div>
         <Head>
           <title>Coverage Decoder - Baby Yoda</title>

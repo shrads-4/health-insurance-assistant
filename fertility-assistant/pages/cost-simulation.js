@@ -5,7 +5,7 @@ import styles from '../styles/CostSimulator.module.css';
 
 export default function CostSimulationPage() {
   return (
-    <ProtectedRoute>
+    <ProtectedRoute requireOnboarding={true}>
       <div>
         <Head>
           <title>AI-Powered Cost Simulator - Baby Yoda</title>
