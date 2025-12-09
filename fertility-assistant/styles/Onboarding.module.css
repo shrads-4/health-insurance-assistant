@@ -362,3 +362,20 @@
   cursor: not-allowed;
   transform: none !important;
 }
+
+.backButton {
+  background: white;
+  color: #64748b;
+  border: 2px solid #e2e8f0;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.backButton:hover {
+  border-color: #cbd5e1;
+  color: #475569;
+}
