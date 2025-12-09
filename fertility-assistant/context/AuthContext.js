@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { onAuthChange } from '../lib/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../lib/firebase_config';
 
 const AuthContext = createContext();
@@ -13,33 +13,48 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = onAuthChange(async (firebaseUser) => {
+    // Only initialize once per app load
+    if (initialized) return;
+
+    let unsubscribeProfile = null;
+
+    const unsubscribeAuth = onAuthChange(async (firebaseUser) => {
       if (firebaseUser) {
         setUser(firebaseUser);
-        
-        // Fetch user profile from Firestore
-        try {
-          const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
-          if (userDoc.exists()) {
-            setUserProfile(userDoc.data());
-          } else {
-            setUserProfile(null);
+
+        // Listen to user profile changes in real-time
+        unsubscribeProfile = onSnapshot(
+          doc(db, 'users', firebaseUser.uid),
+          (userDoc) => {
+            if (userDoc.exists()) {
+              setUserProfile(userDoc.data());
+            }
+          },
+          (error) => {
+            console.error('Error listening to user profile:', error);
           }
-        } catch (error) {
-          console.error('Error fetching user profile:', error);
-          setUserProfile(null);
-        }
+        );
       } else {
         setUser(null);
         setUserProfile(null);
+        if (unsubscribeProfile) {
+          unsubscribeProfile();
+        }
       }
       setLoading(false);
+      setInitialized(true);
     });
 
-    return () => unsubscribe();
-  }, []);
+    return () => {
+      unsubscribeAuth();
+      if (unsubscribeProfile) {
+        unsubscribeProfile();
+      }
+    };
+  }, [initialized]);
 
   const value = {
     user,
