@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { onAuthChange } from '../lib/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../lib/firebase_config';
 
 const AuthContext = createContext();
@@ -19,24 +19,41 @@ export function AuthProvider({ children }) {
     // Only initialize once per app load
     if (initialized) return;
 
-    const unsubscribe = onAuthChange(async (firebaseUser) => {
+    let unsubscribeProfile = null;
+
+    const unsubscribeAuth = onAuthChange(async (firebaseUser) => {
       if (firebaseUser) {
         setUser(firebaseUser);
-        
-        // Fetch user profile from Firestore
-        const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
-        if (userDoc.exists()) {
-          setUserProfile(userDoc.data());
-        }
+
+        // Listen to user profile changes in real-time
+        unsubscribeProfile = onSnapshot(
+          doc(db, 'users', firebaseUser.uid),
+          (userDoc) => {
+            if (userDoc.exists()) {
+              setUserProfile(userDoc.data());
+            }
+          },
+          (error) => {
+            console.error('Error listening to user profile:', error);
+          }
+        );
       } else {
         setUser(null);
         setUserProfile(null);
+        if (unsubscribeProfile) {
+          unsubscribeProfile();
+        }
       }
       setLoading(false);
       setInitialized(true);
     });
 
-    return unsubscribe;
+    return () => {
+      unsubscribeAuth();
+      if (unsubscribeProfile) {
+        unsubscribeProfile();
+      }
+    };
   }, [initialized]);
 
   const value = {

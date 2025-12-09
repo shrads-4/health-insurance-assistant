@@ -10,27 +10,109 @@ import styles from '../styles/Onboarding.module.css';
 export default function Onboarding() {
     const { user } = useAuth();
     const router = useRouter();
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm();
     const [loading, setLoading] = useState(false);
     const [step, setStep] = useState(1);
+    const [uploadingImage, setUploadingImage] = useState(false);
+    const [imagePreview, setImagePreview] = useState(null);
+    const [uploadedFileName, setUploadedFileName] = useState(null);
+    const [extractedData, setExtractedData] = useState(null);
+    const [hasUploadedDocument, setHasUploadedDocument] = useState(false);
+
+    const handleImageUpload = async (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        // Validate file type
+        const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'application/pdf'];
+        if (!validTypes.includes(file.type)) {
+            alert('Please upload a valid file (JPEG, PNG, WebP, or PDF)');
+            return;
+        }
+
+        // Show preview (only for images)
+        if (file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreview(reader.result);
+            };
+            reader.readAsDataURL(file);
+            setUploadedFileName(null);
+        } else {
+            // For PDFs, just show the filename
+            setImagePreview(null);
+            setUploadedFileName(file.name);
+        }
+
+        // Upload and extract
+        setUploadingImage(true);
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            const response = await fetch('/api/extract-insurance-info', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const result = await response.json();
+
+            if (result.success && result.data) {
+                setExtractedData(result.data);
+                setHasUploadedDocument(true);
+
+                // Auto-fill form fields
+                if (result.data.insuranceCarrier) {
+                    setValue('insuranceCarrier', result.data.insuranceCarrier);
+                }
+                if (result.data.planName) {
+                    setValue('planName', result.data.planName);
+                }
+                if (result.data.deductible?.individual) {
+                    setValue('deductible', result.data.deductible.individual);
+                }
+                if (result.data.outOfPocketMax?.individual) {
+                    setValue('outOfPocketMax', result.data.outOfPocketMax.individual);
+                }
+
+                alert('Insurance information extracted successfully! Please review and update the fields as needed.');
+            } else {
+                throw new Error(result.error || 'Failed to extract information');
+            }
+        } catch (error) {
+            console.error('Error uploading insurance card:', error);
+            alert('Failed to extract insurance information. Please fill in manually.');
+        } finally {
+            setUploadingImage(false);
+        }
+    };
 
     const onSubmit = async (data) => {
         setLoading(true);
 
         try {
+            // Helper function to safely parse numbers
+            const parseNumber = (value) => {
+                if (!value || value === '') return null;
+                const parsed = parseFloat(value);
+                return isNaN(parsed) ? null : parsed;
+            };
+
             // Save insurance info to user profile
             await updateDoc(doc(db, 'users', user.uid), {
-                insuranceCarrier: data.insuranceCarrier,
-                planName: data.planName,
-                deductible: parseFloat(data.deductible),
-                deductibleMet: parseFloat(data.deductibleMet),
-                outOfPocketMax: parseFloat(data.outOfPocketMax),
-                coinsurance: parseFloat(data.coinsurance),
+                insuranceCarrier: data.insuranceCarrier || null,
+                planName: data.planName || null,
+                deductible: parseNumber(data.deductible),
+                deductibleMet: parseNumber(data.deductibleMet) || 0,
+                outOfPocketMax: parseNumber(data.outOfPocketMax),
+                coinsurance: parseNumber(data.coinsurance),
                 location: {
-                    state: data.state,
-                    zipCode: data.zipCode
+                    state: data.state || null,
+                    zipCode: data.zipCode || null
                 },
-                coverageLimit: data.coverageLimit ? parseFloat(data.coverageLimit) : null,
+                coverageLimit: parseNumber(data.coverageLimit),
+                // Store extracted data for reference
+                extractedInsuranceData: extractedData || null,
                 // Treatment history fields for future use
                 treatmentHistory: [],
                 documents: [],
@@ -52,10 +134,13 @@ export default function Onboarding() {
                 onboardingDate: new Date()
             });
 
+            console.log('✅ Onboarding completed successfully!');
+            console.log('Redirecting to home page...');
+
             // Redirect to home
             router.push('/');
         } catch (error) {
-            console.error('Error saving profile:', error);
+            console.error('❌ Error saving profile:', error);
             alert('Error saving profile. Please try again.');
             setLoading(false);
         }
@@ -80,33 +165,75 @@ export default function Onboarding() {
                             <>
                                 <h2>Insurance Information</h2>
 
+                                <div className={styles.uploadSection}>
+                                    <label className={styles.uploadLabel}>
+                                        Upload Insurance Document *
+                                    </label>
+                                    <p className={styles.uploadHint}>
+                                        Please upload a photo of your insurance card or a PDF of your Summary of Benefits. The form will auto-fill based on the document.
+                                    </p>
+
+                                    <div className={styles.uploadContainer}>
+                                        <input
+                                            type="file"
+                                            accept="image/*,application/pdf"
+                                            onChange={handleImageUpload}
+                                            disabled={uploadingImage}
+                                            className={styles.fileInput}
+                                            id="insuranceCardUpload"
+                                        />
+                                        <label htmlFor="insuranceCardUpload" className={styles.uploadButton}>
+                                            {uploadingImage ? 'Processing...' : 'Choose File'}
+                                        </label>
+
+                                        {imagePreview && (
+                                            <div className={styles.imagePreview}>
+                                                <img src={imagePreview} alt="Insurance card preview" />
+                                            </div>
+                                        )}
+
+                                        {uploadedFileName && (
+                                            <div className={styles.fileInfo}>
+                                                📄 {uploadedFileName}
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+
+                                <div className={styles.divider}>
+                                    <span>Review & Edit (Optional)</span>
+                                </div>
+
                                 <div className={styles.formGroup}>
-                                    <label>Insurance Carrier *</label>
+                                    <label>Insurance Carrier</label>
                                     <input
                                         type="text"
-                                        {...register('insuranceCarrier', { required: 'Required' })}
-                                        placeholder="e.g., Blue Cross Blue Shield"
+                                        {...register('insuranceCarrier')}
+                                        placeholder="Auto-filled from document"
+                                        disabled={!hasUploadedDocument}
                                     />
                                     {errors.insuranceCarrier && <span className={styles.error}>{errors.insuranceCarrier.message}</span>}
                                 </div>
 
                                 <div className={styles.formGroup}>
-                                    <label>Plan Name *</label>
+                                    <label>Plan Name</label>
                                     <input
                                         type="text"
-                                        {...register('planName', { required: 'Required' })}
-                                        placeholder="e.g., PPO Gold"
+                                        {...register('planName')}
+                                        placeholder="Auto-filled from document"
+                                        disabled={!hasUploadedDocument}
                                     />
                                     {errors.planName && <span className={styles.error}>{errors.planName.message}</span>}
                                 </div>
 
                                 <div className={styles.formRow}>
                                     <div className={styles.formGroup}>
-                                        <label>Annual Deductible ($) *</label>
+                                        <label>Annual Deductible ($)</label>
                                         <input
                                             type="number"
-                                            {...register('deductible', { required: 'Required', min: 0 })}
-                                            placeholder="2000"
+                                            {...register('deductible', { min: 0 })}
+                                            placeholder="Auto-filled from document"
+                                            disabled={!hasUploadedDocument}
                                         />
                                         {errors.deductible && <span className={styles.error}>{errors.deductible.message}</span>}
                                     </div>
@@ -118,11 +245,29 @@ export default function Onboarding() {
                                             {...register('deductibleMet', { min: 0 })}
                                             placeholder="0"
                                             defaultValue="0"
+                                            disabled={!hasUploadedDocument}
                                         />
                                     </div>
                                 </div>
 
-                                <button type="button" onClick={() => setStep(2)} className={styles.nextButton}>
+                                {!hasUploadedDocument && (
+                                    <p className={styles.warningText}>
+                                        ⚠️ Please upload your insurance document to continue
+                                    </p>
+                                )}
+
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        if (!hasUploadedDocument) {
+                                            alert('Please upload your insurance document before continuing.');
+                                            return;
+                                        }
+                                        setStep(2);
+                                    }}
+                                    className={styles.nextButton}
+                                    disabled={!hasUploadedDocument}
+                                >
                                     Next →
                                 </button>
                             </>
@@ -134,21 +279,21 @@ export default function Onboarding() {
 
                                 <div className={styles.formRow}>
                                     <div className={styles.formGroup}>
-                                        <label>Out-of-Pocket Max ($) *</label>
+                                        <label>Out-of-Pocket Max ($)</label>
                                         <input
                                             type="number"
-                                            {...register('outOfPocketMax', { required: 'Required', min: 0 })}
-                                            placeholder="6000"
+                                            {...register('outOfPocketMax', { min: 0 })}
+                                            placeholder="Auto-filled from document"
                                         />
                                         {errors.outOfPocketMax && <span className={styles.error}>{errors.outOfPocketMax.message}</span>}
                                     </div>
 
                                     <div className={styles.formGroup}>
-                                        <label>Coinsurance (%) *</label>
+                                        <label>Coinsurance (%)</label>
                                         <input
                                             type="number"
-                                            {...register('coinsurance', { required: 'Required', min: 0, max: 100 })}
-                                            placeholder="20"
+                                            {...register('coinsurance', { min: 0, max: 100 })}
+                                            placeholder="Optional"
                                         />
                                         {errors.coinsurance && <span className={styles.error}>{errors.coinsurance.message}</span>}
                                     </div>
@@ -165,8 +310,8 @@ export default function Onboarding() {
 
                                 <div className={styles.formRow}>
                                     <div className={styles.formGroup}>
-                                        <label>State *</label>
-                                        <select {...register('state', { required: 'Required' })}>
+                                        <label>State</label>
+                                        <select {...register('state')}>
                                             <option value="">Select state...</option>
                                             <option value="AL">Alabama</option>
                                             <option value="AK">Alaska</option>
@@ -193,14 +338,13 @@ export default function Onboarding() {
                                     </div>
 
                                     <div className={styles.formGroup}>
-                                        <label>Zip Code *</label>
+                                        <label>Zip Code</label>
                                         <input
                                             type="text"
                                             {...register('zipCode', {
-                                                required: 'Required',
                                                 pattern: {
                                                     value: /^\d{5}$/,
-                                                    message: 'Invalid zip code'
+                                                    message: 'Invalid zip code format'
                                                 }
                                             })}
                                             placeholder="12345"
