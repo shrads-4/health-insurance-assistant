@@ -1,112 +1,131 @@
+import formidable from 'formidable';
+import fs from 'fs';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API_KEY);
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { documentText } = req.body;
-
-  if (!documentText) {
-    return res.status(400).json({ error: 'Document text is required' });
-  }
-
   try {
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    // Parse the uploaded file
+    const form = formidable({});
+    const [fields, files] = await form.parse(req);
 
-    const prompt = `You are an expert at extracting insurance information from health insurance documents.
-Please analyze the following insurance document text and extract the following information:
+    const file = files.file[0];
+    const fileBytes = fs.readFileSync(file.filepath);
 
-1. Insurance Carrier (company name)
-2. Plan Name (specific plan identifier)
-3. Deductible Amount (in dollars, individual if specified)
-4. Out-of-Pocket Maximum (in dollars, individual if specified)
-5. Coinsurance Percentage (the percentage the patient pays after deductible)
-6. Coverage Limits for fertility/infertility treatments (in dollars or cycles)
+    // Determine mime type
+    let mimeType = file.mimetype;
+    if (!mimeType || mimeType === 'application/octet-stream') {
+      const ext = file.originalFilename.toLowerCase().split('.').pop();
+      const mimeTypes = {
+        'jpg': 'image/jpeg',
+        'jpeg': 'image/jpeg',
+        'png': 'image/png',
+        'gif': 'image/gif',
+        'webp': 'image/webp',
+        'pdf': 'application/pdf'
+      };
+      mimeType = mimeTypes[ext] || 'image/jpeg';
+    }
 
-IMPORTANT INSTRUCTIONS:
-- Extract only the information that is clearly stated in the document
-- For dollar amounts, return only the number without $ or commas (e.g., "5000" not "$5,000")
-- For percentages, return only the number without % (e.g., "20" not "20%")
-- If information is not found or unclear, use null
-- For coverage limits, look for specific fertility/infertility treatment limits
-- If there are different amounts for in-network vs out-of-network, prefer in-network values
-
-Return the information in the following JSON format only (no additional text):
-{
-  "insuranceCarrier": "carrier name or null",
-  "planName": "plan name or null",
-  "deductible": number or null,
-  "outOfPocketMax": number or null,
-  "coinsurance": number or null,
-  "coverageLimit": number or null,
-  "notes": "any important notes about fertility coverage or null"
-}
-
-Document text:
-${documentText.substring(0, 50000)}
-`;
-
-    console.log('Sending insurance extraction request to Gemini...');
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    let text = response.text();
-
-    // Clean up the response - remove markdown code blocks if present
-    text = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
-
-    console.log('Raw Gemini response:', text);
-
-    // Parse the JSON response
-    let extractedInfo;
-    try {
-      extractedInfo = JSON.parse(text);
-    } catch (parseError) {
-      console.error('Failed to parse Gemini response as JSON:', parseError);
-      console.error('Response text:', text);
-
-      // Return a fallback response
-      return res.status(200).json({
-        insuranceCarrier: null,
-        planName: null,
-        deductible: null,
-        outOfPocketMax: null,
-        coinsurance: null,
-        coverageLimit: null,
-        notes: 'Failed to automatically extract information. Please review your document manually.',
-        rawResponse: text
+    // Validate file type
+    const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif', 'application/pdf'];
+    if (!validTypes.includes(mimeType)) {
+      fs.unlinkSync(file.filepath);
+      return res.status(400).json({
+        error: 'Invalid file type. Please upload an image (JPEG, PNG, WebP) or PDF file.'
       });
     }
 
-    // Validate and sanitize the extracted data
-    const sanitizedInfo = {
-      insuranceCarrier: extractedInfo.insuranceCarrier || null,
-      planName: extractedInfo.planName || null,
-      deductible: parseFloat(extractedInfo.deductible) || null,
-      outOfPocketMax: parseFloat(extractedInfo.outOfPocketMax) || null,
-      coinsurance: parseFloat(extractedInfo.coinsurance) || null,
-      coverageLimit: parseFloat(extractedInfo.coverageLimit) || null,
-      notes: extractedInfo.notes || null
+    // Initialize Gemini client
+    const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API_KEY);
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+
+    // Create the prompt for extracting insurance information
+    const prompt = `Analyze this insurance ${mimeType === 'application/pdf' ? 'document (Summary of Benefits and Coverage or insurance card)' : 'card image'} and extract the following information in JSON format:
+{
+  "insuranceCarrier": "The insurance company name (e.g., Aetna, Blue Cross, etc.)",
+  "planName": "The plan type/name if available",
+  "memberId": "Member ID or policy number",
+  "groupNumber": "Group number if available",
+  "deductible": {
+    "individual": "Individual deductible amount (number only, no $ or commas)",
+    "family": "Family deductible amount if shown (number only, no $ or commas)"
+  },
+  "outOfPocketMax": {
+    "individual": "Individual out-of-pocket maximum (number only, no $ or commas)",
+    "family": "Family out-of-pocket maximum if shown (number only, no $ or commas)"
+  },
+  "phoneNumbers": {
+    "claims": "Claims phone number",
+    "customerService": "Customer service or general phone number",
+    "preAuth": "Pre-authorization or pre-certification phone number if available"
+  },
+  "additionalInfo": "Any other relevant information like coverage details, rx info, etc."
+}
+
+Important:
+- Extract only the information that is visible on the card
+- For monetary values, provide only numbers without $ or commas
+- If a field is not visible, use null
+- Be precise with the insurance carrier name
+- Look for deductibles labeled as "In Network" or similar`;
+
+    // Call Gemini API with file (image or PDF) and prompt
+    const filePart = {
+      inlineData: {
+        data: fileBytes.toString('base64'),
+        mimeType: mimeType,
+      },
     };
 
-    console.log('Extracted insurance information:', sanitizedInfo);
-    return res.status(200).json(sanitizedInfo);
+    const response = await model.generateContent([prompt, filePart]);
+
+    // Clean up temp file
+    fs.unlinkSync(file.filepath);
+
+    // Extract the response text
+    const responseText = response.response.text();
+
+    // Parse JSON from response (Gemini often wraps JSON in markdown code blocks)
+    let extractedData;
+    try {
+      // Try to extract JSON from markdown code blocks
+      const jsonMatch = responseText.match(/```json\n([\s\S]*?)\n```/) ||
+                       responseText.match(/```\n([\s\S]*?)\n```/);
+
+      if (jsonMatch) {
+        extractedData = JSON.parse(jsonMatch[1]);
+      } else {
+        extractedData = JSON.parse(responseText);
+      }
+    } catch (parseError) {
+      console.error('Failed to parse Gemini response as JSON:', responseText);
+      return res.status(500).json({
+        error: 'Failed to parse extracted data',
+        rawResponse: responseText
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      data: extractedData,
+      fileName: file.originalFilename,
+    });
 
   } catch (error) {
-    console.error('Gemini API error:', error);
+    console.error('Insurance card extraction error:', error);
     return res.status(500).json({
       error: 'Failed to extract insurance information',
       details: error.message
     });
   }
 }
-
-export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: '50mb',
-    },
-  },
-};
