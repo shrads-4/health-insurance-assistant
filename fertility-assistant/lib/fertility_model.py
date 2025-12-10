@@ -335,8 +335,24 @@ if __name__ == '__main__':
     # Load or train model on startup
     model_path = 'fertility_cost_model.pkl'
     data_path = 'fertility_pricing_data.csv'
+
     if os.path.exists(model_path):
-        fertility_model.load_model(model_path)
+        try:
+            fertility_model.load_model(model_path)
+        except Exception as e:
+            # Handle incompatible pickle (e.g., different scikit-learn version)
+            print(f"⚠️  Failed to load existing model ({model_path}): {e}")
+            if os.path.exists(data_path):
+                print("Retraining model from data due to load error...")
+                df = fertility_model.load_real_data(data_path)
+                fertility_model.train(df)
+                fertility_model.save_model(model_path)
+            else:
+                print(f"ERROR: No compatible model or data file found!")
+                print(f"  - Model file: {model_path}")
+                print(f"  - Data file: {data_path}")
+                print("\nPlease run fertility_pricing_scraper.py first to generate data.")
+                exit(1)
     elif os.path.exists(data_path):
         print("No existing model found. Training new model...")
         df = fertility_model.load_real_data(data_path)

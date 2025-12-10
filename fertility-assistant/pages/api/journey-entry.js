@@ -1,8 +1,47 @@
 import { db, auth } from '../../lib/firebase_config';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, getDocs, query, orderBy, serverTimestamp } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 export default async function handler(req, res) {
+  // Handle GET request to fetch journey entries
+  if (req.method === 'GET') {
+    try {
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ error: 'Unauthorized - No token provided' });
+      }
+
+      // In a real app, verify the token here to get the UID securely
+      // For this implementation, we'll need the UID to be passed as a query param
+      // or extract it from the token if we were verifying it on the server
+      const { uid } = req.query;
+
+      if (!uid) {
+        return res.status(400).json({ error: 'Missing uid' });
+      }
+
+      const journeyEntriesRef = collection(db, 'users', uid, 'journeyEntries');
+      const q = query(journeyEntriesRef, orderBy('date', 'asc')); // Sort by date
+      
+      const querySnapshot = await getDocs(q);
+      const entries = [];
+      
+      querySnapshot.forEach((doc) => {
+        entries.push({
+          id: doc.id,
+          ...doc.data(),
+          // Ensure dates are serialized properly if they are timestamps
+          createdAt: doc.data().createdAt?.toDate().toISOString() || null,
+        });
+      });
+
+      return res.status(200).json({ success: true, data: entries });
+    } catch (error) {
+      console.error('Error fetching journey entries:', error);
+      return res.status(500).json({ error: 'Failed to fetch journey entries', details: error.message });
+    }
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }

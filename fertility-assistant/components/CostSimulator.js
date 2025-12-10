@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../lib/firebase_config';
 import styles from '../styles/CostSimulator.module.css';
 
 export default function CostSimulator() {
@@ -17,6 +19,7 @@ export default function CostSimulator() {
   const [scenarios, setScenarios] = useState([]);
   const [activeTab, setActiveTab] = useState('predictions');
   const [error, setError] = useState(null);
+  const [profileDoc, setProfileDoc] = useState(null);
 
   // Load user profile data on mount
   useEffect(() => {
@@ -41,6 +44,21 @@ export default function CostSimulator() {
       }));
     }
   }, [userProfile]);
+
+  // Extra safety: fetch latest profile document directly
+  useEffect(() => {
+    if (!user) return;
+    (async () => {
+      try {
+        const snap = await getDoc(doc(db, 'users', user.uid));
+        if (snap.exists()) {
+          setProfileDoc(snap.data());
+        }
+      } catch (e) {
+        console.error('Error fetching profile for simulator:', e);
+      }
+    })();
+  }, [user]);
 
   const treatmentOptions = [
     { value: 'IVF', label: 'IVF (In Vitro Fertilization)' },
@@ -88,16 +106,14 @@ export default function CostSimulator() {
   };
 
   const predictCosts = async () => {
-    if (!userProfile) {
-      setError('Please complete your profile setup first');
-      return;
-    }
-
-    // Check if user has insurance information
-    if (!userProfile.deductible && !userProfile.outOfPocketMax) {
-      setError('Please add your insurance information in your profile to see accurate cost estimates');
-      return;
-    }
+    // If we have no profile at all, warn but allow proceeding with defaults if the user insists (or just block with a softer message)
+    // Actually, we'll just check for values.
+    
+    // Check if user has insurance information (soft check)
+    // if (!safeProfile.deductible && !safeProfile.outOfPocketMax) {
+    //   setError('Please add your insurance information in your profile to see accurate cost estimates');
+    //   return;
+    // }
 
     setError(null);
     setPredicting(true);
@@ -115,12 +131,12 @@ export default function CostSimulator() {
           state: inputs.state,
           age: inputs.age,
           insuranceType: inputs.insuranceType,
-          // Insurance details from user profile
-          deductible: userProfile.deductible || 0,
-          deductibleMet: userProfile.deductibleMet || 0,
-          outOfPocketMax: userProfile.outOfPocketMax || Infinity,
-          coinsurance: userProfile.coinsurance || 20,
-          coverageLimit: userProfile.coverageLimit || null
+          // Insurance details from profile or extracted data
+          deductible: effectiveDeductible,
+          deductibleMet: effectiveDeductibleMet,
+          outOfPocketMax: effectiveOutOfPocketMax,
+          coinsurance: effectiveCoinsurance,
+          coverageLimit: safeProfile.coverageLimit || null
         })
       });
 
@@ -173,14 +189,14 @@ export default function CostSimulator() {
     });
 
     // Scenario 2: Wait Until January (if near year end)
-    if (isNearYearEnd && userProfile.deductible) {
+    if (isNearYearEnd && effectiveDeductible) {
       const januaryBreakdown = calculateInsuranceCost(
         baseCost,
-        userProfile.deductible,
+        effectiveDeductible,
         0, // Fresh deductible
-        userProfile.outOfPocketMax,
-        userProfile.coinsurance,
-        userProfile.coverageLimit
+        effectiveOutOfPocketMax,
+        effectiveCoinsurance,
+        safeProfile.coverageLimit
       );
 
       const savings = insuranceBreakdown.finalOutOfPocket - januaryBreakdown.finalOutOfPocket;
@@ -213,11 +229,11 @@ export default function CostSimulator() {
       const alternativeCost = baseCost * 0.85; // Academic centers ~15% less
       const altBreakdown = calculateInsuranceCost(
         alternativeCost,
-        userProfile.deductible,
-        userProfile.deductibleMet,
-        userProfile.outOfPocketMax,
-        userProfile.coinsurance,
-        userProfile.coverageLimit
+        effectiveDeductible,
+        effectiveDeductibleMet,
+        effectiveOutOfPocketMax,
+        effectiveCoinsurance,
+        safeProfile.coverageLimit
       );
 
       scenariosList.push({
@@ -281,17 +297,32 @@ export default function CostSimulator() {
     }).format(amount);
   };
 
-  // Check if user profile is incomplete
-  if (!userProfile) {
-    return (
-      <div className={styles.container}>
-        <div className={styles.errorCard}>
-          <h2>⚠️ Profile Setup Required</h2>
-          <p>Please complete your profile setup to access the cost simulator.</p>
-        </div>
-      </div>
-    );
-  }
+  // Derive insurance values from profile or extracted plan data
+  const safeProfile = profileDoc || userProfile || {};
+  const extracted = safeProfile.extractedInsuranceData || {};
+
+  const toNumber = (val) => {
+    if (val === null || val === undefined || val === '') return null;
+    const n = parseFloat(val);
+    return Number.isNaN(n) ? null : n;
+  };
+
+  const effectiveDeductible =
+    toNumber(safeProfile.deductible) ??
+    toNumber(extracted.deductible?.individual) ??
+    0;
+
+  const effectiveDeductibleMet =
+    toNumber(safeProfile.deductibleMet) ?? 0;
+
+  const effectiveOutOfPocketMax =
+    toNumber(safeProfile.outOfPocketMax) ??
+    toNumber(extracted.outOfPocketMax?.individual) ??
+    0;
+
+  // Coinsurance may not be parsed yet from the plan; fall back to profile or 20%
+  const effectiveCoinsurance =
+    toNumber(safeProfile.coinsurance) ?? 20;
 
   return (
     <div className={styles.container}>
@@ -384,33 +415,33 @@ export default function CostSimulator() {
             <div className={styles.infoItem}>
               <span className={styles.infoLabel}>Plan:</span>
               <span className={styles.infoValue}>
-                {userProfile.insuranceCarrier || 'Not specified'} - {userProfile.planName || 'N/A'}
+                {safeProfile.insuranceCarrier || 'Not specified'} - {safeProfile.planName || 'N/A'}
               </span>
             </div>
             <div className={styles.infoItem}>
               <span className={styles.infoLabel}>Deductible:</span>
               <span className={styles.infoValue}>
-                {formatCurrency(userProfile.deductible || 0)}
-                {userProfile.deductibleMet > 0 &&
-                  ` (${formatCurrency(userProfile.deductibleMet)} met)`
+                {formatCurrency(effectiveDeductible)}
+                {effectiveDeductibleMet > 0 &&
+                  ` (${formatCurrency(effectiveDeductibleMet)} met)`
                 }
               </span>
             </div>
             <div className={styles.infoItem}>
               <span className={styles.infoLabel}>Out-of-Pocket Max:</span>
               <span className={styles.infoValue}>
-                {formatCurrency(userProfile.outOfPocketMax || 0)}
+                {formatCurrency(effectiveOutOfPocketMax)}
               </span>
             </div>
             <div className={styles.infoItem}>
               <span className={styles.infoLabel}>Coinsurance:</span>
-              <span className={styles.infoValue}>{userProfile.coinsurance || 20}%</span>
+              <span className={styles.infoValue}>{effectiveCoinsurance}%</span>
             </div>
-            {userProfile.coverageLimit && (
+            {safeProfile.coverageLimit && (
               <div className={styles.infoItem}>
                 <span className={styles.infoLabel}>Fertility Coverage Limit:</span>
                 <span className={styles.infoValue}>
-                  {formatCurrency(userProfile.coverageLimit)}
+                  {formatCurrency(safeProfile.coverageLimit)}
                 </span>
               </div>
             )}
@@ -510,7 +541,7 @@ export default function CostSimulator() {
                       </td>
                     </tr>
                     <tr>
-                      <td>Your Coinsurance ({userProfile.coinsurance || 20}%):</td>
+                      <td>Your Coinsurance ({effectiveCoinsurance}%):</td>
                       <td className={styles.coinsurance}>
                         -{formatCurrency(predictions.insuranceBreakdown.coinsurancePaid)}
                       </td>

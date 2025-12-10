@@ -1,11 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { retrieveRelevantChunks } from '../lib/documentProcessor';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '../lib/firebase_config';
 import styles from '../styles/CoverageDecoder.module.css';
 import ReactMarkdown from 'react-markdown';
 
 export default function CoverageDecoder() {
-  const { userProfile } = useAuth();
+  const { user, userProfile } = useAuth();
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -57,6 +59,7 @@ export default function CoverageDecoder() {
       const formData = new FormData();
       formData.append('file', file);
 
+      // 1. Process document for Chat RAG
       const response = await fetch('/api/process-document', {
         method: 'POST',
         body: formData,
@@ -68,9 +71,60 @@ export default function CoverageDecoder() {
         setDocumentChunks(data.chunks);
         setUploadedFileName(data.fileName);
         
+        let assistantMessage = `✓ I've processed "${data.fileName}"! I now have access to your insurance plan details. Ask me anything about your coverage!`;
+
+        // 2. Extract structured data for Cost Simulator (if PDF/Image)
+        if (user && file.type === 'application/pdf') {
+          try {
+            // Need a fresh FormData for the second request or reuse if fetch doesn't consume it
+            const extractFormData = new FormData();
+            extractFormData.append('file', file);
+            
+            setMessages(prev => [...prev, {
+              role: 'assistant',
+              content: `🔄 Analyzing "${data.fileName}" to extract coverage details for the Cost Simulator...`
+            }]);
+
+            const extractResponse = await fetch('/api/extract-insurance-info', {
+              method: 'POST',
+              body: extractFormData
+            });
+            
+            const extractResult = await extractResponse.json();
+            
+            if (extractResult.success && extractResult.data) {
+              const d = extractResult.data;
+              const parseNumber = (val) => {
+                if (!val) return null;
+                const parsed = parseFloat(val);
+                return isNaN(parsed) ? null : parsed;
+              };
+
+              // Update user profile in Firestore
+              const updates = {
+                extractedInsuranceData: d
+              };
+              
+              if (d.insuranceCarrier) updates.insuranceCarrier = d.insuranceCarrier;
+              if (d.planName) updates.planName = d.planName;
+              if (d.deductible?.individual) updates.deductible = parseNumber(d.deductible.individual);
+              if (d.outOfPocketMax?.individual) updates.outOfPocketMax = parseNumber(d.outOfPocketMax.individual);
+              // Note: extract-insurance-info doesn't currently extract coinsurance/coverageLimit specifically in the prompt shown
+              // but we save what we have.
+              
+              await updateDoc(doc(db, 'users', user.uid), updates);
+              
+              assistantMessage += `\n\n✅ I've also updated your profile with the extracted coverage details (Deductible, Out-of-Pocket Max, etc.). You can see these in the Cost Simulator now!`;
+            }
+          } catch (extractError) {
+            console.error('Auto-extraction failed:', extractError);
+            // Don't fail the whole upload if extraction fails, just log it
+          }
+        }
+
         setMessages(prev => [...prev, {
           role: 'assistant',
-          content: `✓ I've processed "${data.fileName}"! I now have access to your insurance plan details. Ask me anything about your coverage!`
+          content: assistantMessage
         }]);
       } else {
         alert(`Error: ${data.error}`);

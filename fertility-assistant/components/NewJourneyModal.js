@@ -115,8 +115,13 @@ export default function NewJourneyModal({ isOpen, onClose, onSubmit, isSaving = 
     e.preventDefault();
     
     if (validateForm()) {
+      // Find readable label for the selected treatment type
+      const selectedOption = treatmentOptions.find(opt => opt.value === formData.treatmentType);
+      const readableTitle = selectedOption ? selectedOption.label : formData.treatmentType;
+
       const submissionData = {
         ...formData,
+        title: readableTitle, // Save the human-readable title
         totalCost: parseFloat(formData.totalCost),
         insurancePaid: parseFloat(formData.insurancePaid),
         trueCost: calculateTrueCost(),

@@ -3,6 +3,8 @@ import styles from '../styles/Timeline.module.css';
 import NewJourneyModal from './NewJourneyModal';
 import { useNewJourneyModalSession } from '../lib/useNewJourneyModalSession';
 import { useAuth } from '../context/AuthContext';
+import { doc, updateDoc, getDoc } from 'firebase/firestore';
+import { db } from '../lib/firebase_config';
 import { TREATMENT_STAGE_DATA, getTimelineBarWidth } from '../lib/treatmentStageData';
 
 export default function Timeline({ events, onEventsUpdate }) {
@@ -106,6 +108,19 @@ export default function Timeline({ events, onEventsUpdate }) {
       { type: 'insurance-review-for-new-cycle', title: 'Insurance Review for New Cycle' },
       { type: 'emotional-support-counseling', title: 'Emotional Support & Counseling' },
       { type: 'explore-alternative-treatments', title: 'Explore Alternative Treatments' }
+    ],
+    // Fallbacks for other common steps to ensure predictions always appear
+    'insurance-review': [
+      { type: 'financial-counseling', title: 'Financial Counseling' },
+      { type: 'schedule-treatment', title: 'Schedule Treatment' }
+    ],
+    'financial-counseling': [
+      { type: 'schedule-treatment', title: 'Schedule Treatment' },
+      { type: 'insurance-authorization', title: 'Insurance Authorization' }
+    ],
+    'confirm-pregnancy': [
+      { type: 'schedule-ultrasound', title: 'Schedule Ultrasound' },
+      { type: 'review-coverage-for-pregnancy', title: 'Maternity Coverage Review' }
     ]
   };
 
@@ -115,7 +130,29 @@ export default function Timeline({ events, onEventsUpdate }) {
   const [isEditing, setIsEditing] = useState(false);
   const { shouldShowModal, markModalAsShown, isLoading } = useNewJourneyModalSession();
   const { user, userProfile } = useAuth();
+  const [profileData, setProfileData] = useState(userProfile);
   const [timelineEvents, setTimelineEvents] = useState([]);
+
+  // Keep profileData in sync with userProfile, but also fetch fresh data
+  useEffect(() => {
+    if (userProfile) setProfileData(userProfile);
+  }, [userProfile]);
+
+  useEffect(() => {
+    if (!user?.uid) return;
+    const fetchProfile = async () => {
+      try {
+        const snap = await getDoc(doc(db, 'users', user.uid));
+        if (snap.exists()) {
+          setProfileData(prev => ({ ...prev, ...snap.data() }));
+        }
+      } catch (e) {
+        console.error('Error fetching fresh profile:', e);
+      }
+    };
+    fetchProfile();
+  }, [user]);
+
   const [showHistory, setShowHistory] = useState(false);
   const [expandedPredictedStep, setExpandedPredictedStep] = useState(null);
   const [predictedStepShowMedical, setPredictedStepShowMedical] = useState({});
@@ -128,6 +165,21 @@ export default function Timeline({ events, onEventsUpdate }) {
     const date = new Date(year, month - 1, day);
     return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   };
+  
+  const formatStepTitle = (evt) => {
+    if (!evt) return 'Journey Step';
+    if (evt.title) return evt.title;
+    
+    // Check other properties that might hold the type/name
+    const rawType = evt.type || evt.treatmentType || 'journey-step';
+    
+    // Convert slug-style type to Title Case
+    return rawType
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
+
   const getStatusColor = (status) => {
     const statusColors = {
       planned: '#F4D35E',
@@ -215,17 +267,52 @@ export default function Timeline({ events, onEventsUpdate }) {
 
   // Load saved events and merge with optional props
   useEffect(() => {
-    try {
-      const saved = JSON.parse(localStorage.getItem('newJourneyEntries') || '[]');
-      const initial = (saved || []).concat(events || []);
-      // Sort by date (earliest first) instead of timestamp
-      initial.sort((a, b) => new Date(a.date || a.timestamp) - new Date(b.date || b.timestamp));
-      setTimelineEvents(initial);
-    } catch (err) {
-      console.error('Error loading timeline events:', err);
-      setTimelineEvents(events || []);
-    }
-  }, [events]);
+    const loadEvents = async () => {
+      let initialEvents = [];
+      
+      // 1. Try to load from API if user is logged in
+      if (user?.uid) {
+        try {
+          const token = await user.getIdToken();
+          const response = await fetch(`/api/journey-entry?uid=${user.uid}`, {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data.success && Array.isArray(data.data)) {
+              initialEvents = data.data;
+              // Sync to localStorage for offline backup
+              localStorage.setItem('newJourneyEntries', JSON.stringify(initialEvents));
+            }
+          }
+        } catch (err) {
+          console.error('Error fetching timeline events from API:', err);
+          // Fallback to localStorage on error
+          const saved = JSON.parse(localStorage.getItem('newJourneyEntries') || '[]');
+          initialEvents = saved;
+        }
+      } else {
+        // 2. Fallback to localStorage if no user
+        try {
+          const saved = JSON.parse(localStorage.getItem('newJourneyEntries') || '[]');
+          initialEvents = saved;
+        } catch (err) {
+          console.error('Error loading timeline events from localStorage:', err);
+        }
+      }
+
+      // Merge with props events
+      const finalEvents = (initialEvents || []).concat(events || []);
+      // Sort by date (earliest first)
+      finalEvents.sort((a, b) => new Date(a.date || a.timestamp) - new Date(b.date || b.timestamp));
+      setTimelineEvents(finalEvents);
+    };
+
+    loadEvents();
+  }, [events, user]);
 
   // Notify parent of updates
   useEffect(() => {
@@ -385,6 +472,59 @@ export default function Timeline({ events, onEventsUpdate }) {
   const outOfPocket = totalCost - insurancePaid;
   const coveragePercent = totalCost > 0 ? Math.round((insurancePaid / totalCost) * 100) : 0;
 
+  // Deductible progress (per calendar year, based on totalCost)
+  const safeProfile = profileData || {};
+  const extracted = safeProfile.extractedInsuranceData || {};
+
+  const toNumber = (val) => {
+    if (val === null || val === undefined || val === '') return null;
+    // Remove currency symbols, commas, and other non-numeric chars (except dot/minus)
+    const cleanVal = String(val).replace(/[^0-9.-]+/g, '');
+    const n = parseFloat(cleanVal);
+    return Number.isNaN(n) ? null : n;
+  };
+
+  const deductible =
+    toNumber(safeProfile.deductible) ||
+    toNumber(extracted.deductible?.individual) ||
+    0;
+  const currentYear = new Date().getFullYear();
+
+  const deductibleUsedRaw = timelineEvents.reduce((sum, evt) => {
+    if (!evt?.date) return sum;
+    try {
+      const d = new Date(evt.date);
+      const year = d.getFullYear();
+      if (Number.isNaN(year) || year !== currentYear) return sum;
+      return sum + (Number(evt.totalCost) || 0);
+    } catch {
+      return sum;
+    }
+  }, 0);
+
+  const deductibleUsed = Math.min(deductibleUsedRaw, deductible || 0);
+  const deductibleRemaining = Math.max(0, (deductible || 0) - deductibleUsed);
+  const deductibleProgress = deductible > 0 ? Math.round((deductibleUsed / deductible) * 100) : 0;
+  const deductibleMet = deductible > 0 && deductibleRemaining === 0;
+
+  // Persist deductible progress back to the user profile (per user/year)
+  useEffect(() => {
+    if (!user?.uid || !deductible || Number.isNaN(deductibleUsed)) return;
+
+    const syncDeductible = async () => {
+      try {
+        await updateDoc(doc(db, 'users', user.uid), {
+          deductibleMet: deductibleUsed,
+          deductibleMetYear: currentYear,
+        });
+      } catch (e) {
+        console.error('Error updating deductible progress in profile:', e);
+      }
+    };
+
+    syncDeductible();
+  }, [user, deductible, deductibleUsed, currentYear]);
+
   // Get events to display based on showHistory
   const getDisplayEvents = () => {
     if (showHistory) {
@@ -410,6 +550,33 @@ export default function Timeline({ events, onEventsUpdate }) {
 
   return (
     <>
+      {/* Deductible progress bar (per year, based on timeline total costs) */}
+      {deductible > 0 && (
+        <div className={styles.deductibleProgressContainer}>
+          <div className={styles.deductibleHeaderRow}>
+            <span className={styles.deductibleTitle}>
+              Deductible Progress ({currentYear})
+            </span>
+            {deductibleMet ? (
+              <span className={styles.deductibleMetBadge}>
+                <span className={styles.deductibleCheck}>✓</span>
+                DEDUCTIBLE MET
+              </span>
+            ) : (
+              <span className={styles.deductibleRemaining}>
+                ${deductibleRemaining.toLocaleString()} left to meet your deductible
+              </span>
+            )}
+          </div>
+          <div className={styles.deductibleBarOuter}>
+            <div
+              className={`${styles.deductibleBarInner} ${deductibleMet ? styles.deductibleBarMet : ''}`}
+              style={{ width: `${Math.min(Math.max(deductibleProgress, 0), 100)}%` }}
+            />
+          </div>
+        </div>
+      )}
+
       <NewJourneyModal
         isOpen={isNewJourneyModalOpen}
         onClose={handleCloseNewJourneyModal}
@@ -454,7 +621,7 @@ export default function Timeline({ events, onEventsUpdate }) {
                 >
                   {/* Content stack: label, circle, icon - positioned above or below */}
                   <div className={styles.nodeContent}>
-                    <div className={styles.nodeLabel}>{event.title || event.type}</div>
+                    <div className={styles.nodeLabel}>{formatStepTitle(event)}</div>
                     <div className={styles.nodeCircle} style={{ backgroundColor: connectorColor }} />
                     <span className={styles.typeIcon}>{getTypeIcon(event.type)}</span>
                     
@@ -545,29 +712,29 @@ export default function Timeline({ events, onEventsUpdate }) {
         </div>
 
       {/* Toggle history button */}
-      {timelineEvents.length > 1 && (
-        <div className={styles.viewHistoryContainer}>
+      <div className={styles.viewHistoryContainer}>
+        {timelineEvents.length > 1 && (
           <button
             className={styles.viewHistoryButton}
             onClick={() => setShowHistory(prev => !prev)}
           >
             {showHistory ? 'Show current step' : '← View journey history'}
           </button>
-          <button
-            className={styles.addButton}
-            onClick={() => setIsNewJourneyModalOpen(true)}
-            aria-label="Add timeline step"
-          >
-            +
-          </button>
-        </div>
-      )}
+        )}
+        <button
+          className={styles.addButton}
+          onClick={() => setIsNewJourneyModalOpen(true)}
+          aria-label="Add timeline step"
+        >
+          +
+        </button>
+      </div>
 
       {/* Details below timeline map, collapsible */}
       {selectedEvent && (
         <div className={styles.detailsSection}>
           <div className={styles.detailsHeader}>
-            <h3>{selectedEvent.type || selectedEvent.title || 'Journey Step'}</h3>
+            <h3>{formatStepTitle(selectedEvent)}</h3>
             <div className={styles.headerButtons}>
               <button
                 className={styles.deleteButton}
